@@ -1,0 +1,77 @@
+# Monthly personal habit tracker with completion streaks, formulas, and conditional formatting.
+output = ARGV.len() > 0 ? ARGV[0] : "habit_tracker.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Habit Tracker");
+s.tab_color("#70AD47");
+s.page_orientation("landscape");
+s.fit_to_page(1, 1);
+s.freeze(3, 2);
+
+# Title
+s.set(1, 1, "OCTOBER 2026 - DAILY HABIT AND ROUTINE TRACKER");
+s.bold(1, 1);
+s.font_size(1, 1, 15.0);
+s.font_color(1, 1, "#385723");
+
+# Header
+s.set(2, 1, "Habit / Routine").set(2, 2, "Daily Target");
+s.set(2, 3, "1").set(2, 4, "2").set(2, 5, "3").set(2, 6, "4").set(2, 7, "5");
+s.set(2, 8, "6").set(2, 9, "7").set(2, 10, "8").set(2, 11, "9").set(2, 12, "10");
+s.set(2, 13, "11").set(2, 14, "12").set(2, 15, "13").set(2, 16, "14");
+s.set(2, 17, "Total").set(2, 18, "Success Rate");
+
+s.bold(2, 1).bold(2, 2).bold(2, 17).bold(2, 18);
+s.fill(2, 1, "#385723").fill(2, 2, "#385723").fill(2, 17, "#385723").fill(2, 18, "#385723");
+s.font_color(2, 1, "#FFFFFF").font_color(2, 2, "#FFFFFF").font_color(2, 17, "#FFFFFF").font_color(2, 18, "#FFFFFF");
+
+# Habits
+s.set(3, 1, "Morning Cardio / Gym").set(3, 2, "45 mins");
+s.set(3, 3, 1).set(3, 4, 1).set(3, 5, 0).set(3, 6, 1).set(3, 7, 1).set(3, 8, 1).set(3, 9, 0).set(3, 10, 1).set(3, 11, 1).set(3, 12, 1).set(3, 13, 0).set(3, 14, 1).set(3, 15, 1).set(3, 16, 1);
+s.formula(3, 17, "SUM(C3:P3)").formula(3, 18, "Q3/14");
+
+s.set(4, 1, "Deep Focus Programming").set(4, 2, "4 hours");
+s.set(4, 3, 1).set(4, 4, 1).set(4, 5, 1).set(4, 6, 1).set(4, 7, 1).set(4, 8, 0).set(4, 9, 0).set(4, 10, 1).set(4, 11, 1).set(4, 12, 1).set(4, 13, 1).set(4, 14, 1).set(4, 15, 0).set(4, 16, 0);
+s.formula(4, 17, "SUM(C4:P4)").formula(4, 18, "Q4/14");
+
+s.set(5, 1, "Hydration (Water)").set(5, 2, "2.5 Liters");
+s.set(5, 3, 1).set(5, 4, 1).set(5, 5, 1).set(5, 6, 1).set(5, 7, 1).set(5, 8, 1).set(5, 9, 1).set(5, 10, 1).set(5, 11, 1).set(5, 12, 1).set(5, 13, 1).set(5, 14, 1).set(5, 15, 1).set(5, 16, 1);
+s.formula(5, 17, "SUM(C5:P5)").formula(5, 18, "Q5/14");
+
+s.set(6, 1, "Technical Reading").set(6, 2, "30 pages");
+s.set(6, 3, 1).set(6, 4, 0).set(6, 5, 1).set(6, 6, 1).set(6, 7, 0).set(6, 8, 1).set(6, 9, 1).set(6, 10, 0).set(6, 11, 1).set(6, 12, 1).set(6, 13, 1).set(6, 14, 0).set(6, 15, 1).set(6, 16, 1);
+s.formula(6, 17, "SUM(C6:P6)").formula(6, 18, "Q6/14");
+
+s.set(7, 1, "Mindfulness / Meditation").set(7, 2, "15 mins");
+s.set(7, 3, 1).set(7, 4, 1).set(7, 5, 1).set(7, 6, 1).set(7, 7, 1).set(7, 8, 1).set(7, 9, 1).set(7, 10, 1).set(7, 11, 1).set(7, 12, 1).set(7, 13, 1).set(7, 14, 1).set(7, 15, 1).set(7, 16, 1);
+s.formula(7, 17, "SUM(C7:P7)").formula(7, 18, "Q7/14");
+
+s.set(8, 1, "Sleep 8+ Hours").set(8, 2, "8 hours");
+s.set(8, 3, 1).set(8, 4, 0).set(8, 5, 1).set(8, 6, 1).set(8, 7, 0).set(8, 8, 1).set(8, 9, 1).set(8, 10, 1).set(8, 11, 0).set(8, 12, 1).set(8, 13, 1).set(8, 14, 1).set(8, 15, 1).set(8, 16, 0);
+s.formula(8, 17, "SUM(C8:P8)").formula(8, 18, "Q8/14");
+
+# Daily Score Row
+s.set(9, 1, "Daily Total Completed").set(9, 2, "Max 6");
+s.formula(9, 3, "SUM(C3:C8)").formula(9, 4, "SUM(D3:D8)").formula(9, 5, "SUM(E3:E8)").formula(9, 6, "SUM(F3:F8)").formula(9, 7, "SUM(G3:G8)");
+s.formula(9, 8, "SUM(H3:H8)").formula(9, 9, "SUM(I3:I8)").formula(9, 10, "SUM(J3:J8)").formula(9, 11, "SUM(K3:K8)").formula(9, 12, "SUM(L3:L8)");
+s.formula(9, 13, "SUM(M3:M8)").formula(9, 14, "SUM(N3:N8)").formula(9, 15, "SUM(O3:O8)").formula(9, 16, "SUM(P3:P8)");
+s.formula(9, 17, "SUM(Q3:Q8)").formula(9, 18, "AVERAGE(R3:R8)");
+
+s.bold(9, 1).bold(9, 2).bold(9, 17).bold(9, 18);
+s.fill(9, 1, "#E2EFDA").fill(9, 2, "#E2EFDA").fill(9, 17, "#E2EFDA").fill(9, 18, "#E2EFDA");
+
+# Format numbers
+s.number_format(3, 18, "0.0%").number_format(4, 18, "0.0%").number_format(5, 18, "0.0%").number_format(6, 18, "0.0%").number_format(7, 18, "0.0%").number_format(8, 18, "0.0%").number_format(9, 18, "0.0%");
+
+s.col_width(1, 26.0).col_width(2, 14.0).col_width(17, 10.0).col_width(18, 14.0);
+s.border_box(2, 1, 9, 18, "thin", "#BFBFBF");
+
+# Conditional formatting
+s.conditional_cell_is(3, 3, 8, 16, "=", "1", "#C6EFCE", "#006100");
+s.conditional_color_scale(3, 18, 8, 18, "#F8696B", "#63BE7B");
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

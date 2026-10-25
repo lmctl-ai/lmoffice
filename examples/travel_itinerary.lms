@@ -1,0 +1,58 @@
+# Executive multi-day business travel itinerary with flight links, meeting blocks, and budget.
+output = ARGV.len() > 0 ? ARGV[0] : "travel_itinerary.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Itinerary");
+s.tab_color("#ED7D31");
+s.page_orientation("portrait");
+s.fit_to_page(1, 1);
+
+# Header Title
+s.set(1, 1, "EXECUTIVE TRAVEL ITINERARY - TOKYO SUMMIT 2026");
+s.bold(1, 1);
+s.font_size(1, 1, 15.0);
+s.font_color(1, 1, "#C65911");
+s.merge(1, 1, 1, 6);
+
+# Traveler Profile
+s.set(3, 1, "Traveler:").set(3, 2, "Dr. Aris Thorne").set(3, 4, "Passport:").set(3, 5, "US *****4821");
+s.set(4, 1, "Dates:").set(4, 2, "Nov 10 - Nov 14, 2026").set(4, 4, "Emergency:").set(4, 5, "+1 (415) 555-0198");
+s.bold(3, 1).bold(3, 4).bold(4, 1).bold(4, 4);
+
+# Day 1: Flight & Arrival
+s.set(6, 1, "DAY 1: TUESDAY, NOV 10 - OUTBOUND TRANSIT");
+s.bold(6, 1);
+s.fill(6, 1, "#FCE4D6").fill(6, 2, "#FCE4D6").fill(6, 3, "#FCE4D6").fill(6, 4, "#FCE4D6").fill(6, 5, "#FCE4D6").fill(6, 6, "#FCE4D6");
+s.merge(6, 1, 6, 6);
+
+s.set(7, 1, "Time").set(7, 2, "Event / Flight").set(7, 3, "Confirmation").set(7, 4, "Location / Terminal").set(7, 5, "Contact").set(7, 6, "Link");
+s.bold(7, 1).bold(7, 2).bold(7, 3).bold(7, 4).bold(7, 5).bold(7, 6);
+s.fill(7, 1, "#C65911").fill(7, 2, "#C65911").fill(7, 3, "#C65911").fill(7, 4, "#C65911").fill(7, 5, "#C65911").fill(7, 6, "#C65911");
+s.font_color(7, 1, "#FFFFFF").font_color(7, 2, "#FFFFFF").font_color(7, 3, "#FFFFFF").font_color(7, 4, "#FFFFFF").font_color(7, 5, "#FFFFFF").font_color(7, 6, "#FFFFFF");
+
+s.set(8, 1, "11:30 AM").set(8, 2, "Flight JL001 (SFO -> HND)").set(8, 3, "JAL-84920").set(8, 4, "SFO Terminal Int'l G").set(8, 5, "Gate G94").set(8, 6, "Flight Status");
+s.hyperlink(8, 6, "https://example.com/flight/jl001", "Track Flight JL001");
+s.set(9, 1, "03:45 PM+1").set(9, 2, "Arrival & Haneda Express").set(9, 3, "Monorail Pass").set(9, 4, "Haneda Airport T3").set(9, 5, "Driver Kenji").set(9, 6, "Transit Guide");
+s.set(10, 1, "05:30 PM+1").set(10, 2, "Hotel Check-In").set(10, 3, "HTL-93821").set(10, 4, "Grand Hyatt Tokyo (Roppongi)").set(10, 5, "Front Desk").set(10, 6, "Hotel Map");
+s.hyperlink(10, 6, "https://example.com/hotel/grandhyatt-tokyo", "View Hotel Details");
+
+# Day 2: Summit Keynote & Partner Meetings
+s.set(12, 1, "DAY 2: WEDNESDAY, NOV 11 - AI INFRASTRUCTURE SUMMIT");
+s.bold(12, 1);
+s.fill(12, 1, "#FCE4D6").fill(12, 2, "#FCE4D6").fill(12, 3, "#FCE4D6").fill(12, 4, "#FCE4D6").fill(12, 5, "#FCE4D6").fill(12, 6, "#FCE4D6");
+s.merge(12, 1, 12, 6);
+
+s.set(13, 1, "09:00 AM").set(13, 2, "Opening Keynote Speech").set(13, 3, "Badge VIP-14").set(13, 4, "Tokyo Int'l Forum Hall A").set(13, 5, "Host Liaison").set(13, 6, "Event Agenda");
+s.hyperlink(13, 6, "https://example.com/summit2026/agenda", "Conference Agenda");
+s.set(14, 1, "01:30 PM").set(14, 2, "Bilateral Partner Strategy").set(14, 3, "Room 402").set(14, 4, "Forum Conf Center").set(14, 5, "T. Sato").set(14, 6, "Meeting Notes");
+s.set(15, 1, "06:30 PM").set(15, 2, "Executive Welcome Dinner").set(15, 3, "Table 4").set(15, 4, "Kozue (Park Hyatt)").set(15, 5, "Host Team").set(15, 6, "Restaurant");
+
+s.border_box(7, 1, 10, 6, "thin", "#D0D0D0");
+s.border_box(13, 1, 15, 6, "thin", "#D0D0D0");
+s.col_width(1, 14.0).col_width(2, 32.0).col_width(3, 18.0).col_width(4, 28.0).col_width(5, 18.0).col_width(6, 16.0);
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

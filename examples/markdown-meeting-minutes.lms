@@ -1,0 +1,42 @@
+# Meeting minutes kept as a source-controlled document.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-meeting-minutes.docx"; let body = """---
+title: Product Council Minutes
+author: Juniper Property Group
+header: Product Council | {{date}}
+footer: Internal | {{page}}/{{pages}}
+theme: business
+---
+# Product Council Minutes
+
+**June 18, 2026** · Cedar Room · Facilitator: Lina Patel
+
+## Attendees
+
+Mara Chen, Theo Brooks, Imani Reed, and Rafael Ortiz.
+
+## Decisions
+
+1. Move the customer onboarding pilot to July 8.
+2. Keep the first release limited to three workflow templates.
+3. Publish the support readiness checklist before training.
+
+## Discussion
+
+The council reviewed the pilot feedback. The strongest signal was faster handoff between sales and operations; the main concern was unclear ownership for exceptions.
+
+> Action items should name one owner and one date.
+
+| Owner | Action | Due |
+| :--- | :--- | ---: |
+| Mara Chen | Update workflow templates | June 24 |
+| Theo Brooks | Draft readiness checklist | June 26 |
+| Imani Reed | Schedule pilot training | July 1 |
+
+## Next meeting
+
+The next council meets July 2 at 10:00 a.m.
+""";
+p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

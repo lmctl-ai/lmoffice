@@ -1,0 +1,35 @@
+# Read actual worksheet cells, calculate in outer lmscript, and pass the result into Word.
+output = ARGV.len() > 0 ? ARGV[0] : "cross-workbook-memo.docx";
+workbook = output + ".xlsx";
+
+px = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${workbook});
+let s = book.sheet("Quarterly plan");
+s.set(1, 1, "Department").set(1, 2, "Planned spend");
+s.set(2, 1, "Engineering").set(2, 2, 80000.0);
+s.set(3, 1, "Sales").set(3, 2, 45000.0);
+s.set(4, 1, "Operations").set(4, 2, 30000.0);
+s.set(5, 1, "Total").formula(5, 2, "SUM(B2:B4)").bold(1, 1).bold(1, 2).bold(5, 1);
+s.col_width(1, 22.0).col_width(2, 18.0).number_format(2, 2, "$#,##0.00").number_format(3, 2, "$#,##0.00").number_format(4, 2, "$#,##0.00").number_format(5, 2, "$#,##0.00");
+book.save();
+end _lmcode_
+savedsl(px, workbook + ".dslb");
+rx = system(concat(dsl_cli(px), ["--dsl", workbook + ".dslb"]), 120000); assert(rx.code == 0);
+readback_process = system([dsl_cli(px)[0], "inspect", workbook], 120000); assert(readback_process.code == 0);
+let cells = split(json_parse(readback_process.stdout)["result"]["text"], "\n");
+let quarterly_total = json_parse(cells[3]) + json_parse(cells[5]) + json_parse(cells[7]);
+markdown_process = system(concat(dsl_cli(px), ["--to-markdown", workbook]), 120000); assert(markdown_process.code == 0);
+let workbook_readback = json_parse(markdown_process.stdout)["result"]["markdown"];
+
+pd = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let memo = docx.create(${output});
+memo.title("Quarterly operating memo").author("Cedar Peak Analytics");
+memo.heading("Quarterly operating memo", 1);
+memo.paragraph("The workbook readback supplied by the first block is below. Its planned quarterly total is ${quarterly_total} dollars.");
+memo.markdown(${workbook_readback});
+memo.heading("Decision", 2);
+memo.paragraph("The leadership team approved the plan for the next operating cycle and will review actuals against the workbook at month end.");
+memo.save();
+end _lmcode_
+savedsl(pd, output + ".dslb");
+rd = system(concat(dsl_cli(pd), ["--dsl", output + ".dslb"]), 120000); assert(rd.code == 0);

@@ -1,0 +1,38 @@
+# Legal review notes with explicit redline-style guidance.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-review-notes.docx"; let body = """---
+title: Vendor Agreement Review Notes
+author: Imani Reed
+subject: Counsel review checklist
+theme: legal
+page_numbers: true
+---
+# Vendor Agreement Review Notes
+
+Prepared for **Cedar Valley Cooperative** on June 21, 2026.
+
+## Priority changes
+
+- Clarify the service credit cap in Section 4.
+- Add a five-business-day notice period before suspension.
+- Confirm that customer data is deleted after termination.
+
+## Open questions
+
+| Section | Question | Owner |
+| :--- | :--- | :--- |
+| 4.2 | Does the credit apply to recurring fees? | Finance |
+| 7.1 | Which subcontractors may access data? | Security |
+| 9.3 | Is the renewal notice bilateral? | Legal |
+
+## Counsel note
+
+> Keep the indemnity language aligned with the cooperative’s approved fallback. Do not accept an uncapped obligation without executive review.
+
+{{clause: 1}} Proposed fallback. Limit direct damages to fees paid in the prior twelve months, excluding confidentiality and data-security breaches.
+
+{{sign: Imani Reed}}
+""";
+p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

@@ -1,0 +1,20 @@
+# Outside counsel engagement letter with scope and billing terms.
+output = ARGV.len() > 0 ? ARGV[0] : "legal-services-agreement.docx";
+p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d = docx.create(${output});
+d.title("Legal Services Agreement").author("Harborline Legal").font("Times New Roman").font_size(11.0);
+d.heading("LEGAL SERVICES AGREEMENT",1).align("center");
+d.paragraph("Harborline Legal PLLC will advise Cedar Peak Analytics LLC on its software distribution contracts and related commercial questions.");
+d.heading("1. Scope of services",2);
+d.paragraph("Counsel will review the proposed reseller form, prepare a negotiation summary, and attend two remote meetings. Work outside this scope requires written agreement.");
+d.heading("2. Fees and expenses",2);
+d.paragraph("Professional time is billed monthly at the agreed hourly rates. Cedar Peak will reimburse reasonable filing, courier, and travel expenses supported by receipts.");
+d.heading("3. Client responsibilities",2);
+d.paragraph("The client will provide accurate facts, identify decision makers, and review drafts promptly. Advice depends on the information supplied.");
+d.heading("4. Termination",2);
+d.paragraph("Either party may end this engagement by written notice. The client remains responsible for fees and expenses incurred through the termination date.");
+d.signature("Cedar Peak Analytics LLC");
+d.signature("Harborline Legal PLLC");
+d.footer_fields("Legal Services Agreement | {PAGE} of {NUMPAGES}").save();
+end _lmcode_
+savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]),120000); assert(r.code == 0);

@@ -1,0 +1,57 @@
+# Investor pitch deck with problem, solution, market size, traction chart, and team.
+output = ARGV.len() > 0 ? ARGV[0] : "pitch_deck.pptx";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let deck = pptx.create(${output});
+deck.theme("#002060", "#41719C", "Segoe UI", "Calibri");
+
+# Slide 1: Title
+let s1 = deck.slide();
+s1.title_slide("Novaterra AI", "Autonomous Cloud Infrastructure for Mission-Critical Workloads\nSeries A Financing Presentation | October 2026");
+s1.footer("Novaterra AI - Confidential");
+s1.transition("fade");
+
+# Slide 2: Problem
+let s2 = deck.slide();
+s2.title("The Problem: Cloud Complexity Has Outpaced Humans");
+s2.rounded_rect(80.0, 150.0, 340.0, 150.0, "#C00000", "$600B+ Cloud Spend\n32% Wasted on Idle or Misconfigured Compute");
+s2.rounded_rect(470.0, 150.0, 340.0, 150.0, "#C00000", "4.2 Hours Mean Downtime\nCritical Outages Cost $5M/hr in Finance & Healthcare");
+s2.rounded_rect(860.0, 150.0, 340.0, 150.0, "#C00000", "Talent Shortage\n78% of SRE Teams Report Critical Understaffing");
+s2.text(80.0, 340.0, 1120.0, 60.0, "Current orchestration tools are static, rule-based, and unable to prevent cascade failures in distributed environments.");
+s2.footer("Novaterra AI - Confidential");
+s2.slide_number(true);
+s2.transition("push");
+
+# Slide 3: Solution
+let s3 = deck.slide();
+s3.two_content("The Solution: Autonomous Cloud Fabric", "Continuous Verification:\n• Ingests 10M telemetry events/sec\n• Simulates failure cascades ahead of time\n• Proven zero-overhead eBPF agents\n\nInstant Remediation:\n• Sub-second topology rebalancing\n• Formal mathematical rollback guarantees", "Measurable Customer Impact:\n• 94% Reduction in Sev-1 Incident MTTR\n• 42% Reduction in Redundant Cloud Spend\n• 100% Policy Compliance Automation\n\nProduction Proof:\n• Deployed on 120,000+ nodes across top banks");
+s3.footer("Novaterra AI - Confidential");
+s3.slide_number(true);
+
+# Slide 4: Market Size (TAM / SAM / SOM)
+let s4 = deck.slide();
+s4.title("Massive & Accelerating Addressable Market");
+s4.ellipse(120.0, 160.0, 300.0, 180.0, "#002060", "TAM: $78B\nGlobal Cloud Ops & AIOps");
+s4.ellipse(490.0, 160.0, 300.0, 180.0, "#1F4E78", "SAM: $24B\nEnterprise Kubernetes & Cloud Native");
+s4.ellipse(860.0, 160.0, 300.0, 180.0, "#2E75B6", "SOM: $3.2B\nTier-1 Financial & Telecomm");
+s4.text(120.0, 390.0, 1040.0, 80.0, "Driven by the explosion of AI inference workloads requiring 99.999% uptime and dynamic compute placement.");
+s4.footer("Novaterra AI - Confidential");
+s4.slide_number(true);
+
+# Slide 5: Traction Chart
+let s5 = deck.slide();
+s5.title("Traction: Exponential MRR Growth ($k)");
+s5.line_chart(100.0, 140.0, 1080.0, 460.0, "Monthly Recurring Revenue ($k)", "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct", "MRR ($k)", "120,165,210,290,380,490,640,820,1050,1320");
+s5.footer("Novaterra AI - Confidential");
+s5.slide_number(true);
+
+# Slide 6: The Ask
+let s6 = deck.slide();
+s6.section_header("The Financing Ask: $18M Series A", "Accelerating Global Go-to-Market, Expanding European Engineering Hub, and Enterprise Sales Expansion", "#002060");
+s6.footer("Novaterra AI - Confidential");
+s6.slide_number(true);
+
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

@@ -1,0 +1,66 @@
+# Event catering and supplies shopping list with aisle categorization, autofilter, and totals.
+output = ARGV.len() > 0 ? ARGV[0] : "shopping_list.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Event Shopping");
+s.tab_color("#ED7D31");
+s.page_orientation("portrait");
+s.fit_to_page(1, 1);
+s.freeze(4, 2);
+
+# Title
+s.set(1, 1, "ANNUAL HACKATHON CATERING & SUPPLIES LIST");
+s.bold(1, 1);
+s.font_size(1, 1, 15.0);
+s.font_color(1, 1, "#C65911");
+
+# Summary banner
+s.set(2, 1, "Estimated Budget").set(2, 4, "Actual Spend").set(2, 7, "Items Purchased");
+s.bold(2, 1).bold(2, 4).bold(2, 7);
+s.formula(3, 1, "SUM(G5:G12)").formula(3, 4, "SUM(H5:H12)").formula(3, 7, "COUNTIF(J5:J12,\"Yes\")");
+s.bold(3, 1).bold(3, 4).bold(3, 7);
+s.number_format(3, 1, "$#,##0.00").number_format(3, 4, "$#,##0.00");
+s.fill(2, 1, "#FCE4D6").fill(2, 4, "#E2EFDA").fill(2, 7, "#D9E1F2");
+s.fill(3, 1, "#FCE4D6").fill(3, 4, "#E2EFDA").fill(3, 7, "#D9E1F2");
+
+# Table Header
+s.set(4, 1, "Category").set(4, 2, "Item Name").set(4, 3, "Qty").set(4, 4, "Unit").set(4, 5, "Est Price").set(4, 6, "Act Price").set(4, 7, "Est Total").set(4, 8, "Act Total").set(4, 9, "Variance").set(4, 10, "Done?");
+s.bold(4, 1).bold(4, 2).bold(4, 3).bold(4, 4).bold(4, 5).bold(4, 6).bold(4, 7).bold(4, 8).bold(4, 9).bold(4, 10);
+s.fill(4, 1, "#C65911").fill(4, 2, "#C65911").fill(4, 3, "#C65911").fill(4, 4, "#C65911").fill(4, 5, "#C65911").fill(4, 6, "#C65911").fill(4, 7, "#C65911").fill(4, 8, "#C65911").fill(4, 9, "#C65911").fill(4, 10, "#C65911");
+s.font_color(4, 1, "#FFFFFF").font_color(4, 2, "#FFFFFF").font_color(4, 3, "#FFFFFF").font_color(4, 4, "#FFFFFF").font_color(4, 5, "#FFFFFF").font_color(4, 6, "#FFFFFF").font_color(4, 7, "#FFFFFF").font_color(4, 8, "#FFFFFF").font_color(4, 9, "#FFFFFF").font_color(4, 10, "#FFFFFF");
+
+# Items
+s.set(5, 1, "Beverages").set(5, 2, "Cold Brew Coffee Kegs").set(5, 3, 4).set(5, 4, "kegs").set(5, 5, 85.00).set(5, 6, 82.50).formula(5, 7, "C5*E5").formula(5, 8, "C5*F5").formula(5, 9, "H5-G5").set(5, 10, "Yes");
+s.set(6, 1, "Beverages").set(6, 2, "Sparkling Water Cases").set(6, 3, 12).set(6, 4, "cases").set(6, 5, 18.00).set(6, 6, 17.00).formula(6, 7, "C6*E6").formula(6, 8, "C6*F6").formula(6, 9, "H6-G6").set(6, 10, "Yes");
+s.set(7, 1, "Bakery").set(7, 2, "Artisan Bagels & Pastries").set(7, 3, 80).set(7, 4, "items").set(7, 5, 2.50).set(7, 6, 2.75).formula(7, 7, "C7*E7").formula(7, 8, "C7*F7").formula(7, 9, "H7-G7").set(7, 10, "Yes");
+s.set(8, 1, "Produce").set(8, 2, "Fresh Fruit Platters").set(8, 3, 6).set(8, 4, "platters").set(8, 5, 45.00).set(8, 6, 42.00).formula(8, 7, "C8*E8").formula(8, 8, "C8*F8").formula(8, 9, "H8-G8").set(8, 10, "Yes");
+s.set(9, 1, "Pantry").set(9, 2, "Protein Bars Variety Pack").set(9, 3, 10).set(9, 4, "boxes").set(9, 5, 24.00).set(9, 6, 24.00).formula(9, 7, "C9*E9").formula(9, 8, "C9*F9").formula(9, 9, "H9-G9").set(9, 10, "No");
+s.set(10, 1, "Pantry").set(10, 2, "Electrolyte Drink Mix").set(10, 3, 5).set(10, 4, "packs").set(10, 5, 16.50).set(10, 6, 15.00).formula(10, 7, "C10*E10").formula(10, 8, "C10*F10").formula(10, 9, "H10-G10").set(10, 10, "No");
+s.set(11, 1, "Supplies").set(11, 2, "Compostable Plates & Bowls").set(11, 3, 200).set(11, 4, "count").set(11, 5, 0.25).set(11, 6, 0.22).formula(11, 7, "C11*E11").formula(11, 8, "C11*F11").formula(11, 9, "H11-G11").set(11, 10, "Yes");
+s.set(12, 1, "Supplies").set(12, 2, "Eco Cups & Bamboo Cutlery").set(12, 3, 250).set(12, 4, "count").set(12, 5, 0.20).set(12, 6, 0.20).formula(12, 7, "C12*E12").formula(12, 8, "C12*F12").formula(12, 9, "H12-G12").set(12, 10, "Yes");
+
+# Grand Totals
+s.set(13, 1, "Grand Total").formula(13, 7, "SUM(G5:G12)").formula(13, 8, "SUM(H5:H12)").formula(13, 9, "SUM(I5:I12)");
+s.bold(13, 1).bold(13, 7).bold(13, 8).bold(13, 9);
+s.fill(13, 1, "#FCE4D6").fill(13, 7, "#FCE4D6").fill(13, 8, "#FCE4D6").fill(13, 9, "#FCE4D6");
+
+# Formats
+s.number_format(5, 5, "$#,##0.00").number_format(6, 5, "$#,##0.00").number_format(7, 5, "$#,##0.00").number_format(8, 5, "$#,##0.00").number_format(9, 5, "$#,##0.00").number_format(10, 5, "$#,##0.00").number_format(11, 5, "$#,##0.00").number_format(12, 5, "$#,##0.00");
+s.number_format(5, 6, "$#,##0.00").number_format(6, 6, "$#,##0.00").number_format(7, 6, "$#,##0.00").number_format(8, 6, "$#,##0.00").number_format(9, 6, "$#,##0.00").number_format(10, 6, "$#,##0.00").number_format(11, 6, "$#,##0.00").number_format(12, 6, "$#,##0.00");
+s.number_format(5, 7, "$#,##0.00").number_format(6, 7, "$#,##0.00").number_format(7, 7, "$#,##0.00").number_format(8, 7, "$#,##0.00").number_format(9, 7, "$#,##0.00").number_format(10, 7, "$#,##0.00").number_format(11, 7, "$#,##0.00").number_format(12, 7, "$#,##0.00").number_format(13, 7, "$#,##0.00");
+s.number_format(5, 8, "$#,##0.00").number_format(6, 8, "$#,##0.00").number_format(7, 8, "$#,##0.00").number_format(8, 8, "$#,##0.00").number_format(9, 8, "$#,##0.00").number_format(10, 8, "$#,##0.00").number_format(11, 8, "$#,##0.00").number_format(12, 8, "$#,##0.00").number_format(13, 8, "$#,##0.00");
+s.number_format(5, 9, "+$#,##0.00;-$#,##0.00;$0.00").number_format(6, 9, "+$#,##0.00;-$#,##0.00;$0.00").number_format(7, 9, "+$#,##0.00;-$#,##0.00;$0.00").number_format(8, 9, "+$#,##0.00;-$#,##0.00;$0.00").number_format(9, 9, "+$#,##0.00;-$#,##0.00;$0.00").number_format(10, 9, "+$#,##0.00;-$#,##0.00;$0.00").number_format(11, 9, "+$#,##0.00;-$#,##0.00;$0.00").number_format(12, 9, "+$#,##0.00;-$#,##0.00;$0.00").number_format(13, 9, "+$#,##0.00;-$#,##0.00;$0.00");
+
+s.col_width(1, 16.0).col_width(2, 28.0).col_width(3, 8.0).col_width(4, 10.0).col_width(5, 12.0).col_width(6, 12.0).col_width(7, 14.0).col_width(8, 14.0).col_width(9, 14.0).col_width(10, 10.0);
+s.border_box(4, 1, 13, 10, "thin", "#BFBFBF");
+
+# Validation & conditional formatting
+s.data_validation_list(5, 10, 12, 10, "Yes,No");
+s.conditional_cell_is(5, 10, 12, 10, "=", "Yes", "#C6EFCE", "#006100");
+s.autofilter(4, 1, 12, 10);
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

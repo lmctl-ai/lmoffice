@@ -1,0 +1,32 @@
+# Non-disclosure agreement written as document code.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-nda.docx"; let body = """---
+title: Mutual Non-Disclosure Agreement
+author: Northstar Studio
+subject: Confidential information terms
+theme: legal
+numbering: true
+page_numbers: true
+---
+# Mutual Non-Disclosure Agreement
+
+This agreement is between **Northstar Studio** and **Blue Orchard Labs**. Each party may disclose information marked confidential or reasonably understood to be confidential.
+
+{{clause: 1}} Definition. Confidential Information includes product plans, source code, customer lists, and financial forecasts.
+{{clause: 2}} Obligations. The receiving party will protect the information with reasonable care and use it only for evaluating the proposed collaboration.
+{{clause: 3}} Exceptions. Information already public, independently developed, or lawfully received from another source is not Confidential Information.
+
+| Term | Period |
+| :--- | ---: |
+| Confidentiality | 3 years {bg=#EAF2F8} |
+| Trade secrets | As long as protected by law |
+
+[^law]: Defined terms follow the parties’ confidentiality schedule.
+The parties acknowledge the terms.[^law]
+
+{{sign: Northstar Studio}}
+{{sign: Blue Orchard Labs}}
+""";
+p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

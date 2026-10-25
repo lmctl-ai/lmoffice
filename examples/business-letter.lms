@@ -1,0 +1,16 @@
+# Customer letter announcing a support-hours change.
+output = ARGV.len() > 0 ? ARGV[0] : "business-letter.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Customer Support Update").author("Cedar Peak Analytics").font("Calibri").font_size(11.0).margins(54.0,54.0,54.0,54.0);
+d.paragraph("Cedar Peak Analytics\n88 Meridian Avenue\nBellwether, OR 97005");
+d.paragraph("June 24, 2026").tab_stop(504.0,"right");
+d.paragraph("Dear Cloudboard customer,");
+d.heading("A clearer support schedule",1).color("#17324D");
+d.paragraph("Beginning July 15, our standard support desk will be open Monday through Friday from 7:00 a.m. to 6:00 p.m. Pacific time. The change gives every request a named owner during the hours when most customers work.");
+d.paragraph("Critical service interruptions remain covered around the clock through the emergency number in your account console. Your plan, response targets, and account team remain unchanged.");
+d.paragraph("Thank you for helping us make Cloudboard dependable for the work your teams do every day.");
+d.paragraph("Sincerely,\nLina Patel\nChief Customer Officer");
+d.footer_fields("Customer Support Update | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

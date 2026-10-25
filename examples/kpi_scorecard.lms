@@ -1,0 +1,59 @@
+# Executive KPI scorecard with targets, actuals, variance analysis, and 3-color scales.
+output = ARGV.len() > 0 ? ARGV[0] : "kpi_scorecard.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("KPI Scorecard");
+s.tab_color("#70AD47");
+s.page_orientation("landscape");
+s.freeze(4, 2);
+
+# Title
+s.set(1, 1, "EXECUTIVE BALANCED SCORECARD - Q3 2026");
+s.bold(1, 1);
+s.font_size(1, 1, 15.0);
+s.font_color(1, 1, "#1F4E78");
+
+# KPI Cards
+s.set(2, 1, "Total KPIs").set(2, 3, "On Target Metrics").set(2, 5, "At Risk / Behind");
+s.bold(2, 1).bold(2, 3).bold(2, 5);
+s.set(3, 1, 6).formula(3, 3, "COUNTIF(G5:G10,\"On Target\")").formula(3, 5, "COUNTIF(G5:G10,\"At Risk\")");
+s.bold(3, 1).bold(3, 3).bold(3, 5);
+s.font_size(3, 1, 14.0).font_size(3, 3, 14.0).font_size(3, 5, 14.0);
+s.fill(2, 1, "#D9E1F2").fill(2, 3, "#E2EFDA").fill(2, 5, "#FCE4D6");
+s.fill(3, 1, "#D9E1F2").fill(3, 3, "#E2EFDA").fill(3, 5, "#FCE4D6");
+
+# Table Header
+s.set(4, 1, "Perspective").set(4, 2, "Strategic Metric").set(4, 3, "Target").set(4, 4, "Actual").set(4, 5, "Variance %").set(4, 6, "Weight").set(4, 7, "Health Status");
+s.bold(4, 1).bold(4, 2).bold(4, 3).bold(4, 4).bold(4, 5).bold(4, 6).bold(4, 7);
+s.fill(4, 1, "#1F4E78").fill(4, 2, "#1F4E78").fill(4, 3, "#1F4E78").fill(4, 4, "#1F4E78").fill(4, 5, "#1F4E78").fill(4, 6, "#1F4E78").fill(4, 7, "#1F4E78");
+s.font_color(4, 1, "#FFFFFF").font_color(4, 2, "#FFFFFF").font_color(4, 3, "#FFFFFF").font_color(4, 4, "#FFFFFF").font_color(4, 5, "#FFFFFF").font_color(4, 6, "#FFFFFF").font_color(4, 7, "#FFFFFF");
+
+# Scorecard Items
+s.set(5, 1, "Financial").set(5, 2, "Net Recurring Revenue ($M)").set(5, 3, 45.0).set(5, 4, 47.8).formula(5, 5, "(D5-C5)/C5").set(5, 6, 0.25).set(5, 7, "On Target");
+s.set(6, 1, "Financial").set(6, 2, "Operating Margin %").set(6, 3, 0.22).set(6, 4, 0.245).formula(6, 5, "D6-C6").set(6, 6, 0.15).set(6, 7, "On Target");
+s.set(7, 1, "Customer").set(7, 2, "Net Promoter Score (NPS)").set(7, 3, 65.0).set(7, 4, 62.0).formula(7, 5, "(D7-C7)/C7").set(7, 6, 0.20).set(7, 7, "At Risk");
+s.set(8, 1, "Customer").set(8, 2, "Gross Retention Rate").set(8, 3, 0.94).set(8, 4, 0.962).formula(8, 5, "D8-C8").set(8, 6, 0.15).set(8, 7, "On Target");
+s.set(9, 1, "Internal Ops").set(9, 2, "P99 API Latency (ms)").set(9, 3, 120.0).set(9, 4, 135.0).formula(9, 5, "(C9-D9)/C9").set(9, 6, 0.15).set(9, 7, "At Risk");
+s.set(10, 1, "Learning").set(10, 2, "Employee Retention Rate").set(10, 3, 0.90).set(10, 4, 0.925).formula(10, 5, "D10-C10").set(10, 6, 0.10).set(10, 7, "On Target");
+
+# Formats
+s.number_format(5, 5, "+0.0%;-0.0%").number_format(6, 5, "+0.0%;-0.0%").number_format(7, 5, "+0.0%;-0.0%").number_format(8, 5, "+0.0%;-0.0%").number_format(9, 5, "+0.0%;-0.0%").number_format(10, 5, "+0.0%;-0.0%");
+s.number_format(5, 6, "0%").number_format(6, 6, "0%").number_format(7, 6, "0%").number_format(8, 6, "0%").number_format(9, 6, "0%").number_format(10, 6, "0%");
+
+s.col_width(1, 16.0).col_width(2, 30.0).col_width(3, 14.0).col_width(4, 14.0).col_width(5, 14.0).col_width(6, 10.0).col_width(7, 16.0);
+s.border_box(4, 1, 10, 7, "thin", "#BFBFBF");
+
+# 3-color scale on variance %
+s.conditional_color_scale3(5, 5, 10, 5, "#F8696B", "#FFEB84", "#63BE7B");
+
+# Cell-is on status
+s.conditional_cell_is(5, 7, 10, 7, "=", "On Target", "#C6EFCE", "#006100");
+s.conditional_cell_is(5, 7, 10, 7, "=", "At Risk", "#FFC7CE", "#9C0006");
+
+s.autofilter(4, 1, 10, 7);
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

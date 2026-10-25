@@ -1,0 +1,30 @@
+# A customer letter with a field-backed footer.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-business-letter.docx"; let body = """---
+title: Customer Support Update
+author: Cedar Peak Analytics
+header: Cedar Peak Analytics
+footer: Customer Support Update | {{page}}/{{pages}}
+theme: business
+---
+# Customer Support Update
+
+June 24, 2026
+
+Dear Cloudboard customer,
+
+Beginning July 15, our standard support desk will be open Monday through Friday from 7:00 a.m. to 6:00 p.m. Pacific time. The change gives every request a named owner during the hours when most customers work.
+
+Critical service interruptions remain covered around the clock through the emergency number in your account console. Your plan, response targets, and account team remain unchanged.
+
+Thank you for helping us make Cloudboard dependable for the work your teams do every day.
+
+Sincerely,
+
+Lina Patel
+
+Chief Customer Officer
+""";
+p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

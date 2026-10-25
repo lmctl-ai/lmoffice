@@ -1,0 +1,14 @@
+# A grade register written as one CSV body; scores remain typed numbers.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-gradebook-csv.xlsx";
+body = """Learner,Project,Labs,Exam,Weighted score
+Avery Chen,94,91,88,91.3
+Morgan Vale,82,86,84,83.8
+Jules Park,76,81,79,78.4
+Riley Ford,98,96,95,96.5
+Sam Ortega,69,74,77,72.9
+Robin Shaw,88,90,92,89.8
+""";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output}); book.sheet_from_csv("Gradebook", ${body}); book.save();
+end _lmcode_
+savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);

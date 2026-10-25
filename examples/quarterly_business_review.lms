@@ -1,0 +1,57 @@
+# Executive Quarterly Business Review (QBR) presentation with performance metrics, table, and chart.
+output = ARGV.len() > 0 ? ARGV[0] : "quarterly_business_review.pptx";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let deck = pptx.create(${output});
+deck.theme("#1F4E78", "#2E75B6", "Segoe UI", "Calibri");
+
+# Slide 1: Title
+let s1 = deck.slide();
+s1.title_slide("Quarterly Business Review - Q3 2026", "Enterprise Cloud Infrastructure & Platform Growth");
+s1.footer("Novaterra Technologies | Q3 2026 Executive Review");
+s1.transition("fade");
+
+# Slide 2: Executive Summary Cards
+let s2 = deck.slide();
+s2.title("Executive Highlights - Strongest Quarter to Date");
+s2.rounded_rect(80.0, 150.0, 340.0, 140.0, "#1F4E78", "ARR: $148M\n+38% YoY Growth");
+s2.rounded_rect(470.0, 150.0, 340.0, 140.0, "#2E75B6", "Net Retention: 124%\nTop Decile Enterprise NRR");
+s2.rounded_rect(860.0, 150.0, 340.0, 140.0, "#548235", "Operating Margin: 24%\nProfitable Cash Generation");
+s2.text(80.0, 330.0, 1120.0, 120.0, "Key Milestones Reached in Q3 2026:");
+s2.bullet(100.0, 380.0, 1100.0, 40.0, "Closed 14 Fortune 500 contracts, led by Financial Services and Health Systems.");
+s2.bullet(100.0, 430.0, 1100.0, 40.0, "Achieved FedRAMP High In-Process designation for Government Cloud.");
+s2.bullet(100.0, 480.0, 1100.0, 40.0, "Zero Sev-1 outages across 12 global regions during peak traffic periods.");
+s2.footer("Novaterra Technologies | Q3 2026 Executive Review");
+s2.slide_number(true);
+s2.transition("push");
+
+# Slide 3: Financial Performance Table
+let s3 = deck.slide();
+s3.title("Revenue by Product Line");
+let tbl = s3.table(80.0, 150.0, 1120.0, 240.0, 5, 4);
+tbl.header_row("#1F4E78", "#FFFFFF");
+tbl.cell(1, 1, "Product Line").cell(1, 2, "Q3 2025").cell(1, 3, "Q3 2026").cell(1, 4, "YoY Growth");
+tbl.cell(2, 1, "Cloud Core Infrastructure").cell(2, 2, "$24.5M").cell(2, 3, "$33.8M").cell(2, 4, "+38%");
+tbl.cell(3, 1, "Distributed Mesh Network").cell(3, 2, "$12.2M").cell(3, 3, "$18.4M").cell(3, 4, "+51%");
+tbl.cell(4, 1, "AI Acceleration Fabric").cell(4, 2, "$5.1M").cell(4, 3, "$9.6M").cell(4, 4, "+88%");
+tbl.cell(5, 1, "Enterprise Support & Services").cell(5, 2, "$4.8M").cell(5, 3, "$5.7M").cell(5, 4, "+19%");
+s3.footer("Novaterra Technologies | Q3 2026 Executive Review");
+s3.slide_number(true);
+
+# Slide 4: Growth Chart
+let s4 = deck.slide();
+s4.title("Quarterly Revenue Trend ($M)");
+s4.bar_chart(100.0, 140.0, 1080.0, 460.0, "Quarterly Revenue ($M)", "Q3-25,Q4-25,Q1-26,Q2-26,Q3-26", "Revenue ($M)", "46.6,52.1,58.4,63.0,67.5");
+s4.footer("Novaterra Technologies | Q3 2026 Executive Review");
+s4.slide_number(true);
+
+# Slide 5: Strategic Priorities
+let s5 = deck.slide();
+s5.section_header("Q4 2026 Strategic Priorities", "Accelerating Enterprise Land & Expand, Multi-Region Resiliency, and Autonomous Operations", "#1F4E78");
+s5.footer("Novaterra Technologies | Q3 2026 Executive Review");
+s5.slide_number(true);
+
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

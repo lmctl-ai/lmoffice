@@ -1,0 +1,57 @@
+# Realistic monthly household/personal budget with category breakdown, formulas, and chart.
+output = ARGV.len() > 0 ? ARGV[0] : "monthly_budget.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Monthly Budget");
+s.tab_color("#2E75B6");
+s.page_orientation("landscape");
+s.fit_to_page(1, 1);
+s.repeat_rows(1, 2);
+
+# Title
+s.set(1, 1, "Monthly Operating Budget - October 2026");
+s.bold(1, 1);
+s.font_size(1, 1, 16.0);
+s.font_color(1, 1, "#1F4E78");
+s.merge(1, 1, 1, 4);
+
+# Header row
+s.set(2, 1, "Category").set(2, 2, "Budgeted").set(2, 3, "Actual").set(2, 4, "Variance");
+s.bold(2, 1).bold(2, 2).bold(2, 3).bold(2, 4);
+s.fill(2, 1, "#1F4E78").fill(2, 2, "#1F4E78").fill(2, 3, "#1F4E78").fill(2, 4, "#1F4E78");
+s.font_color(2, 1, "#FFFFFF").font_color(2, 2, "#FFFFFF").font_color(2, 3, "#FFFFFF").font_color(2, 4, "#FFFFFF");
+s.align(2, 1, "left").align(2, 2, "right").align(2, 3, "right").align(2, 4, "right");
+
+# Expense items
+s.set(3, 1, "Housing & Rent").set(3, 2, 2200.0).set(3, 3, 2200.0).formula(3, 4, "B3-C3");
+s.set(4, 1, "Utilities & Internet").set(4, 2, 380.0).set(4, 3, 415.0).formula(4, 4, "B4-C4");
+s.set(5, 1, "Groceries & Supplies").set(5, 2, 650.0).set(5, 3, 590.0).formula(5, 4, "B5-C5");
+s.set(6, 1, "Transportation & Fuel").set(6, 2, 320.0).set(6, 3, 340.0).formula(6, 4, "B6-C6");
+s.set(7, 1, "Healthcare & Insurance").set(7, 2, 280.0).set(7, 3, 280.0).formula(7, 4, "B7-C7");
+s.set(8, 1, "Dining & Entertainment").set(8, 2, 300.0).set(8, 3, 365.0).formula(8, 4, "B8-C8");
+s.set(9, 1, "Savings & Investments").set(9, 2, 1000.0).set(9, 3, 1000.0).formula(9, 4, "B9-C9");
+
+# Totals row
+s.set(10, 1, "Total Expenses").formula(10, 2, "SUM(B3:B9)").formula(10, 3, "SUM(C3:C9)").formula(10, 4, "SUM(D3:D9)");
+s.bold(10, 1).bold(10, 2).bold(10, 3).bold(10, 4);
+s.fill(10, 1, "#D9E1F2").fill(10, 2, "#D9E1F2").fill(10, 3, "#D9E1F2").fill(10, 4, "#D9E1F2");
+
+# Formatting
+s.number_format(3, 2, "$#,##0.00").number_format(4, 2, "$#,##0.00").number_format(5, 2, "$#,##0.00").number_format(6, 2, "$#,##0.00").number_format(7, 2, "$#,##0.00").number_format(8, 2, "$#,##0.00").number_format(9, 2, "$#,##0.00").number_format(10, 2, "$#,##0.00");
+s.number_format(3, 3, "$#,##0.00").number_format(4, 3, "$#,##0.00").number_format(5, 3, "$#,##0.00").number_format(6, 3, "$#,##0.00").number_format(7, 3, "$#,##0.00").number_format(8, 3, "$#,##0.00").number_format(9, 3, "$#,##0.00").number_format(10, 3, "$#,##0.00");
+s.number_format(3, 4, "$#,##0.00").number_format(4, 4, "$#,##0.00").number_format(5, 4, "$#,##0.00").number_format(6, 4, "$#,##0.00").number_format(7, 4, "$#,##0.00").number_format(8, 4, "$#,##0.00").number_format(9, 4, "$#,##0.00").number_format(10, 4, "$#,##0.00");
+
+s.border_box(2, 1, 10, 4, "thin", "#A6A6A6");
+s.col_width(1, 26.0).col_width(2, 15.0).col_width(3, 15.0).col_width(4, 15.0);
+s.row_height(1, 28.0).row_height(2, 22.0);
+
+# Conditional formatting & chart
+s.conditional_color_scale(3, 4, 9, 4, "#F8696B", "#63BE7B");
+s.bar_chart(12, 1, 26, 6, "Budgeted Expenses by Category", "A3:A9", "B3:B9");
+s.autofilter(2, 1, 9, 4);
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

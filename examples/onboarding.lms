@@ -1,0 +1,59 @@
+# New employee onboarding orientation with first-week checklist, tool links, and mentorship table.
+output = ARGV.len() > 0 ? ARGV[0] : "onboarding.pptx";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let deck = pptx.create(${output});
+deck.theme("#385723", "#70AD47", "Segoe UI", "Calibri");
+
+# Slide 1: Title
+let s1 = deck.slide();
+s1.title_slide("Welcome to Novaterra Technologies", "Engineering Onboarding & First-Month Success Guide\nPeople Operations & Platform Engineering");
+s1.footer("Novaterra New Hire Orientation 2026");
+s1.transition("fade");
+
+# Slide 2: First Week Checklist
+let s2 = deck.slide();
+s2.title("Your First Week Flight Plan");
+s2.rounded_rect(80.0, 160.0, 200.0, 200.0, "#385723", "Day 1\nSetup & Identity\nYubiKey enrollment, workstation setup & Slack access");
+s2.rounded_rect(310.0, 160.0, 200.0, 200.0, "#548235", "Day 2\nDev Environment\nClone monorepo, run local test suite, configure IDE");
+s2.rounded_rect(540.0, 160.0, 200.0, 200.0, "#70AD47", "Day 3\nFirst Commit\nFix a 'good-first-issue' and submit your first PR");
+s2.rounded_rect(770.0, 160.0, 200.0, 200.0, "#2E75B6", "Day 4\nArchitecture\n1-on-1 walkthrough with your assigned engineering buddy");
+s2.rounded_rect(1000.0, 160.0, 200.0, 200.0, "#1F4E78", "Day 5\nDeploy Staging\nWatch your code deploy to staging with zero downtime");
+s2.text(80.0, 400.0, 1120.0, 80.0, "Our goal: Every new engineer deploys working code to production within their first 10 business days.");
+s2.footer("Novaterra New Hire Orientation 2026");
+s2.slide_number(true);
+
+# Slide 3: Essential Tools & Hyperlinks
+let s3 = deck.slide();
+s3.title("Key Developer Tools & Portals");
+s3.text(80.0, 160.0, 1100.0, 50.0, "Bookmark these essential systems to navigate your daily engineering workflows:");
+s3.hyperlink(80.0, 230.0, 500.0, 40.0, "Engineering Handbook & Wiki", "https://wiki.novaterra.internal/handbook");
+s3.hyperlink(80.0, 290.0, 500.0, 40.0, "Internal Monorepo (GitHub Enterprise)", "https://github.novaterra.internal/core");
+s3.hyperlink(80.0, 350.0, 500.0, 40.0, "Developer Sandbox Cluster Console", "https://sandbox.novaterra.internal");
+s3.hyperlink(80.0, 410.0, 500.0, 40.0, "People Operations & Benefits Portal", "https://people.novaterra.internal");
+s3.footer("Novaterra New Hire Orientation 2026");
+s3.slide_number(true);
+
+# Slide 4: Onboarding Buddy Table
+let s4 = deck.slide();
+s4.title("Your Support Network");
+let tbl = s4.table(80.0, 150.0, 1120.0, 260.0, 5, 4);
+tbl.header_row("#385723", "#FFFFFF");
+tbl.cell(1, 1, "Role").cell(1, 2, "Assigned Person").cell(1, 3, "Scope of Help").cell(1, 4, "Contact");
+tbl.cell(2, 1, "Engineering Manager").cell(2, 2, "David Park").cell(2, 3, "Career goals, roadmap & sprint priorities").cell(2, 4, "@david.park");
+tbl.cell(3, 1, "Peer Buddy").cell(3, 2, "Maya Lin").cell(3, 3, "Codebase navigation, PR reviews, setup tips").cell(3, 4, "@maya.lin");
+tbl.cell(4, 1, "People Ops Partner").cell(4, 2, "Sarah Jenkins").cell(4, 3, "Payroll, benefits, hardware & wellness").cell(4, 4, "@sarah.j");
+tbl.cell(5, 1, "IT Security Lead").cell(5, 2, "SecOps Team").cell(5, 3, "VPN, credential rotation & compliance").cell(5, 4, "@secops");
+s4.footer("Novaterra New Hire Orientation 2026");
+s4.slide_number(true);
+
+# Slide 5: Welcome Closing
+let s5 = deck.slide();
+s5.section_header("Welcome Aboard!", "We are thrilled to build the next generation of cloud infrastructure with you.", "#385723");
+s5.footer("Novaterra New Hire Orientation 2026");
+s5.slide_number(true);
+
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

@@ -1,0 +1,59 @@
+# Accounts receivable invoice tracker with data validation and conditional formatting.
+output = ARGV.len() > 0 ? ARGV[0] : "invoice_tracker.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Invoices");
+s.tab_color("#4472C4");
+s.page_orientation("landscape");
+s.fit_to_page(1, 1);
+s.freeze(4, 0);
+
+# Title
+s.set(1, 1, "INVOICE AND RECEIVABLES TRACKER");
+s.bold(1, 1);
+s.font_size(1, 1, 16.0);
+s.font_color(1, 1, "#1F4E78");
+
+# KPI summary banner
+s.set(2, 1, "Total Invoiced").set(2, 3, "Total Collected").set(2, 5, "Outstanding Balance");
+s.bold(2, 1).bold(2, 3).bold(2, 5);
+s.formula(3, 1, "SUM(E5:E10)").formula(3, 3, "SUMIF(F5:F10,\"Paid\",E5:E10)").formula(3, 5, "A3-C3");
+s.bold(3, 1).bold(3, 3).bold(3, 5);
+s.font_size(3, 1, 14.0).font_size(3, 3, 14.0).font_size(3, 5, 14.0);
+s.number_format(3, 1, "$#,##0.00").number_format(3, 3, "$#,##0.00").number_format(3, 5, "$#,##0.00");
+s.fill(2, 1, "#D9E1F2").fill(2, 3, "#E2EFDA").fill(2, 5, "#FCE4D6");
+s.fill(3, 1, "#D9E1F2").fill(3, 3, "#E2EFDA").fill(3, 5, "#FCE4D6");
+
+# Table Header
+s.set(4, 1, "Invoice #").set(4, 2, "Client Name").set(4, 3, "Issue Date").set(4, 4, "Due Date").set(4, 5, "Amount").set(4, 6, "Status").set(4, 7, "Notes");
+s.bold(4, 1).bold(4, 2).bold(4, 3).bold(4, 4).bold(4, 5).bold(4, 6).bold(4, 7);
+s.fill(4, 1, "#1F4E78").fill(4, 2, "#1F4E78").fill(4, 3, "#1F4E78").fill(4, 4, "#1F4E78").fill(4, 5, "#1F4E78").fill(4, 6, "#1F4E78").fill(4, 7, "#1F4E78");
+s.font_color(4, 1, "#FFFFFF").font_color(4, 2, "#FFFFFF").font_color(4, 3, "#FFFFFF").font_color(4, 4, "#FFFFFF").font_color(4, 5, "#FFFFFF").font_color(4, 6, "#FFFFFF").font_color(4, 7, "#FFFFFF");
+
+# Data rows
+s.set(5, 1, "INV-2026-001").set(5, 2, "Acme Logistics Corp").set(5, 3, "2026-09-01").set(5, 4, "2026-10-01").set(5, 5, 14500.0).set(5, 6, "Paid").set(5, 7, "Wire received");
+s.set(6, 1, "INV-2026-002").set(6, 2, "Beacon Health Partners").set(6, 3, "2026-09-15").set(6, 4, "2026-10-15").set(6, 5, 28000.0).set(6, 6, "Paid").set(6, 7, "ACH transfer");
+s.set(7, 1, "INV-2026-003").set(7, 2, "Crestview Media Group").set(7, 3, "2026-09-20").set(7, 4, "2026-10-20").set(7, 5, 8750.0).set(7, 6, "Overdue").set(7, 7, "Reminder sent 10/22");
+s.set(8, 1, "INV-2026-004").set(8, 2, "Delta Robotics Inc").set(8, 3, "2026-10-01").set(8, 4, "2026-11-01").set(8, 5, 34200.0).set(8, 6, "Pending").set(8, 7, "Under review");
+s.set(9, 1, "INV-2026-005").set(9, 2, "Echo Wave Labs").set(9, 3, "2026-10-05").set(9, 4, "2026-11-05").set(9, 5, 12600.0).set(9, 6, "Pending").set(9, 7, "Net 30 terms");
+s.set(10, 1, "INV-2026-006").set(10, 2, "Frontier Energy LLC").set(10, 3, "2026-10-10").set(10, 4, "2026-11-10").set(10, 5, 19800.0).set(10, 6, "Pending").set(10, 7, "PO approved");
+
+# Formats & widths
+s.number_format(5, 5, "$#,##0.00").number_format(6, 5, "$#,##0.00").number_format(7, 5, "$#,##0.00").number_format(8, 5, "$#,##0.00").number_format(9, 5, "$#,##0.00").number_format(10, 5, "$#,##0.00");
+s.col_width(1, 16.0).col_width(2, 28.0).col_width(3, 14.0).col_width(4, 14.0).col_width(5, 16.0).col_width(6, 14.0).col_width(7, 26.0);
+s.border_box(4, 1, 10, 7, "thin", "#BFBFBF");
+
+# Data validation on Status column
+s.data_validation_list(5, 6, 10, 6, "Paid,Pending,Overdue");
+
+# Conditional formatting for Status
+s.conditional_cell_is(5, 6, 10, 6, "=", "Paid", "#C6EFCE", "#006100");
+s.conditional_cell_is(5, 6, 10, 6, "=", "Overdue", "#FFC7CE", "#9C0006");
+
+s.autofilter(4, 1, 10, 7);
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

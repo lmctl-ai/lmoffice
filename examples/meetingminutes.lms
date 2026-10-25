@@ -1,0 +1,18 @@
+# Meeting minutes with decisions and action items.
+output = ARGV.len() > 0 ? ARGV[0] : "meetingminutes.docx";
+p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let doc = docx.create(${output});
+doc.title("Product meeting minutes").author("Lattice Systems");
+doc.heading("Product meeting minutes", 1);
+doc.paragraph("Date: 2026-10-24").bold(true);
+doc.heading("Decisions", 2);
+doc.numbered("Ship the Office host with the five platform release workflow");
+doc.numbered("Keep the public DSL schema small and typed");
+doc.heading("Action items", 2);
+doc.bullet("Morgan: review independent document opening");
+doc.bullet("Riley: publish the next example gallery");
+doc.header("Meeting minutes").footer("Page notes").save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

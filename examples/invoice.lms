@@ -1,0 +1,19 @@
+# An invoice with line items and totals.
+output = ARGV.len() > 0 ? ARGV[0] : "invoice.docx";
+p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let doc = docx.create(${output});
+doc.title("Invoice INV-1042").author("Lattice Systems");
+doc.heading("Invoice INV-1042", 1).bold(true);
+doc.paragraph("Issued to: Northwind Workshop");
+doc.paragraph("Due: 30 days from invoice date");
+let t = doc.table(4, 3);
+t.cell(1, 1, "Item").cell(1, 2, "Qty").cell(1, 3, "Amount");
+t.cell(2, 1, "Consulting").cell(2, 2, "8").cell(2, 3, "$1,600");
+t.cell(3, 1, "Support").cell(3, 2, "1").cell(3, 3, "$240");
+t.cell(4, 1, "Total").cell(4, 2, "").cell(4, 3, "$1,840");
+doc.paragraph("Thank you for your business.").italic(true).align("right");
+doc.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

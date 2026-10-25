@@ -1,0 +1,10 @@
+# Contact workbook authored from quoted CSV.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-contacts-csv.xlsx"; let body = """Name,Company,Email,Active
+\"Ada, Example\",Northstar Studio,ada@example.test,true
+Rowan Price,Blue Orchard Labs,rowan@example.test,false
+Maya Chen,Juniper Works,maya@example.test,true
+""";
+p=_lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let d=xlsx.create(${output}); d.sheet_from_csv("Contacts",${body}); d.save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

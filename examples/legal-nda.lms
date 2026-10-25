@@ -1,0 +1,19 @@
+# Mutual confidentiality agreement for a product discovery engagement.
+output = ARGV.len() > 0 ? ARGV[0] : "legal-nda.docx";
+p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d = docx.create(${output});
+d.title("Mutual Confidentiality Agreement").author("Harborline Legal").font("Times New Roman").font_size(11.0).margins(54.0,54.0,54.0,54.0);
+d.heading("MUTUAL CONFIDENTIALITY AGREEMENT", 1).align("center");
+d.paragraph("This agreement is made between Cedar Peak Analytics and Harborline Devices for the evaluation of a joint inventory forecasting pilot.").spacing(0.0,8.0,1.0);
+d.clause("Definitions. Confidential Information means non-public product, pricing, customer, and technical information disclosed for the evaluation.",1);
+d.clause("Use and protection. Each party will use Confidential Information only to evaluate the pilot and will protect it with reasonable care.",1);
+d.clause("Exclusions. Information independently developed, already public, or lawfully received without restriction is excluded from this agreement.",2);
+d.clause("The receiving party must keep dated records showing independent development or prior lawful possession.",3);
+d.clause("Return. On written request, the receiving party will return or securely destroy copies, subject to ordinary backup retention.",1);
+d.paragraph("The parties agree that equitable relief may be available for an unauthorized disclosure.");
+d.signature("Cedar Peak Analytics");
+d.signature("Harborline Devices");
+d.header_fields("Mutual Confidentiality Agreement | {PAGE} of {NUMPAGES}").footer_fields("Illustrative agreement | Printed {DATE}").save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);

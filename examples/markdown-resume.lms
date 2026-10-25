@@ -1,0 +1,41 @@
+# Resume composed from Markdown and fields.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-resume.docx"; let body = """---
+title: Resume - Mara Chen
+author: Mara Chen
+theme: resume
+page_size: letter
+---
+# Mara Chen
+
+Product operations leader | Portland, Oregon | [mara.chen@example.test](mailto:mara.chen@example.test)
+
+{{tab}}Updated {{date}}
+
+## Profile
+
+Operations leader with nine years of experience turning customer insight into reliable launches, measurable service improvements, and calm cross-functional execution.
+
+## Experience
+
+### Northstar Studio — Director of Operations
+
+2022-present
+
+- Reduced release coordination time by **38%** through a shared planning cadence.
+- Built a 14-person operations team and a quarterly customer review practice.
+
+### Blue Orchard Labs — Program Manager
+
+2018-2022
+
+- Delivered six partner programs across research, engineering, and support.
+- Introduced a risk register that cut late escalations by 25%.
+
+## Education
+
+**B.S. Industrial Engineering**, Cascadia University
+""";
+p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

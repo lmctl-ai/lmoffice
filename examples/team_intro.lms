@@ -1,0 +1,57 @@
+# Team introduction presentation with culture pillars, team roster table, and global distribution chart.
+output = ARGV.len() > 0 ? ARGV[0] : "team_intro.pptx";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let deck = pptx.create(${output});
+deck.theme("#1F4E78", "#548235", "Segoe UI", "Calibri");
+
+# Slide 1: Title
+let s1 = deck.slide();
+s1.title_slide("Platform Systems Engineering", "Meet the Engineers Building the Future of Autonomous Cloud\nNovaterra Engineering All-Hands 2026");
+s1.footer("Novaterra Technologies | Engineering Culture");
+s1.transition("fade");
+
+# Slide 2: Core Values
+let s2 = deck.slide();
+s2.title("Our Engineering Philosophy & Values");
+s2.rounded_rect(80.0, 160.0, 340.0, 150.0, "#1F4E78", "Reliability as a Feature\n99.999% availability is our non-negotiable contract with customers.");
+s2.rounded_rect(470.0, 160.0, 340.0, 150.0, "#2E75B6", "Radical Automation\nIf a human performs a manual intervention twice, we automate it permanently.");
+s2.rounded_rect(860.0, 160.0, 340.0, 150.0, "#548235", "Psychological Safety\nBlameless post-mortems and relentless curiosity turn mistakes into system resilience.");
+s2.text(80.0, 360.0, 1100.0, 60.0, "We operate as a globally distributed, remote-first team across 8 time zones.");
+s2.footer("Novaterra Technologies | Engineering Culture");
+s2.slide_number(true);
+
+# Slide 3: Team Roster Table
+let s3 = deck.slide();
+s3.title("Leadership & Area Owners");
+let tbl = s3.table(80.0, 150.0, 1120.0, 260.0, 5, 4);
+tbl.header_row("#1F4E78", "#FFFFFF");
+tbl.cell(1, 1, "Name").cell(1, 2, "Title").cell(1, 3, "Technical Focus").cell(1, 4, "Location");
+tbl.cell(2, 1, "Dr. Aris Thorne").cell(2, 2, "Chief Technology Officer").cell(2, 3, "Distributed Consensus & AI").cell(2, 4, "San Francisco, CA");
+tbl.cell(3, 1, "Elena Vasquez").cell(3, 2, "Principal Systems Architect").cell(3, 3, "eBPF Kernel Telemetry").cell(3, 4, "Barcelona, Spain");
+tbl.cell(4, 1, "Kenji Takahashi").cell(4, 2, "Staff Infrastructure Engineer").cell(4, 3, "Global Mesh Networking").cell(4, 4, "Tokyo, Japan");
+tbl.cell(5, 1, "Maya Lin").cell(5, 2, "Senior Security Lead").cell(5, 3, "Zero-Trust & Cryptography").cell(5, 4, "New York, NY");
+s3.footer("Novaterra Technologies | Engineering Culture");
+s3.slide_number(true);
+
+# Slide 4: Global Distribution Chart
+let s4 = deck.slide();
+s4.title("Engineering Distribution by Geography");
+s4.pie_chart(120.0, 140.0, 1040.0, 460.0, "Team Distribution", "Americas,EMEA,APAC", "45,35,20");
+s4.footer("Novaterra Technologies | Engineering Culture");
+s4.slide_number(true);
+
+# Slide 5: Open Roles & Contact
+let s5 = deck.slide();
+s5.title("We Are Hiring Across All Systems Disciplines");
+s5.text(80.0, 160.0, 1100.0, 50.0, "Come build the future of autonomous cloud with our world-class engineering team:");
+s5.hyperlink(80.0, 230.0, 500.0, 40.0, "Staff Rust Kernel Engineer (Remote)", "https://novaterra.ai/careers/kernel");
+s5.hyperlink(80.0, 290.0, 500.0, 40.0, "Principal SRE & Chaos Engineer (Remote)", "https://novaterra.ai/careers/sre");
+s5.hyperlink(80.0, 350.0, 500.0, 40.0, "Senior Security Research Scientist (Remote)", "https://novaterra.ai/careers/security");
+s5.footer("Novaterra Technologies | Engineering Culture");
+s5.slide_number(true);
+
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

@@ -1,0 +1,17 @@
+# Plain-language online service terms for a fictional SaaS product.
+output = ARGV.len() > 0 ? ARGV[0] : "legal-terms-of-service.docx";
+p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Terms of Service").author("Cedar Peak Analytics").font("Times New Roman").font_size(11.0);
+d.heading("TERMS OF SERVICE",1).align("center");
+d.paragraph("These terms govern access to Cedar Peak Analytics Cloudboard, a hosted workspace for inventory planning. By creating an account, the customer accepts these terms.");
+d.clause("Accounts. Customers must provide current registration details and protect credentials. They are responsible for activity performed through their accounts.",1);
+d.clause("Customer content. Customers retain their content and grant Cedar Peak permission to host and process it only to provide, secure, and improve the service.",1);
+d.clause("Acceptable use. Customers may not interfere with the service, probe other accounts, or use the service to violate applicable law.",1);
+d.clause("Availability and support. Cedar Peak will publish maintenance notices when practical and will answer support requests under the selected plan.",1);
+d.clause("Fees and ending service. Paid plans renew as stated in the order. Either party may end service for a material uncured breach; export access remains available for thirty days.",1);
+d.paragraph("Questions about these terms may be sent to support@cedarpeak.example.").italic(true);
+d.footer_fields("Cloudboard Terms | {PAGE} of {NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

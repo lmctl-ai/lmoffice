@@ -1,0 +1,40 @@
+# Quarterly report with a generated table of contents.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-report-toc.docx"; let body = """---
+title: Quarterly Impact Report
+author: Cedar Harbor
+subject: Q2 operating review
+toc: true
+numbering: true
+page_numbers: true
+---
+# Quarterly Impact Report
+
+This report summarizes the second quarter results for the Cedar Harbor customer platform.
+
+## Highlights
+
+- Revenue grew **18 percent** year over year.
+- Support response time fell below one hour.
+- Four hundred sixteen customers used the new workflow.
+
+## Operating metrics
+
+| Metric | Q1 | Q2 |
+| :--- | ---: | ---: |
+| Revenue | $108,000 | $128,000 |
+| Customers | 382 | 416 |
+| Median response | 1h 18m | 54m |
+
+## Method
+
+The finance and support teams reconciled the figures on July 5. The report uses the same definitions as the board dashboard.
+
+{{pagebreak}}
+## Next quarter
+
+The team will prioritize self-service billing, onboarding instrumentation, and a regional support pilot.
+""";
+p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

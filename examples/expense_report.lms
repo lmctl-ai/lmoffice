@@ -1,0 +1,59 @@
+# Employee travel and business expense report with receipt itemization and formulas.
+output = ARGV.len() > 0 ? ARGV[0] : "expense_report.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Expense Report");
+s.tab_color("#70AD47");
+s.page_orientation("portrait");
+s.fit_to_page(1, 1);
+
+# Header Title & Employee Info
+s.set(1, 1, "BUSINESS EXPENSE REIMBURSEMENT REPORT");
+s.bold(1, 1);
+s.font_size(1, 1, 14.0);
+s.font_color(1, 1, "#2F5597");
+s.merge(1, 1, 1, 6);
+
+s.set(3, 1, "Employee Name:").set(3, 2, "Marcus Vance").set(3, 4, "Report ID:").set(3, 5, "EXP-2026-0842");
+s.set(4, 1, "Department:").set(4, 2, "Platform Systems").set(4, 4, "Manager:").set(4, 5, "Sarah Jenkins");
+s.set(5, 1, "Purpose:").set(5, 2, "Client Onsite & Architecture Review - Chicago").merge(5, 2, 5, 5);
+s.bold(3, 1).bold(3, 4).bold(4, 1).bold(4, 4).bold(5, 1);
+
+# Line Items Header
+s.set(7, 1, "Date").set(7, 2, "Expense Category").set(7, 3, "Description").set(7, 4, "Merchant").set(7, 5, "Method").set(7, 6, "Amount");
+s.bold(7, 1).bold(7, 2).bold(7, 3).bold(7, 4).bold(7, 5).bold(7, 6);
+s.fill(7, 1, "#2F5597").fill(7, 2, "#2F5597").fill(7, 3, "#2F5597").fill(7, 4, "#2F5597").fill(7, 5, "#2F5597").fill(7, 6, "#2F5597");
+s.font_color(7, 1, "#FFFFFF").font_color(7, 2, "#FFFFFF").font_color(7, 3, "#FFFFFF").font_color(7, 4, "#FFFFFF").font_color(7, 5, "#FFFFFF").font_color(7, 6, "#FFFFFF");
+s.align(7, 6, "right");
+
+# Expenses
+s.set(8, 1, "2026-10-12").set(8, 2, "Airfare").set(8, 3, "Flight SFO to ORD round-trip").set(8, 4, "Skyline Airlines").set(8, 5, "Corporate Card").set(8, 6, 482.40);
+s.set(9, 1, "2026-10-12").set(9, 2, "Lodging").set(9, 3, "Hotel night 1 of 3").set(9, 4, "Midwest Grand Hotel").set(9, 5, "Corporate Card").set(9, 6, 215.00);
+s.set(10, 1, "2026-10-13").set(10, 2, "Meals").set(10, 3, "Team working lunch").set(10, 4, "Loop Bistro").set(10, 5, "Personal Card").set(10, 6, 68.50);
+s.set(11, 1, "2026-10-13").set(11, 2, "Lodging").set(11, 3, "Hotel night 2 of 3").set(11, 4, "Midwest Grand Hotel").set(11, 5, "Corporate Card").set(11, 6, 215.00);
+s.set(12, 1, "2026-10-14").set(12, 2, "Ground Transport").set(12, 3, "Taxi to client headquarters").set(12, 4, "Metro Cab").set(12, 5, "Personal Card").set(12, 6, 34.00);
+s.set(13, 1, "2026-10-14").set(13, 2, "Lodging").set(13, 3, "Hotel night 3 of 3").set(13, 4, "Midwest Grand Hotel").set(13, 5, "Corporate Card").set(13, 6, 215.00);
+s.set(14, 1, "2026-10-15").set(14, 2, "Meals").set(14, 3, "Airport dinner return leg").set(14, 4, "O'Hare Terminal Diner").set(14, 5, "Personal Card").set(14, 6, 28.75);
+
+# Totals
+s.set(16, 5, "Total Expenses:").formula(16, 6, "SUM(F8:F14)");
+s.set(17, 5, "Less Corporate Card:").formula(17, 6, "SUM(F8,F9,F11,F13)");
+s.set(18, 5, "Due to Employee:").formula(18, 6, "F16-F17");
+s.bold(16, 5).bold(16, 6).bold(17, 5).bold(17, 6).bold(18, 5).bold(18, 6);
+s.fill(18, 5, "#E2EFDA").fill(18, 6, "#E2EFDA");
+
+# Format numbers & widths
+s.number_format(8, 6, "$#,##0.00").number_format(9, 6, "$#,##0.00").number_format(10, 6, "$#,##0.00").number_format(11, 6, "$#,##0.00").number_format(12, 6, "$#,##0.00").number_format(13, 6, "$#,##0.00").number_format(14, 6, "$#,##0.00");
+s.number_format(16, 6, "$#,##0.00").number_format(17, 6, "$#,##0.00").number_format(18, 6, "$#,##0.00");
+s.border_box(7, 1, 14, 6, "thin", "#D0D0D0");
+s.border_box(16, 5, 18, 6, "thin", "#70AD47");
+
+s.col_width(1, 14.0).col_width(2, 20.0).col_width(3, 34.0).col_width(4, 24.0).col_width(5, 18.0).col_width(6, 16.0);
+s.comment(10, 4, "Receipt attached in travel portal", "Auditor");
+s.autofilter(7, 1, 14, 6);
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

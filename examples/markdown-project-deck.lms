@@ -1,0 +1,34 @@
+# Project update authored as Markdown.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-project-deck.pptx"; let body = """# Project Atlas
+
+**Delivery update** for the leadership team.
+
+- Platform foundation is complete
+  - Native Office output is validated
+- Customer pilot starts in June
+
+Note: Confirm pilot owners before the next review.
+
+---
+
+# Release plan
+
+{{layout: two-column}}
+
+The pilot has two gates: an agreed owner for each milestone and a customer-ready support plan.
+
+| Milestone | Owner | Status |
+| --- | --- | --- |
+| Beta | Maya Chen | Ready |
+| Pilot | Rowan Price | June |
+
+---
+
+# Decisions
+
+The team will ship the focused workflow first, then expand integrations after pilot feedback.
+""";
+p=_lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let d=pptx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

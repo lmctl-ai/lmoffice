@@ -1,0 +1,31 @@
+# Read worksheet cells through inspect and pass their total into a presentation block.
+output = ARGV.len() > 0 ? ARGV[0] : "cross-workbook-briefing.pptx";
+workbook = output + ".xlsx";
+
+px = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${workbook});
+let s = book.sheet("Forecast");
+s.set(1, 1, "Month").set(1, 2, "Revenue");
+s.set(2, 1, "January").set(2, 2, 120000.0);
+s.set(3, 1, "February").set(3, 2, 138000.0);
+s.set(4, 1, "March").set(4, 2, 156000.0);
+s.set(5, 1, "Quarter total").formula(5, 2, "SUM(B2:B4)").bold(1, 1).bold(1, 2).bold(5, 1);
+s.col_width(1, 18.0).col_width(2, 18.0).number_format(2, 2, "$#,##0.00").number_format(3, 2, "$#,##0.00").number_format(4, 2, "$#,##0.00").number_format(5, 2, "$#,##0.00");
+book.save();
+end _lmcode_
+savedsl(px, workbook + ".dslb");
+rx = system(concat(dsl_cli(px), ["--dsl", workbook + ".dslb"]), 120000); assert(rx.code == 0);
+readback_process = system([dsl_cli(px)[0], "inspect", workbook], 120000); assert(readback_process.code == 0);
+let cells = split(json_parse(readback_process.stdout)["result"]["text"], "\n");
+let forecast_total = json_parse(cells[3]) + json_parse(cells[5]) + json_parse(cells[7]);
+markdown_process = system(concat(dsl_cli(px), ["--to-markdown", workbook]), 120000); assert(markdown_process.code == 0);
+let workbook_readback = json_parse(markdown_process.stdout)["result"]["markdown"];
+
+pp = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let deck = pptx.create(${output});
+let first = deck.slide(); first.title("Quarterly revenue briefing").text(72.0, 180.0, 1080.0, 72.0, "Forecast total: ${forecast_total} dollars").text(72.0, 280.0, 1080.0, 100.0, "The outer script calculated this total from the workbook's stored numeric cells.").notes("Formula results are not evaluated by lmoffice; the values were read back through inspect.");
+deck.markdown(${workbook_readback});
+deck.save();
+end _lmcode_
+savedsl(pp, output + ".dslb");
+rp = system(concat(dsl_cli(pp), ["--dsl", output + ".dslb"]), 120000); assert(rp.code == 0);

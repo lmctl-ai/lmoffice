@@ -1,0 +1,63 @@
+# Startup capitalization table with equity tiers, fully diluted ownership, and pie chart.
+output = ARGV.len() > 0 ? ARGV[0] : "cap_table.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Cap Table");
+s.tab_color("#70AD47");
+s.page_orientation("landscape");
+s.fit_to_page(1, 1);
+
+# Title
+s.set(1, 1, "NOVATERRA TECHNOLOGIES - SERIES B CAP TABLE");
+s.bold(1, 1);
+s.font_size(1, 1, 15.0);
+s.font_color(1, 1, "#1F4E78");
+
+# KPI summary
+s.set(2, 1, "Total Fully-Diluted Shares").set(2, 3, "Post-Money Valuation");
+s.bold(2, 1).bold(2, 3);
+s.formula(3, 1, "C11").formula(3, 3, "C11*D9");
+s.bold(3, 1).bold(3, 3);
+s.number_format(3, 1, "#,##0").number_format(3, 3, "$#,##0.00");
+s.fill(2, 1, "#D9E1F2").fill(2, 3, "#E2EFDA");
+s.fill(3, 1, "#D9E1F2").fill(3, 3, "#E2EFDA");
+
+# Table Header
+s.set(4, 1, "Shareholder / Entity").set(4, 2, "Security Class").set(4, 3, "Shares Issued").set(4, 4, "Issue Price").set(4, 5, "Total Capital").set(4, 6, "Ownership %");
+s.bold(4, 1).bold(4, 2).bold(4, 3).bold(4, 4).bold(4, 5).bold(4, 6);
+s.fill(4, 1, "#1F4E78").fill(4, 2, "#1F4E78").fill(4, 3, "#1F4E78").fill(4, 4, "#1F4E78").fill(4, 5, "#1F4E78").fill(4, 6, "#1F4E78");
+s.font_color(4, 1, "#FFFFFF").font_color(4, 2, "#FFFFFF").font_color(4, 3, "#FFFFFF").font_color(4, 4, "#FFFFFF").font_color(4, 5, "#FFFFFF").font_color(4, 6, "#FFFFFF");
+
+# Equity Holders
+s.set(5, 1, "Elena Rostova (Founder)").set(5, 2, "Common").set(5, 3, 3500000).set(5, 4, 0.001).formula(5, 5, "C5*D5").formula(5, 6, "C5/$C$11");
+s.set(6, 1, "Marcus Vance (Co-Founder)").set(6, 2, "Common").set(6, 3, 2500000).set(6, 4, 0.001).formula(6, 5, "C6*D6").formula(6, 6, "C6/$C$11");
+s.set(7, 1, "Apex Seed Capital").set(7, 2, "Series Seed").set(7, 3, 1200000).set(7, 4, 1.250).formula(7, 5, "C7*D7").formula(7, 6, "C7/$C$11");
+s.set(8, 1, "Horizon Venture Partners").set(8, 2, "Series A Preferred").set(8, 3, 2000000).set(8, 4, 3.500).formula(8, 5, "C8*D8").formula(8, 6, "C8/$C$11");
+s.set(9, 1, "Beacon Growth Fund").set(9, 2, "Series B Preferred").set(9, 3, 1500000).set(9, 4, 8.000).formula(9, 5, "C9*D9").formula(9, 6, "C9/$C$11");
+s.set(10, 1, "Employee Option Pool (Unallocated)").set(10, 2, "Options").set(10, 3, 800000).set(10, 4, 0.000).set(10, 5, 0.0).formula(10, 6, "C10/$C$11");
+
+# Totals Row
+s.set(11, 1, "Total Fully Diluted").formula(11, 3, "SUM(C5:C10)").formula(11, 5, "SUM(E5:E10)").formula(11, 6, "SUM(F5:F10)");
+s.bold(11, 1).bold(11, 3).bold(11, 5).bold(11, 6);
+s.fill(11, 1, "#D9E1F2").fill(11, 2, "#D9E1F2").fill(11, 3, "#D9E1F2").fill(11, 4, "#D9E1F2").fill(11, 5, "#D9E1F2").fill(11, 6, "#D9E1F2");
+
+# Format numbers & widths
+s.number_format(5, 3, "#,##0").number_format(6, 3, "#,##0").number_format(7, 3, "#,##0").number_format(8, 3, "#,##0").number_format(9, 3, "#,##0").number_format(10, 3, "#,##0").number_format(11, 3, "#,##0");
+s.number_format(5, 4, "$#,##0.000").number_format(6, 4, "$#,##0.000").number_format(7, 4, "$#,##0.000").number_format(8, 4, "$#,##0.000").number_format(9, 4, "$#,##0.000");
+s.number_format(5, 5, "$#,##0.00").number_format(6, 5, "$#,##0.00").number_format(7, 5, "$#,##0.00").number_format(8, 5, "$#,##0.00").number_format(9, 5, "$#,##0.00").number_format(11, 5, "$#,##0.00");
+s.number_format(5, 6, "0.00%").number_format(6, 6, "0.00%").number_format(7, 6, "0.00%").number_format(8, 6, "0.00%").number_format(9, 6, "0.00%").number_format(10, 6, "0.00%").number_format(11, 6, "0.00%");
+
+s.col_width(1, 32.0).col_width(2, 22.0).col_width(3, 16.0).col_width(4, 14.0).col_width(5, 18.0).col_width(6, 14.0);
+s.border_box(4, 1, 11, 6, "thin", "#BFBFBF");
+
+# Named Range for Total Shares
+s.named_range("TotalShares", 11, 3, 11, 3);
+
+# Pie Chart of Ownership
+s.pie_chart(13, 1, 26, 6, "Shareholder Ownership %", "A5:A10", "C5:C10");
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

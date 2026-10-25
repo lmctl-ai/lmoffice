@@ -1,0 +1,19 @@
+# Conditional job offer for a fictional senior analyst.
+output = ARGV.len() > 0 ? ARGV[0] : "business-job-offer.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Offer of Employment").author("Cedar Peak Analytics").font("Calibri").font_size(11.0).margins(54.0,54.0,54.0,54.0);
+d.paragraph("June 27, 2026").tab_stop(504.0,"right");
+d.paragraph("Taylor Brooks\n41 Willow Court\nEvanston, IL 60201");
+d.heading("Offer of employment",1).color("#17324D");
+d.paragraph("Dear Taylor,\n\nCedar Peak Analytics is pleased to offer you the position of Senior Data Analyst reporting to Priya Nandakumar. Your planned start date is August 3, 2026.");
+d.heading("Compensation and benefits",2);
+d.paragraph("Your annual base salary will be $118,000, paid in accordance with our normal payroll schedule. You will be eligible for the annual performance bonus plan and the health, retirement, and paid-time-off programs available to similarly situated employees.");
+d.heading("Conditions",2);
+d.paragraph("This offer depends on completion of the standard employment verification process and your authorization to work in the United States. The attached employee handbook describes current workplace policies.");
+d.paragraph("Please sign and return this letter by July 6, 2026. We look forward to welcoming you.");
+d.signature("Cedar Peak Analytics");
+d.signature("Taylor Brooks");
+d.footer_fields("Offer of Employment | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

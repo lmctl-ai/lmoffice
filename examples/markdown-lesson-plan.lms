@@ -1,0 +1,46 @@
+# A classroom lesson plan authored as document code.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-lesson-plan.docx"; let body = """---
+title: Lesson Plan - Water in a Changing Climate
+author: Rowan Bell, Cedar Valley School
+theme: business
+page_size: letter
+---
+# Water in a Changing Climate
+
+**Grade 7 science** · 55 minutes · Rowan Bell
+
+## Learning goals
+
+By the end of the lesson, students will be able to explain how evaporation and runoff move water through a watershed and support one claim with evidence.
+
+## Materials
+
+- Two clear cups and ice
+- Watershed diagram and colored pencils
+- Exit ticket
+
+## Sequence
+
+| Minutes | Activity | Evidence |
+| ---: | :--- | :--- |
+| 0-8 | Notice and wonder | Student questions |
+| 8-20 | Mini-lesson | Annotated diagram |
+| 20-42 | Model a watershed | Partner explanation |
+| 42-55 | Exit ticket | One claim and evidence |
+
+## Teacher notes
+
+> Invite students to distinguish what they observe from what they infer. Offer sentence frames to multilingual learners.
+
+```text
+Water falls -> collects -> flows -> evaporates -> condenses
+```
+
+## Assessment
+
+Students who name two connected processes and cite the model meet the objective. Collect unfinished diagrams for the next conference.
+""";
+p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

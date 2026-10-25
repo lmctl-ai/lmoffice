@@ -1,0 +1,14 @@
+# Offline brand guidelines deck for a fictional company.
+output = ARGV.len() > 0 ? ARGV[0] : "marketing-brand-guidelines.pptx";
+image = output + ".png";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+pptx.sample_image(${image}); let deck = pptx.create(${output});
+deck.theme("#5B1F69", "#D97925", "Aptos Display", "Aptos");
+let s1 = deck.slide(); s1.title_slide("Luma Grove Brand System", "A practical guide to a warm, confident identity\nVersion 1.0 | October 2026").image(${image}, 1000.0, 420.0, 170.0, 170.0).footer("Luma Grove | Internal marketing use").transition("fade");
+let s2 = deck.slide(); s2.title("Voice, audience, and promise").rounded_rect(80.0, 160.0, 340.0, 150.0, "#5B1F69", "Warm\nMake expertise feel human.").rounded_rect(470.0, 160.0, 340.0, 150.0, "#D97925", "Clear\nMake the next step obvious.").rounded_rect(860.0, 160.0, 340.0, 150.0, "#70AD47", "Useful\nGive people something to use today.").text(90.0, 370.0, 600.0, 80.0, "Promise: thoughtful tools for teams that want momentum without the noise.").line_chart(760.0, 370.0, 430.0, 230.0, "Brand recall", "Q1,Q2,Q3,Q4", "Score", "42,51,63,72").footer("Luma Grove | Internal marketing use");
+let s3 = deck.slide(); s3.title("Channel performance snapshot").bar_chart(95.0, 145.0, 1100.0, 440.0, "Qualified leads by channel", "Search,Partners,Events,Community", "Leads", "128,94,61,47").footer("Luma Grove | Internal marketing use");
+let s4 = deck.slide(); s4.title("Campaign calendar and owners"); let t = s4.table(65.0, 145.0, 1150.0, 320.0, 5, 4); t.header_row("#5B1F69", "#FFFFFF").cell(1,1,"Week").cell(1,2,"Moment").cell(1,3,"Owner").cell(1,4,"Primary asset").cell(2,1,"01").cell(2,2,"Launch story").cell(2,3,"Mara").cell(2,4,"Landing page").cell(3,1,"02").cell(3,2,"Customer proof").cell(3,3,"Jon").cell(3,4,"Case study").cell(4,1,"03").cell(4,2,"Community week").cell(4,3,"Rhea").cell(4,4,"Workshop").cell(5,1,"04").cell(5,2,"Product update").cell(5,3,"Mara").cell(5,4,"Email series"); s4.footer("Luma Grove | Internal marketing use");
+let s5 = deck.slide(); s5.title("Message mix for the next quarter").pie_chart(100.0, 145.0, 600.0, 430.0, "Content mix", "Teach,Prove,Invite", "50,30,20").text(760.0, 190.0, 370.0, 250.0, "Every asset should\n• lead with a useful idea\n• show a specific proof point\n• end with one clear invitation\n\nReview checklist: voice, contrast, accessibility.").footer("Luma Grove | Internal marketing use");
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);

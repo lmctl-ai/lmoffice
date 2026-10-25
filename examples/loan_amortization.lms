@@ -1,0 +1,74 @@
+# Loan amortization schedule with financial payment formulas and balance progression.
+output = ARGV.len() > 0 ? ARGV[0] : "loan_amortization.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Amortization");
+s.tab_color("#ED7D31");
+s.page_orientation("portrait");
+s.fit_to_page(1, 2);
+s.repeat_rows(1, 9);
+
+# Title
+s.set(1, 1, "FIXED-RATE LOAN AMORTIZATION SCHEDULE");
+s.bold(1, 1);
+s.font_size(1, 1, 15.0);
+s.font_color(1, 1, "#C65911");
+s.merge(1, 1, 1, 5);
+
+# Assumptions Block
+s.set(3, 1, "Loan Amount:").set(3, 2, 300000.0);
+s.set(4, 1, "Annual Interest Rate:").set(4, 2, 0.0625);
+s.set(5, 1, "Loan Term (Years):").set(5, 2, 15);
+s.set(6, 1, "Payments Per Year:").set(6, 2, 12);
+s.set(7, 1, "Monthly Payment:").formula(7, 2, "PMT(B4/B6,B5*B6,-B3)");
+
+s.bold(3, 1).bold(4, 1).bold(5, 1).bold(6, 1).bold(7, 1).bold(7, 2);
+s.fill(7, 1, "#FCE4D6").fill(7, 2, "#FCE4D6");
+s.number_format(3, 2, "$#,##0.00");
+s.number_format(4, 2, "0.000%");
+s.number_format(7, 2, "$#,##0.00");
+
+# Table Header
+s.set(9, 1, "Period").set(9, 2, "Payment").set(9, 3, "Principal").set(9, 4, "Interest").set(9, 5, "Balance");
+s.bold(9, 1).bold(9, 2).bold(9, 3).bold(9, 4).bold(9, 5);
+s.fill(9, 1, "#C65911").fill(9, 2, "#C65911").fill(9, 3, "#C65911").fill(9, 4, "#C65911").fill(9, 5, "#C65911");
+s.font_color(9, 1, "#FFFFFF").font_color(9, 2, "#FFFFFF").font_color(9, 3, "#FFFFFF").font_color(9, 4, "#FFFFFF").font_color(9, 5, "#FFFFFF");
+
+# Initial row 0 (Period 0 balance)
+s.set(10, 1, 0).formula(10, 5, "B3");
+s.number_format(10, 5, "$#,##0.00");
+
+# 12 Payment periods
+s.set(11, 1, 1).formula(11, 2, "B7").formula(11, 4, "E10*(B4/B6)").formula(11, 3, "B11-D11").formula(11, 5, "E10-C11");
+s.set(12, 1, 2).formula(12, 2, "B7").formula(12, 4, "E11*(B4/B6)").formula(12, 3, "B12-D12").formula(12, 5, "E11-C12");
+s.set(13, 1, 3).formula(13, 2, "B7").formula(13, 4, "E12*(B4/B6)").formula(13, 3, "B13-D13").formula(13, 5, "E12-C13");
+s.set(14, 1, 4).formula(14, 2, "B7").formula(14, 4, "E13*(B4/B6)").formula(14, 3, "B14-D14").formula(14, 5, "E13-C14");
+s.set(15, 1, 5).formula(15, 2, "B7").formula(15, 4, "E14*(B4/B6)").formula(15, 3, "B15-D15").formula(15, 5, "E14-C15");
+s.set(16, 1, 6).formula(16, 2, "B7").formula(16, 4, "E15*(B4/B6)").formula(16, 3, "B16-D16").formula(16, 5, "E15-C16");
+s.set(17, 1, 7).formula(17, 2, "B7").formula(17, 4, "E16*(B4/B6)").formula(17, 3, "B17-D17").formula(17, 5, "E16-C17");
+s.set(18, 1, 8).formula(18, 2, "B7").formula(18, 4, "E17*(B4/B6)").formula(18, 3, "B18-D18").formula(18, 5, "E17-C18");
+s.set(19, 1, 9).formula(19, 2, "B7").formula(19, 4, "E18*(B4/B6)").formula(19, 3, "B19-D19").formula(19, 5, "E18-C19");
+s.set(20, 1, 10).formula(20, 2, "B7").formula(20, 4, "E19*(B4/B6)").formula(20, 3, "B20-D20").formula(20, 5, "E19-C20");
+s.set(21, 1, 11).formula(21, 2, "B7").formula(21, 4, "E20*(B4/B6)").formula(21, 3, "B21-D21").formula(21, 5, "E20-C21");
+s.set(22, 1, 12).formula(22, 2, "B7").formula(22, 4, "E21*(B4/B6)").formula(22, 3, "B22-D22").formula(22, 5, "E21-C22");
+
+# Total first year summary
+s.set(23, 1, "Year 1 Total").formula(23, 2, "SUM(B11:B22)").formula(23, 3, "SUM(C11:C22)").formula(23, 4, "SUM(D11:D22)").formula(23, 5, "E22");
+s.bold(23, 1).bold(23, 2).bold(23, 3).bold(23, 4).bold(23, 5);
+s.fill(23, 1, "#FCE4D6").fill(23, 2, "#FCE4D6").fill(23, 3, "#FCE4D6").fill(23, 4, "#FCE4D6").fill(23, 5, "#FCE4D6");
+
+# Format numbers
+s.number_format(11, 2, "$#,##0.00").number_format(12, 2, "$#,##0.00").number_format(13, 2, "$#,##0.00").number_format(14, 2, "$#,##0.00").number_format(15, 2, "$#,##0.00").number_format(16, 2, "$#,##0.00").number_format(17, 2, "$#,##0.00").number_format(18, 2, "$#,##0.00").number_format(19, 2, "$#,##0.00").number_format(20, 2, "$#,##0.00").number_format(21, 2, "$#,##0.00").number_format(22, 2, "$#,##0.00").number_format(23, 2, "$#,##0.00");
+s.number_format(11, 3, "$#,##0.00").number_format(12, 3, "$#,##0.00").number_format(13, 3, "$#,##0.00").number_format(14, 3, "$#,##0.00").number_format(15, 3, "$#,##0.00").number_format(16, 3, "$#,##0.00").number_format(17, 3, "$#,##0.00").number_format(18, 3, "$#,##0.00").number_format(19, 3, "$#,##0.00").number_format(20, 3, "$#,##0.00").number_format(21, 3, "$#,##0.00").number_format(22, 3, "$#,##0.00").number_format(23, 3, "$#,##0.00");
+s.number_format(11, 4, "$#,##0.00").number_format(12, 4, "$#,##0.00").number_format(13, 4, "$#,##0.00").number_format(14, 4, "$#,##0.00").number_format(15, 4, "$#,##0.00").number_format(16, 4, "$#,##0.00").number_format(17, 4, "$#,##0.00").number_format(18, 4, "$#,##0.00").number_format(19, 4, "$#,##0.00").number_format(20, 4, "$#,##0.00").number_format(21, 4, "$#,##0.00").number_format(22, 4, "$#,##0.00").number_format(23, 4, "$#,##0.00");
+s.number_format(11, 5, "$#,##0.00").number_format(12, 5, "$#,##0.00").number_format(13, 5, "$#,##0.00").number_format(14, 5, "$#,##0.00").number_format(15, 5, "$#,##0.00").number_format(16, 5, "$#,##0.00").number_format(17, 5, "$#,##0.00").number_format(18, 5, "$#,##0.00").number_format(19, 5, "$#,##0.00").number_format(20, 5, "$#,##0.00").number_format(21, 5, "$#,##0.00").number_format(22, 5, "$#,##0.00").number_format(23, 5, "$#,##0.00");
+
+s.border_box(3, 1, 7, 2, "thin", "#D0D0D0");
+s.border_box(9, 1, 23, 5, "thin", "#D0D0D0");
+s.col_width(1, 22.0).col_width(2, 16.0).col_width(3, 16.0).col_width(4, 16.0).col_width(5, 18.0);
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

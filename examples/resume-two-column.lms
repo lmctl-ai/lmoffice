@@ -1,0 +1,27 @@
+# Two-column resume balancing a sidebar with recent work.
+output = ARGV.len() > 0 ? ARGV[0] : "resume-two-column.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Jordan Lee Resume").author("Jordan Lee").font("Calibri").font_size(10.0).margins(42.0,42.0,42.0,42.0);
+d.heading("JORDAN LEE",1).color("#17324D");
+d.paragraph("Product Designer  |  Minneapolis, MN  |  jordan.lee@example.com");
+let t=d.table(1,2);
+t.borders(false).column_width(1,150.0).column_width(2,378.0);
+t.paragraph(1,1,"PROFILE").bold(true);
+t.paragraph(1,1,"Product designer focused on clear workflows for public-interest software.");
+t.paragraph(1,1,"SKILLS").bold(true);
+t.paragraph(1,1,"Research\nPrototyping\nDesign systems\nFacilitation");
+t.paragraph(1,1,"EDUCATION").bold(true);
+t.paragraph(1,1,"BFA Interaction Design\nNorth Shore College, 2018");
+t.paragraph(1,2,"EXPERIENCE").bold(true);
+t.paragraph(1,2,"Cedar Peak Analytics").bold(true);
+t.paragraph(1,2,"Lead Product Designer\t2022–Present").tab_stop(360.0,"right");
+t.paragraph(1,2,"Designed a replenishment workspace used by 400 planners; shortened first-time setup by 40 percent.");
+t.paragraph(1,2,"Harborline Transit").bold(true);
+t.paragraph(1,2,"Product Designer\t2018–2022").tab_stop(360.0,"right");
+t.paragraph(1,2,"Reworked dispatcher tools around field interviews, reducing duplicate incident reports.");
+t.paragraph(1,2,"SELECTED WORK").bold(true);
+t.paragraph(1,2,"Inventory planning · Dispatch systems · Accessible data tables");
+d.footer_fields("Jordan Lee | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

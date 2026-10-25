@@ -1,0 +1,16 @@
+# Press release announcing a fictional partnership.
+output = ARGV.len() > 0 ? ARGV[0] : "business-press-release.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Cedar Peak and Harborline Partnership").author("Cedar Peak Analytics").font("Calibri").font_size(11.0).columns(2,24.0);
+d.paragraph("FOR IMMEDIATE RELEASE").bold(true).align("center");
+d.heading("Cedar Peak Analytics and Harborline Devices launch practical inventory planning partnership",1).color("#17324D");
+d.paragraph("BELLWETHER, OR — June 26, 2026 — Cedar Peak Analytics and Harborline Devices today announced a partnership to help mid-sized distributors reduce stockouts with clearer demand signals and easier exception review.");
+d.paragraph("The first release connects Harborline’s field sensor data to Cedar Peak’s Cloudboard workspace. A pilot with three regional distributors begins this summer and will measure replenishment accuracy, planner time, and supplier response.");
+d.heading("About Cedar Peak Analytics",2);
+d.paragraph("Cedar Peak Analytics builds planning tools for teams that manage physical inventory. Learn more at cedarpeak.example.");
+d.heading("Media contact",2);
+d.paragraph("Maya Chen · media@cedarpeak.example · (312) 555-0111");
+d.footer_fields("Press release | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

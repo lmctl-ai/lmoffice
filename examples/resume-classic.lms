@@ -1,0 +1,21 @@
+# One-page chronological resume for a fictional operations leader.
+output = ARGV.len() > 0 ? ARGV[0] : "resume-classic.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Avery Morgan Resume").author("Avery Morgan").font("Calibri").font_size(10.0).margins(42.0,42.0,42.0,42.0);
+d.heading("AVERY MORGAN",1).align("center");
+d.paragraph("Operations Director  |  Chicago, IL  |  avery.morgan@example.com  |  (312) 555-0148").align("center");
+d.paragraph("Operations leader who turns complex service delivery into measurable, repeatable systems. Twelve years across logistics, analytics, and customer operations.").spacing(0.0,8.0,1.05);
+d.heading("Experience",2);
+d.paragraph("Cedar Peak Analytics").bold(true).tab_stop(528.0,"right");
+d.paragraph("Operations Director\t2021–Present").tab_stop(528.0,"right");
+d.bullet("Reduced order exceptions 31% by introducing weekly root-cause reviews and supplier scorecards.");
+d.bullet("Led a 24-person operations team through a two-site warehouse transition.");
+d.paragraph("Northwind Workshop").bold(true);
+d.paragraph("Senior Program Manager\t2016–2021").tab_stop(528.0,"right");
+d.bullet("Built a demand-planning process supporting 18 retail partners and $22M annual volume.");
+d.heading("Education and skills",2);
+d.paragraph("B.S. Supply Chain Management, Lakeview University\nLean process design · Vendor negotiations · SQL reporting · Team development");
+d.header_fields("Avery Morgan | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

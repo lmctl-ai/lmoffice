@@ -1,0 +1,14 @@
+# Offline HR onboarding review for a fictional company.
+output = ARGV.len() > 0 ? ARGV[0] : "hr-onboarding-review.pptx";
+image = output + ".png";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+pptx.sample_image(${image}); let deck = pptx.create(${output});
+deck.theme("#203864", "#2E75B6", "Aptos Display", "Aptos");
+let s1 = deck.slide(); s1.title_slide("New Hire Onboarding Review", "30-day check-in for Priya Shah\nPeople Operations | Fictional example").image(${image}, 1000.0, 420.0, 170.0, 170.0).footer("Northstar Works | People Operations").transition("fade");
+let s2 = deck.slide(); s2.title("30-day signals").bar_chart(90.0, 150.0, 1100.0, 430.0, "Onboarding completion", "Access,Training,Connections,First win", "Completed", "100,88,76,64").footer("Northstar Works | People Operations");
+let s3 = deck.slide(); s3.title("Manager and buddy review"); let t = s3.table(65.0, 145.0, 1150.0, 330.0, 5, 4); t.header_row("#203864", "#FFFFFF").cell(1,1,"Area").cell(1,2,"Signal").cell(1,3,"Owner").cell(1,4,"Next action").cell(2,1,"Role clarity").cell(2,2,"Strong").cell(2,3,"Manager").cell(2,4,"Confirm Q2 goals").cell(3,1,"Systems").cell(3,2,"Complete").cell(3,3,"IT").cell(3,4,"Add billing access").cell(4,1,"Relationships").cell(4,2,"Growing").cell(4,3,"Buddy").cell(4,4,"Schedule design review").cell(5,1,"Confidence").cell(5,2,"Mixed").cell(5,3,"Priya").cell(5,4,"Pair on first demo"); s3.footer("Northstar Works | People Operations");
+let s4 = deck.slide(); s4.title("Confidence trend").line_chart(90.0, 150.0, 1100.0, 430.0, "Weekly confidence pulse", "Week 1,Week 2,Week 3,Week 4", "Score", "52,61,70,78").footer("Northstar Works | People Operations");
+let s5 = deck.slide(); s5.title("Next 30 days").pie_chart(100.0, 145.0, 600.0, 430.0, "Time allocation", "Delivery,Learning,Community", "55,25,20").text(760.0, 190.0, 370.0, 250.0, "Commitments\n• ship the first customer demo\n• shadow two support calls\n• present one learning share\n\nNext check-in: day 60.").footer("Northstar Works | People Operations");
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);

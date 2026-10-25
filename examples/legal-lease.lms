@@ -1,0 +1,21 @@
+# Commercial office lease summary for a fictional tenant and landlord.
+output = ARGV.len() > 0 ? ARGV[0] : "legal-lease.docx";
+p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Office Lease").author("Juniper Property Group").font("Times New Roman").font_size(11.0).page_size(612.0,792.0).margins(54.0,54.0,54.0,54.0);
+d.heading("COMMERCIAL OFFICE LEASE",1).align("center");
+d.paragraph("Juniper Property Group, as landlord, leases Suite 410 at 88 Meridian Avenue to Cedar Peak Analytics, as tenant, for administrative and research offices.");
+d.heading("Premises and term",2);
+d.paragraph("The premises contain approximately 4,200 rentable square feet. The initial term begins July 1, 2026 and ends June 30, 2029, subject to the delivery condition described below.");
+d.heading("Rent and services",2);
+let t=d.table(4,2);
+t.borders(true).cell(1,1,"Period").cell(1,2,"Monthly base rent").cell(2,1,"Year 1").cell(2,2,"$12,600").cell(3,1,"Year 2").cell(3,2,"$12,978").cell(4,1,"Year 3").cell(4,2,"$13,367");
+d.paragraph("Tenant will pay utilities allocated to the premises and will keep the premises in good order. Landlord will maintain common areas and building systems serving the premises.");
+d.heading("Default and notices",2);
+d.paragraph("A party will receive written notice and a reasonable opportunity to cure before the remedies in this lease may be exercised.");
+d.signature("Juniper Property Group");
+d.signature("Cedar Peak Analytics");
+d.header_fields("Office Lease | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

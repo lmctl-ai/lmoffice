@@ -1,0 +1,19 @@
+# Reference sheet with right-aligned relationship and contact dates.
+output = ARGV.len() > 0 ? ARGV[0] : "resume-reference-sheet.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("References — Elena Ortiz").author("Elena Ortiz").font("Calibri").font_size(10.0).margins(42.0,42.0,42.0,42.0);
+d.heading("ELENA ORTIZ — PROFESSIONAL REFERENCES",1).color("#17324D");
+d.paragraph("References available for the Customer Success Director search. Please contact Elena before reaching out.");
+d.heading("Maya Chen",2);
+d.paragraph("VP Customer Operations, Northwind Workshop\tFormer manager").tab_stop(528.0,"right");
+d.paragraph("maya.chen@example.com · (312) 555-0111\nWorked together from 2019–2024 on onboarding, renewal planning, and support operations.");
+d.heading("Thomas Reed",2);
+d.paragraph("Director of Partnerships, Cedar Peak Analytics\tCross-functional partner").tab_stop(528.0,"right");
+d.paragraph("thomas.reed@example.com · (415) 555-0174\nPartnered on a reseller enablement program spanning 18 regional accounts.");
+d.heading("Lina Patel",2);
+d.paragraph("Chief Operating Officer, Harborline Devices\tFormer client").tab_stop(528.0,"right");
+d.paragraph("lina.patel@example.com · (206) 555-0138\nSponsor for the customer health program and quarterly service review.");
+d.footer_fields("References | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

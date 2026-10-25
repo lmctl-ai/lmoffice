@@ -1,0 +1,17 @@
+# Demand for correction of a fictional delivery and invoice dispute.
+output = ARGV.len() > 0 ? ARGV[0] : "legal-demand-letter.docx";
+p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Demand for Corrective Delivery").author("Harborline Legal").font("Times New Roman").font_size(11.0).margins(54.0,54.0,54.0,54.0);
+d.paragraph("June 18, 2026").tab_stop(504.0,"right");
+d.paragraph("Vela Manufacturing\nAttn: Accounts Receivable\n14 Foundry Lane\nBellwether, OR 97005");
+d.heading("Re: Cedar Peak Analytics purchase order CP-771",1);
+d.paragraph("We represent Cedar Peak Analytics regarding the shipment delivered on May 29, 2026. The shipment contained 12 calibration units instead of the 12 production units specified in the confirmed order.");
+d.paragraph("Please arrange collection of the incorrect units, deliver conforming units, and issue a corrected invoice within ten business days of this letter. Cedar Peak has preserved the packing list, delivery receipt, and correspondence.");
+d.paragraph("This letter is a request to resolve the discrepancy promptly and does not waive any contractual rights or remedies.");
+d.paragraph("Sincerely,");
+d.signature("Riley Chen, Harborline Legal");
+d.footer_fields("Demand Letter | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

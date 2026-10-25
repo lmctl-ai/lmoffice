@@ -1,0 +1,20 @@
+# Decision memo for approving a warehouse scanning pilot.
+output = ARGV.len() > 0 ? ARGV[0] : "business-memo.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Warehouse Scanning Pilot Memo").author("Cedar Peak Analytics").font("Calibri").font_size(11.0).margins(54.0,54.0,54.0,54.0);
+d.heading("DECISION MEMO",1).color("#17324D");
+let t=d.table(4,2);
+t.borders(false).cell(1,1,"TO").cell(1,2,"Operations leadership").cell(2,1,"FROM").cell(2,2,"Morgan Ellis").cell(3,1,"DATE").cell(3,2,"June 21, 2026").cell(4,1,"SUBJECT").cell(4,2,"Approve Northwind scanning pilot");
+d.heading("Decision requested",2).keep_with_next(true);
+d.paragraph("Approve a six-week barcode scanning pilot at the Bellwether distribution center with a budget cap of $18,500.");
+d.heading("Why now",2);
+d.paragraph("Cycle counts currently consume two shifts each month and produce inconsistent exception notes. The proposed pilot pairs handheld scans with a short reason code list.");
+d.heading("Measures and next step",2);
+d.bullet("Cut count reconciliation time by 25 percent.");
+d.bullet("Reach 98 percent scan completion on pilot aisles.");
+d.bullet("Return a rollout recommendation on August 7.");
+d.paragraph("If approved, Morgan will confirm the vendor order and schedule a supervisor briefing by June 26.").indent(18.0,0.0,0.0);
+d.header_fields("Cedar Peak Analytics | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

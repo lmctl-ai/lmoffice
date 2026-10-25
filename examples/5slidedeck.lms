@@ -1,0 +1,15 @@
+# A five-slide project briefing.
+output = ARGV.len() > 0 ? ARGV[0] : "5slidedeck.pptx";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+pptx.sample_image(${output} + ".png");
+let deck = pptx.create(${output});
+let a = deck.slide(); a.title("Project briefing").text(64.0, 160.0, 1100.0, 80.0, "A five-slide update").notes("Opening context");
+let b = deck.slide(); b.title("Progress").bullet(64.0, 160.0, 1100.0, 48.0, "Core runtime is complete").bullet(64.0, 230.0, 1100.0, 48.0, "Office formats are validated");
+let c = deck.slide(); c.title("Architecture").rect(64.0, 160.0, 440.0, 240.0, "#D9EAF7").text(120.0, 260.0, 320.0, 60.0, "DSL host").rect(600.0, 160.0, 440.0, 240.0, "#E8F5E9").text(660.0, 260.0, 320.0, 60.0, "Open XML");
+let d = deck.slide(); d.title("Next steps").text(64.0, 160.0, 1100.0, 60.0, "Independent consumers and release automation").bullet(64.0, 260.0, 1100.0, 48.0, "Run the full example gallery");
+let e = deck.slide(); e.title("Thank you").text(64.0, 180.0, 1100.0, 80.0, "Questions and discussion").image(${output} + ".png", 960.0, 420.0, 240.0, 160.0).notes("Close");
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

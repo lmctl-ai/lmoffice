@@ -1,0 +1,19 @@
+# Limited authorization for a project manager to sign a vendor order.
+output = ARGV.len() > 0 ? ARGV[0] : "legal-power-of-attorney.docx";
+p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Limited Power of Attorney").author("Cedar Peak Analytics").font("Times New Roman").font_size(11.0);
+d.heading("LIMITED POWER OF ATTORNEY",1).align("center");
+d.paragraph("Cedar Peak Analytics LLC appoints Morgan Ellis, its Operations Director, as agent solely for the procurement action described in this document.");
+d.heading("Grant of authority",2);
+d.clause("The agent may negotiate and sign a purchase order with Northwind Workshop for up to 250 sensor kits at a total price not exceeding $48,000.",1);
+d.clause("The agent may exchange routine notices and approve delivery dates, but may not borrow money, transfer company assets, or delegate this authority.",2);
+d.heading("Duration and revocation",2);
+d.paragraph("This limited authority begins on June 15, 2026 and ends when the purchase order is completed or on December 31, 2026, whichever occurs first. The company may revoke it in writing.");
+d.paragraph("The undersigned signs this instrument on behalf of Cedar Peak Analytics LLC.");
+d.signature("Authorized company representative");
+d.signature("Agent acknowledgement");
+d.footer_fields("Limited Power of Attorney | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

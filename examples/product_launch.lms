@@ -1,0 +1,58 @@
+# Enterprise product launch presentation with architecture shapes, comparison table, and rollout timeline.
+output = ARGV.len() > 0 ? ARGV[0] : "product_launch.pptx";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let deck = pptx.create(${output});
+deck.theme("#70AD47", "#385723", "Segoe UI", "Calibri");
+
+# Slide 1: Title
+let s1 = deck.slide();
+s1.title_slide("Vanguard 3.0 Gateway", "Next-Generation Zero-Trust API Security & Edge Gateway\nProduct Launch Briefing | Q4 2026");
+s1.footer("Vanguard Product Launch 2026");
+s1.transition("fade");
+
+# Slide 2: Value Proposition Pillars
+let s2 = deck.slide();
+s2.title("Three Core Architectural Pillars");
+s2.rounded_rect(80.0, 160.0, 340.0, 150.0, "#385723", "Sub-Millisecond Proxy\nUltra-low latency Rust data plane handling 2M rps per node");
+s2.rounded_rect(470.0, 160.0, 340.0, 150.0, "#548235", "Zero-Trust Mesh\nCryptographic mutual TLS with automated ephemeral cert rotation");
+s2.rounded_rect(860.0, 160.0, 340.0, 150.0, "#70AD47", "Adaptive AI WAF\nReal-time behavioral anomaly detection stopping novel zero-days");
+s2.text(80.0, 350.0, 1120.0, 60.0, "Built from the ground up for hybrid cloud enterprises requiring sovereign compliance and lightning speed.");
+s2.footer("Vanguard Product Launch 2026");
+s2.slide_number(true);
+
+# Slide 3: Architecture Diagram with Shapes & Arrows
+let s3 = deck.slide();
+s3.title("System Architecture Flow");
+s3.rounded_rect(80.0, 220.0, 220.0, 90.0, "#1F4E78", "Global Clients\nMobile / Web / IoT");
+s3.arrow(320.0, 255.0, 80.0, 20.0, "#548235", 2.0);
+s3.rounded_rect(420.0, 200.0, 240.0, 130.0, "#385723", "Vanguard 3.0\nEdge Gateway & WAF\n(Rust / eBPF Engine)");
+s3.arrow(680.0, 255.0, 80.0, 20.0, "#548235", 2.0);
+s3.rounded_rect(780.0, 220.0, 220.0, 90.0, "#70AD47", "Internal Services\nMicroservices / DB");
+s3.text(80.0, 390.0, 1120.0, 60.0, "All traffic verified at wire speed with sub-50µs cryptographic inspection overhead.");
+s3.footer("Vanguard Product Launch 2026");
+s3.slide_number(true);
+
+# Slide 4: Feature Comparison Table
+let s4 = deck.slide();
+s4.title("Vanguard 3.0 vs Legacy Gateways");
+let tbl = s4.table(80.0, 150.0, 1120.0, 260.0, 5, 4);
+tbl.header_row("#385723", "#FFFFFF");
+tbl.cell(1, 1, "Capability").cell(1, 2, "Vanguard 3.0").cell(1, 3, "Legacy Proxy A").cell(1, 4, "Legacy Proxy B");
+tbl.cell(2, 1, "P99 Latency (100k rps)").cell(2, 2, "0.42 ms").cell(2, 3, "4.80 ms").cell(2, 4, "7.20 ms");
+tbl.cell(3, 1, "Memory Footprint").cell(3, 2, "45 MB").cell(3, 3, "620 MB").cell(3, 4, "1.2 GB");
+tbl.cell(4, 1, "mTLS Cert Rotation").cell(4, 2, "Zero Downtime (Hitless)").cell(4, 3, "Process Reload").cell(4, 4, "Manual Restart");
+tbl.cell(5, 1, "FIPS 140-3 Compliance").cell(5, 2, "Built-in Standard").cell(5, 3, "Add-on Module").cell(5, 4, "Unsupported");
+s4.footer("Vanguard Product Launch 2026");
+s4.slide_number(true);
+
+# Slide 5: Rollout Timeline
+let s5 = deck.slide();
+s5.section_header("Launch Roadmap & Rollout", "Developer Preview: Oct 15 | Private Beta: Nov 1 | General Availability: Dec 1, 2026", "#385723");
+s5.footer("Vanguard Product Launch 2026");
+s5.slide_number(true);
+
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

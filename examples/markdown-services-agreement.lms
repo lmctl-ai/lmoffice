@@ -1,0 +1,41 @@
+# Services agreement as a compact Markdown source.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-services-agreement.docx"; let body = """---
+title: Service Operations Agreement
+author: Harborline Devices
+theme: business
+toc: true
+---
+# Service Operations Agreement
+
+Harborline Devices will provide Juniper Property Group with a ten-week service redesign engagement.
+
+## Scope
+
+- Interview six operations leads
+  - Capture current intake paths
+  - Identify approval delays
+- Deliver a tested intake workflow
+- Train the service desk
+
+## Delivery schedule
+
+| Phase | Deliverable | Weeks |
+| :--- | :--- | ---: |
+| Discover | Interviews and baseline map | 1-2 |
+| Design | Prototype and service rules | 3-6 |
+| Launch | Training and measurement | 7-10 |
+
+The fixed fee is **$42,000**, invoiced at kickoff, prototype approval, and handoff. Questions may be sent through the [client portal](https://portal.example.test).
+
+{{pagebreak}}
+## Acceptance
+
+The client will review each deliverable within five business days. Silence after that period constitutes acceptance for scheduling purposes.
+
+{{sign: Harborline Devices}}
+{{sign: Juniper Property Group}}
+""";
+p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

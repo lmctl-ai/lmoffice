@@ -1,0 +1,54 @@
+# Tech conference keynote presentation with speaker bio, architectural flow, and benchmark chart.
+output = ARGV.len() > 0 ? ARGV[0] : "conference_talk.pptx";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let deck = pptx.create(${output});
+deck.theme("#203864", "#2E75B6", "Segoe UI", "Calibri");
+
+# Slide 1: Title
+let s1 = deck.slide();
+s1.title_slide("Distributed Systems at Petabyte Scale", "Architectural Patterns for Sub-Millisecond Global Consensus\nSystemsConf 2026 Keynote Presentation");
+s1.footer("SystemsConf 2026 | Petabyte Scale Architecture");
+s1.transition("fade");
+
+# Slide 2: Speaker Intro
+let s2 = deck.slide();
+s2.title("About the Speaker");
+s2.rounded_rect(80.0, 160.0, 340.0, 160.0, "#203864", "Dr. Marcus Vance\nVP of Systems Engineering\nNovaterra Technologies");
+s2.rounded_rect(470.0, 160.0, 340.0, 160.0, "#2E75B6", "15+ Years in Distributed Systems\nAuthor of 4 ACM SIGMOD papers on consensus algorithms");
+s2.rounded_rect(860.0, 160.0, 340.0, 160.0, "#41719C", "Open Source Maintainer\nLead contributor to Raft, eBPF telemetry, and zero-copy RPC");
+s2.text(80.0, 380.0, 1100.0, 60.0, "Contact & Slides: marcus@novaterra.ai | @marcusvance | github.com/marcusvance");
+s2.footer("SystemsConf 2026 | Petabyte Scale Architecture");
+s2.slide_number(true);
+
+# Slide 3: Architecture Diagram
+let s3 = deck.slide();
+s3.title("Decoupled Ingestion & Consensus Topology");
+s3.rounded_rect(80.0, 220.0, 200.0, 90.0, "#203864", "Edge Ingest\nLoad Balancer");
+s3.arrow(300.0, 255.0, 60.0, 20.0, "#2E75B6", 2.0);
+s3.rounded_rect(380.0, 220.0, 200.0, 90.0, "#2E75B6", "Raft Consensus\nState Machine");
+s3.arrow(600.0, 255.0, 60.0, 20.0, "#2E75B6", 2.0);
+s3.rounded_rect(680.0, 220.0, 200.0, 90.0, "#41719C", "Log Replication\nNVMe WAL");
+s3.arrow(900.0, 255.0, 60.0, 20.0, "#2E75B6", 2.0);
+s3.rounded_rect(980.0, 220.0, 200.0, 90.0, "#548235", "Storage Engine\nLSM-Tree Index");
+s3.text(80.0, 380.0, 1100.0, 60.0, "Decoupled replication pipelines eliminate lock contention and support 2.5 million IOPS sustained throughput.");
+s3.footer("SystemsConf 2026 | Petabyte Scale Architecture");
+s3.slide_number(true);
+
+# Slide 4: Benchmark Latency Chart
+let s4 = deck.slide();
+s4.title("Latency Profile Under 500k Concurrent Clients (ms)");
+s4.bar_chart(100.0, 140.0, 1080.0, 460.0, "Consensus Latency (ms)", "p50,p90,p95,p99,p99.9", "Latency (ms)", "0.38,0.72,1.15,2.40,4.85");
+s4.footer("SystemsConf 2026 | Petabyte Scale Architecture");
+s4.slide_number(true);
+
+# Slide 5: Key Takeaways
+let s5 = deck.slide();
+s5.section_header("Three Key Takeaways for Systems Architects", "1. Decouple metadata consensus from bulk data paths.\n2. Embrace zero-copy user-space networking.\n3. Make failure recovery idempotent and self-healing.", "#203864");
+s5.footer("SystemsConf 2026 | Petabyte Scale Architecture");
+s5.slide_number(true);
+
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

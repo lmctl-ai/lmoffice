@@ -1,0 +1,19 @@
+# Academic CV with publications, teaching, and linked research profile.
+output = ARGV.len() > 0 ? ARGV[0] : "resume-academic-cv.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Priya Nandakumar CV").author("Priya Nandakumar").font("Calibri").font_size(10.0).margins(42.0,42.0,42.0,42.0);
+d.heading("PRIYA NANDAKUMAR",1).align("center");
+d.paragraph("Assistant Professor of Environmental Data Science\nLakeview University · priya.nandakumar@example.com").align("center");
+d.paragraph("Research profile: ").hyperlink("https://example.com/priya-nandakumar","https://example.com/priya-nandakumar");
+d.heading("Research interests",2);
+d.paragraph("Urban heat mapping, participatory sensing, and transparent data models for municipal climate planning.");
+d.heading("Appointments",2);
+d.paragraph("Lakeview University — Assistant Professor, 2024–present\nCedar Peak Institute — Research Fellow, 2021–2024");
+d.heading("Selected publications",2);
+d.paragraph("Nandakumar, P. and Ellis, M. “Neighborhood-scale heat observations.” Journal of Civic Data, 2025.\nNandakumar, P. “Trustworthy uncertainty in public dashboards.” Urban Systems Review, 2024.").footnote("All publication titles and venues in this example are fictional.");
+d.heading("Teaching and service",2);
+d.paragraph("Courses: Data Ethics, Applied Geospatial Methods, and Research Studio. Faculty advisor, Lakeview Community Data Lab.");
+d.header_fields("Priya Nandakumar CV | {PAGE} of {NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

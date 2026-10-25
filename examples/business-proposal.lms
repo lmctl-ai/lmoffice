@@ -1,0 +1,19 @@
+# Proposal for a service redesign engagement.
+output = ARGV.len() > 0 ? ARGV[0] : "business-proposal.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Service Operations Proposal").author("Harborline Devices").font("Calibri").font_size(11.0);
+d.heading("SERVICE OPERATIONS PROPOSAL",1).color("#17324D");
+d.paragraph("Prepared for Juniper Property Group · June 2026");
+d.heading("Executive summary",2);
+d.paragraph("Harborline Devices proposes a 10-week engagement to simplify maintenance intake across Juniper’s three managed office properties. The work combines interviews, a service blueprint, and a tested intake workflow.");
+d.heading("Work plan",2);
+let t=d.table(4,3);
+t.borders(true).cell(1,1,"Phase").cell(1,2,"Deliverable").cell(1,3,"Weeks").cell(2,1,"Discover").cell(2,2,"Interviews and baseline map").cell(2,3,"1–2").cell(3,1,"Design").cell(3,2,"Prototype and service rules").cell(3,3,"3–6").cell(4,1,"Launch").cell(4,2,"Training and measurement").cell(4,3,"7–10");
+d.heading("Investment",2);
+d.paragraph("Fixed project fee: $42,000, invoiced 40 percent at kickoff, 40 percent at prototype approval, and 20 percent at handoff. Travel is excluded and requires prior approval.");
+d.signature("Harborline Devices");
+d.signature("Juniper Property Group");
+d.footer_fields("Service Operations Proposal | {PAGE}/{NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

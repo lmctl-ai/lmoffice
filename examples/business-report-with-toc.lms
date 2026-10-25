@@ -1,0 +1,22 @@
+# Board report with real headings and a generated table of contents.
+output = ARGV.len() > 0 ? ARGV[0] : "business-report-with-toc.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+let d=docx.create(${output});
+d.title("Q2 Operating Review").author("Cedar Peak Analytics").font("Calibri").font_size(11.0).margins(54.0,54.0,54.0,54.0);
+d.paragraph("Q2 OPERATING REVIEW").size(20.0).bold(true).color("#17324D");
+d.paragraph("Prepared for the Cedar Peak Analytics board · June 2026");
+d.toc("Contents",3);
+d.page_break();
+d.heading("Executive summary",1);
+d.paragraph("Revenue reached $2.4M, up 14 percent year over year. Gross margin improved as the support team reduced repeat incidents.");
+d.heading("Customer operations",1);
+d.paragraph("The customer health program now covers 96 percent of active accounts. Escalations declined after adding a weekly review with engineering.");
+d.heading("Service reliability",2);
+d.paragraph("First-response time fell from six hours to two. The team is documenting the three most frequent escalation paths before expanding coverage.");
+d.heading("Product delivery",1);
+d.paragraph("The June release introduced supplier lead-time alerts and an audit trail for planner overrides. Early users report faster exception triage.");
+d.heading("Risks and decisions",1);
+d.paragraph("The main constraint is implementation capacity for smaller customers. Management recommends funding two enablement contractors for Q3.");
+d.header_fields("Q2 Operating Review | {PAGE} of {NUMPAGES}").save();
+end _lmcode_
+savedsl(p,output+".dslb");
+r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

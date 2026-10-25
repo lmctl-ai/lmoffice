@@ -1,0 +1,34 @@
+# Training deck authored as Markdown.
+output = ARGV.len() > 0 ? ARGV[0] : "markdown-training-deck.pptx"; let body = """# Practical onboarding
+
+**A concise guide for new project members**
+
+Note: Ask participants to share one workflow they want to improve.
+
+---
+
+# Three habits
+
+- Write the goal first
+  - Keep the acceptance test nearby
+- Make small changes
+- Review the output
+
+---
+
+# Practice checklist
+
+{{layout: two-column}}
+
+Use this checklist during the first project review. Bring a small working example and one question.
+
+| Step | Prompt |
+| --- | --- |
+| 1 | Name the user |
+| 2 | Show the result |
+| 3 | Verify the file |
+""";
+p=_lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let d=pptx.create(${output}); d.markdown(${body}).save();
+end _lmcode_
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);

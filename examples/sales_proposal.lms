@@ -1,0 +1,57 @@
+# Enterprise sales proposal with customer requirements, solution architecture, and pricing tiers.
+output = ARGV.len() > 0 ? ARGV[0] : "sales_proposal.pptx";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+let deck = pptx.create(${output});
+deck.theme("#1F4E78", "#C65911", "Segoe UI", "Calibri");
+
+# Slide 1: Title
+let s1 = deck.slide();
+s1.title_slide("Infrastructure Modernization Proposal", "Prepared for Global Financial Holdings\nNovaterra Enterprise Systems | Q4 2026");
+s1.footer("Novaterra Commercial Proposal | Confidential");
+s1.transition("fade");
+
+# Slide 2: Client Needs Analysis
+let s2 = deck.slide();
+s2.title("Understanding Your Core Strategic Challenges");
+s2.rounded_rect(80.0, 160.0, 340.0, 150.0, "#1F4E78", "Legacy Outage Risk\nCurrent monolithic gateways experience periodic 15-minute failovers during trading spikes.");
+s2.rounded_rect(470.0, 160.0, 340.0, 150.0, "#2E75B6", "Strict Regulatory Audit\nFINRA and SEC Rule 613 require immutable, cryptographically verifiable transaction trails.");
+s2.rounded_rect(860.0, 160.0, 340.0, 150.0, "#C65911", "Cloud Cost Sprawl\nMulti-region egress and idle over-provisioned nodes consume 40% excess budget.");
+s2.text(80.0, 360.0, 1100.0, 60.0, "Proposed Solution: Deploy Novaterra Autonomous Fabric across 4 global financial data centers.");
+s2.footer("Novaterra Commercial Proposal | Confidential");
+s2.slide_number(true);
+
+# Slide 3: Architecture
+let s3 = deck.slide();
+s3.title("Target Operating Architecture");
+s3.rounded_rect(80.0, 220.0, 200.0, 90.0, "#1F4E78", "Trading Engines\nFIX / OUCH Feeds");
+s3.arrow(300.0, 255.0, 60.0, 20.0, "#C65911", 2.0);
+s3.rounded_rect(380.0, 200.0, 240.0, 130.0, "#C65911", "Novaterra Fabric\nSub-50µs Zero-Trust Mesh\nFormal Proof Verifier");
+s3.arrow(640.0, 255.0, 60.0, 20.0, "#C65911", 2.0);
+s3.rounded_rect(720.0, 220.0, 200.0, 90.0, "#2E75B6", "Settlement Core\nMulti-Region Ledger");
+s3.text(80.0, 380.0, 1100.0, 60.0, "Delivers guaranteed hitless failover, sub-microsecond consensus validation, and immutable audit logs.");
+s3.footer("Novaterra Commercial Proposal | Confidential");
+s3.slide_number(true);
+
+# Slide 4: Commercial Pricing Table
+let s4 = deck.slide();
+s4.title("Investment Options & Tier Breakdown");
+let tbl = s4.table(80.0, 150.0, 1120.0, 260.0, 4, 4);
+tbl.header_row("#1F4E78", "#FFFFFF");
+tbl.cell(1, 1, "Package Edition").cell(1, 2, "Cluster Scale").cell(1, 3, "SLA & Support").cell(1, 4, "Annual Commitment");
+tbl.cell(2, 1, "Enterprise Standard").cell(2, 2, "Up to 500 Nodes").cell(2, 3, "99.95% / 15-min Response").cell(2, 4, "$480,000 / year");
+tbl.cell(3, 1, "Mission-Critical (Recommended)").cell(3, 2, "Up to 2,500 Nodes").cell(3, 3, "99.999% / 5-min Dedicated Team").cell(3, 4, "$850,000 / year");
+tbl.cell(4, 1, "Global Sovereign Cloud").cell(4, 2, "Unlimited Global Nodes").cell(4, 3, "100% Availability Guarantee").cell(4, 4, "$1,450,000 / year");
+s4.footer("Novaterra Commercial Proposal | Confidential");
+s4.slide_number(true);
+
+# Slide 5: Rollout Timeline
+let s5 = deck.slide();
+s5.section_header("Implementation Schedule: 60 Days to Production", "Phase 1: Proof of Value (Days 1-14) | Phase 2: Staging Canary (Days 15-30) | Phase 3: Production Cutover (Days 31-60)", "#1F4E78");
+s5.footer("Novaterra Commercial Proposal | Confidential");
+s5.slide_number(true);
+
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

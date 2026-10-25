@@ -1,0 +1,78 @@
+# Project schedule and Gantt chart timeline with conditional formatting and milestone tracking.
+output = ARGV.len() > 0 ? ARGV[0] : "project_gantt.xlsx";
+p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+let book = xlsx.create(${output});
+let s = book.sheet("Gantt Schedule");
+s.tab_color("#5B9BD5");
+s.page_orientation("landscape");
+s.fit_to_page(1, 1);
+s.freeze(3, 4);
+
+# Title
+s.set(1, 1, "PROJECT TITAN - SPRINT 14 GANTT TIMELINE");
+s.bold(1, 1);
+s.font_size(1, 1, 15.0);
+s.font_color(1, 1, "#1F4E78");
+
+# Table Header
+s.set(2, 1, "Task Description").set(2, 2, "Owner").set(2, 3, "Start").set(2, 4, "Days").set(2, 5, "Progress");
+s.set(2, 6, "D1").set(2, 7, "D2").set(2, 8, "D3").set(2, 9, "D4").set(2, 10, "D5");
+s.set(2, 11, "D6").set(2, 12, "D7").set(2, 13, "D8").set(2, 14, "D9").set(2, 15, "D10");
+
+s.bold(2, 1).bold(2, 2).bold(2, 3).bold(2, 4).bold(2, 5);
+s.fill(2, 1, "#1F4E78").fill(2, 2, "#1F4E78").fill(2, 3, "#1F4E78").fill(2, 4, "#1F4E78").fill(2, 5, "#1F4E78");
+s.font_color(2, 1, "#FFFFFF").font_color(2, 2, "#FFFFFF").font_color(2, 3, "#FFFFFF").font_color(2, 4, "#FFFFFF").font_color(2, 5, "#FFFFFF");
+
+# Week timeline headers
+s.fill(2, 6, "#2F5597").fill(2, 7, "#2F5597").fill(2, 8, "#2F5597").fill(2, 9, "#2F5597").fill(2, 10, "#2F5597");
+s.fill(2, 11, "#41719C").fill(2, 12, "#41719C").fill(2, 13, "#41719C").fill(2, 14, "#41719C").fill(2, 15, "#41719C");
+s.font_color(2, 6, "#FFFFFF").font_color(2, 7, "#FFFFFF").font_color(2, 8, "#FFFFFF").font_color(2, 9, "#FFFFFF").font_color(2, 10, "#FFFFFF");
+s.font_color(2, 11, "#FFFFFF").font_color(2, 12, "#FFFFFF").font_color(2, 13, "#FFFFFF").font_color(2, 14, "#FFFFFF").font_color(2, 15, "#FFFFFF");
+
+# Task 1: Architecture Review
+s.set(3, 1, "API Schema Review").set(3, 2, "Maya L.").set(3, 3, 1).set(3, 4, 3).set(3, 5, 1.0);
+s.set(3, 6, 1).set(3, 7, 1).set(3, 8, 1);
+
+# Task 2: Core Engine
+s.set(4, 1, "Core Pipeline Engine").set(4, 2, "Alex K.").set(4, 3, 2).set(4, 4, 5).set(4, 5, 0.8);
+s.set(4, 7, 1).set(4, 8, 1).set(4, 9, 1).set(4, 10, 1).set(4, 11, 1);
+
+# Task 3: Database Migration
+s.set(5, 1, "Database Schema Migration").set(5, 2, "David P.").set(5, 3, 3).set(5, 4, 3).set(5, 5, 0.9);
+s.set(5, 8, 1).set(5, 9, 1).set(5, 10, 1);
+
+# Task 4: UI Dashboard
+s.set(6, 1, "Admin Console Views").set(6, 2, "Elena R.").set(6, 3, 4).set(6, 4, 4).set(6, 5, 0.5);
+s.set(6, 9, 1).set(6, 10, 1).set(6, 11, 1).set(6, 12, 1);
+
+# Task 5: Integration Tests
+s.set(7, 1, "End-to-End Test Suite").set(7, 2, "Maya L.").set(7, 3, 7).set(7, 4, 3).set(7, 5, 0.2);
+s.set(7, 12, 1).set(7, 13, 1).set(7, 14, 1);
+
+# Task 6: Security Audit
+s.set(8, 1, "Penetration & Security Audit").set(8, 2, "Third-Party").set(8, 3, 8).set(8, 4, 2).set(8, 5, 0.0);
+s.set(8, 13, 1).set(8, 14, 1);
+
+# Task 7: Production Rollout
+s.set(9, 1, "Canary Deployment").set(9, 2, "DevOps Team").set(9, 3, 10).set(9, 4, 1).set(9, 5, 0.0);
+s.set(9, 15, 1);
+
+# Formatting
+s.number_format(3, 5, "0.0%").number_format(4, 5, "0.0%").number_format(5, 5, "0.0%").number_format(6, 5, "0.0%").number_format(7, 5, "0.0%").number_format(8, 5, "0.0%").number_format(9, 5, "0.0%");
+s.col_width(1, 28.0).col_width(2, 14.0).col_width(3, 8.0).col_width(4, 8.0).col_width(5, 12.0);
+s.col_width(6, 6.0).col_width(7, 6.0).col_width(8, 6.0).col_width(9, 6.0).col_width(10, 6.0);
+s.col_width(11, 6.0).col_width(12, 6.0).col_width(13, 6.0).col_width(14, 6.0).col_width(15, 6.0);
+
+s.border_box(2, 1, 9, 15, "thin", "#D0D0D0");
+
+# Conditional formatting for progress column (color scale)
+s.conditional_color_scale(3, 5, 9, 5, "#F8696B", "#63BE7B");
+
+# Conditional formatting for Gantt bars (cells with 1 highlighted in blue)
+s.conditional_cell_is(3, 6, 9, 15, "=", "1", "#4472C4", "#4472C4");
+
+book.save();
+end _lmcode_
+savedsl(p, output + ".dslb");
+r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+assert(r.code == 0);

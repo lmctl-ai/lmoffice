@@ -1,0 +1,15 @@
+# Offline lesson plan deck: literacy workshop with charts, a table, and a generated image.
+output = ARGV.len() > 0 ? ARGV[0] : "education-lesson-deck.pptx";
+image = output + ".png";
+p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+pptx.sample_image(${image});
+let deck = pptx.create(${output});
+deck.theme("#365F91", "#70AD47", "Aptos Display", "Aptos");
+let s1 = deck.slide(); s1.title_slide("Rivers and Communities", "Grade 6 social studies lesson\nTeacher guide | 50 minutes").image(${image}, 1000.0, 420.0, 170.0, 170.0).footer("Cedar Grove Academy | Lesson 04").transition("fade");
+let s2 = deck.slide(); s2.title("Learning goals and sequence").bullet(90.0, 160.0, 1000.0, 45.0, "Locate a watershed and explain how water moves through it.").bullet(90.0, 225.0, 1000.0, 45.0, "Use evidence to compare community water priorities.").bullet(90.0, 290.0, 1000.0, 45.0, "Write a claim supported by two observations.").bar_chart(720.0, 390.0, 450.0, 230.0, "Exit ticket results", "Claim,Evidence,Clarity", "Students", "24,19,17").footer("Cedar Grove Academy | Lesson 04");
+let s3 = deck.slide(); s3.title("Workshop schedule"); let t = s3.table(70.0, 145.0, 1140.0, 300.0, 5, 4); t.header_row("#365F91", "#FFFFFF").cell(1,1,"Minutes").cell(1,2,"Activity").cell(1,3,"Grouping").cell(1,4,"Evidence").cell(2,1,"0-8").cell(2,2,"Notice and wonder").cell(2,3,"Pairs").cell(2,4,"Annotated map").cell(3,1,"8-20").cell(3,2,"Mini lesson").cell(3,3,"Whole class").cell(3,4,"Vocabulary check").cell(4,1,"20-40").cell(4,2,"Source stations").cell(4,3,"Teams").cell(4,4,"Two observations").cell(5,1,"40-50").cell(5,2,"Claim writing").cell(5,3,"Solo").cell(5,4,"Exit ticket"); s3.footer("Cedar Grove Academy | Lesson 04");
+let s4 = deck.slide(); s4.title("Discussion data: water use priorities").line_chart(100.0, 145.0, 1080.0, 430.0, "Priority ranking", "Homes,Farms,Industry,Wildlife", "Votes", "18,14,9,21").footer("Cedar Grove Academy | Lesson 04");
+let s5 = deck.slide(); s5.title("Reflection and next steps").pie_chart(110.0, 145.0, 560.0, 430.0, "Confidence check", "Ready,Nearly ready,Need help", "14,8,3").text(710.0, 190.0, 440.0, 250.0, "Collect\n• map annotations\n• claim paragraph\n• exit ticket\n\nNext lesson: compare two river restoration proposals.").footer("Cedar Grove Academy | Lesson 04");
+deck.save();
+end _lmcode_
+savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);

@@ -16,7 +16,7 @@ private implementation detail
 
 Requires the .NET 8 SDK, git, Python 3, and `lmscript` (npm `@lmctl-ai/lmctl@0.2.420`) on PATH. Native publishing also needs a platform C toolchain; Linux needs clang and zlib development headers.
 
-The SDK checkout in ignored `private implementation detail` is pinned by `private build metadata`; the application uses `DocumentFormat.OpenXml` 3.5.1 and its locked `System.IO.Packaging` 8.0.1 dependency. `private implementation detail` publishes one self-contained NativeAOT executable for the selected runtime identifier (`RID=linux-x64`, `linux-arm64`, `osx-arm64`, `osx-x64`, or `win-x64`). On Linux, the executable is dynamically linked to the platform C, math, and zlib libraries (and uses platform cryptography). It is a single deployable file, but it is not a statically linked libc binary.
+The SDK checkout in ignored `private implementation detail` is pinned by `private build metadata`; the application uses `DocumentFormat.OpenXml` 3.5.1 and its locked `System.IO.Packaging` 8.0.1 dependency. `private implementation detail` publishes one self-contained NativeAOT executable for the selected runtime identifier. The current release lane publishes Linux x64 and arm64, dynamically linked to the platform C, math, and zlib libraries (and using platform cryptography). Earlier releases may contain macOS and Windows assets; those platforms are not produced by the current lane. Each Linux binary is a single deployable file, but it is not a statically linked libc binary.
 
 ```sh
 lmoffice --version
@@ -439,8 +439,8 @@ Every push to `main` builds and tests five native executables, then publishes a
 `vMAJOR.MINOR.<workflow run number>` GitHub release with the executables,
 `SHA256SUMS`, `LICENSE`, and third-party notices. `VERSION` supplies MAJOR.MINOR;
 CI stamps the full version into the binary. Pull requests and manual runs test
-without releasing. Assets are named `lmoffice-linux-x64`, `lmoffice-linux-arm64`,
-`lmoffice-macos-arm64`, `lmoffice-macos-x64`, and `lmoffice-windows-x64.exe`.
+without releasing. Current assets are named `lmoffice-linux-x64` and
+`lmoffice-linux-arm64`; earlier releases may contain macOS and Windows assets.
 
 `test.sh` publishes a native executable unless `LMOFFICE_BIN` selects one to test.
 It requires the compiler and runs the example gallery including every Word genre document, the SDK's OpenXmlValidator,

@@ -1,6 +1,6 @@
 # Third-party notices
 
-lmoffice is Copyright (c) 2026 Lattice Systems LLC. Binary releases are licensed under the Lattice Systems Personal Use License in [`LICENSE`](LICENSE); the examples and documentation are MIT under [`LICENSE-examples`](LICENSE-examples).
+lmoffice is Copyright (c) 2026 Lattice Systems LLC. Binary releases are licensed under the Lattice Systems Binary License 1.0 in [`LICENSE`](LICENSE); the examples and documentation are MIT under [`LICENSE-examples`](LICENSE-examples).
 
 The published executable is a NativeAOT build that statically contains the components below. Each entry gives the version, licence, copyright and upstream source, and reproduces the full licence text that ships with that component.
 

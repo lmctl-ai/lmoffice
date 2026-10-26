@@ -64,9 +64,16 @@ for full_repo in "${!tags_by_repo[@]}"; do
     echo "install-hosts: release lookup failed for $full_repo" >&2
     exit 1
   fi
-  latest_tag="${release_tags%%$'\n'*}"
-  if [[ -z "$release_tags" ]]; then latest_tag=""; fi
-  if [[ -n "$latest_tag" ]]; then resolved_latest["$full_repo"]="$latest_tag"; fi
+  # `gh release list` includes prereleases and is used only to validate exact
+  # pins. Resolve `@latest` through GitHub's dedicated endpoint, which excludes
+  # prereleases and drafts by contract. A staging prerelease must never replace
+  # the host selected for an @latest public example.
+  latest_tag=""
+  if latest_tag="$(gh api "repos/$full_repo/releases/latest" --jq '.tag_name' 2>/dev/null)" && [[ -n "$latest_tag" ]]; then
+    resolved_latest["$full_repo"]="$latest_tag"
+  else
+    latest_tag=""
+  fi
 
   available_tags=()
   for requested_tag in ${tags_by_repo[$full_repo]}; do

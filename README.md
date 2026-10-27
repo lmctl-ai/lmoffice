@@ -12,8 +12,8 @@ Everything in this repository runs through [lmctl](https://lmctl.com), the core 
 
 ```bash
 npm install -g @lmctl-ai/lmctl
-lmctl autorun path/to/example.lms
-lmctl autorun https://raw.githubusercontent.com/lmctl-ai/lmoffice/main/examples/example.lms
+lmctl autorun examples/5slidedeck.lms
+lmctl autorun https://raw.githubusercontent.com/lmctl-ai/lmoffice/main/examples/5slidedeck.lms
 ```
 
 ## Commands

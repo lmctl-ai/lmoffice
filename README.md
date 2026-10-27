@@ -6,6 +6,16 @@
 
 The host writes one JSON result line for each bytecode file. Exit status `0` means success, `2` means command usage, `3` means bytecode load or VM run failure, and `4` means an application or document failure. The generated files are validated with `OpenXmlValidator` before `inspect` returns their summary.
 
+## Install lmctl
+
+Everything in this repository runs through [lmctl](https://lmctl.com), the core tool of the lmctl family. Install it once, then run any `.lms` file or raw URL:
+
+```bash
+npm install -g @lmctl-ai/lmctl
+lmctl autorun path/to/example.lms
+lmctl autorun https://raw.githubusercontent.com/lmctl-ai/lmoffice/main/examples/example.lms
+```
+
 ## Commands
 
 ```sh

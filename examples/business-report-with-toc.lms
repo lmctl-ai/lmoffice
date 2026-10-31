@@ -19,4 +19,4 @@ d.paragraph("The main constraint is implementation capacity for smaller customer
 d.header_fields("Q2 Operating Review | {PAGE} of {NUMPAGES}").save();
 end _lmcode_
 savedsl(p,output+".dslb");
-r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);
+r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);

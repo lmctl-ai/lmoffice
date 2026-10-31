@@ -11,4 +11,4 @@ let s4 = deck.slide(); s4.title("Confidence trend").line_chart(90.0, 150.0, 1100
 let s5 = deck.slide(); s5.title("Next 30 days").pie_chart(100.0, 145.0, 600.0, 430.0, "Time allocation", "Delivery,Learning,Community", "55,25,20").text(760.0, 190.0, 370.0, 250.0, "Commitments\n• ship the first customer demo\n• shadow two support calls\n• present one learning share\n\nNext check-in: day 60.").footer("Northstar Works | People Operations");
 deck.save();
 end _lmcode_
-savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);
+savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000); assert(r.code == 0);

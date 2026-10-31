@@ -14,7 +14,7 @@ s.col_width(1, 18.0).col_width(2, 18.0).number_format(2, 2, "$#,##0.00").number_
 book.save();
 end _lmcode_
 savedsl(px, workbook + ".dslb");
-rx = system(concat(dsl_cli(px), ["--dsl", workbook + ".dslb"]), 120000); assert(rx.code == 0);
+rx = system(concat(dsl_cli(px), ["--lmcode", workbook + ".dslb"]), 120000); assert(rx.code == 0);
 readback_process = system([dsl_cli(px)[0], "inspect", workbook], 120000); assert(readback_process.code == 0);
 let cells = split(json_parse(readback_process.stdout)["result"]["text"], "\n");
 let forecast_total = json_parse(cells[3]) + json_parse(cells[5]) + json_parse(cells[7]);
@@ -28,4 +28,4 @@ deck.markdown(${workbook_readback});
 deck.save();
 end _lmcode_
 savedsl(pp, output + ".dslb");
-rp = system(concat(dsl_cli(pp), ["--dsl", output + ".dslb"]), 120000); assert(rp.code == 0);
+rp = system(concat(dsl_cli(pp), ["--lmcode", output + ".dslb"]), 120000); assert(rp.code == 0);

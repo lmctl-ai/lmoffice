@@ -29,4 +29,4 @@ The parties acknowledge the terms.[^law]
 p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
 let d=docx.create(${output}); d.markdown(${body}).save();
 end _lmcode_
-savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);

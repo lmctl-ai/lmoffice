@@ -74,5 +74,5 @@ s.conditional_cell_is(3, 6, 9, 15, "=", "1", "#4472C4", "#4472C4");
 book.save();
 end _lmcode_
 savedsl(p, output + ".dslb");
-r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000);
 assert(r.code == 0);

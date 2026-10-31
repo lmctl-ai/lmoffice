@@ -31,9 +31,9 @@ The SDK checkout in ignored `private implementation detail` is pinned by `privat
 ```sh
 lmoffice --version
 lmoffice docx --help
-lmoffice docx --dsl-schema --json
-lmoffice docx --dsl-signatures
-lmoffice docx --dsl report.dslb
+lmoffice docx --lmcode-schema --json
+lmoffice docx --lmcode-signatures
+lmoffice docx --lmcode report.dslb
 lmoffice inspect report.docx
 ```
 
@@ -61,7 +61,7 @@ p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
 docx.create("brief.docx").markdown(${body}).save();
 end _lmcode_
 savedsl(p, "brief.dslb");
-r = system(concat(dsl_cli(p), ["--dsl", "brief.dslb"]), 120000); assert(r.code == 0);
+r = system(concat(dsl_cli(p), ["--lmcode", "brief.dslb"]), 120000); assert(r.code == 0);
 ```
 
 Use `Docx.markdown_file(path)` to read a UTF-8 Markdown file, `Pptx.markdown(text)`
@@ -405,15 +405,15 @@ Each format subcommand exposes a small context rooted at its format: `docx.creat
 The schema is the source of truth for exact signatures:
 
 ```sh
-lmoffice docx --dsl-signatures
-lmscript --dsl-signatures private implementation detail
-lmoffice xlsx --dsl-signatures
-lmscript --dsl-signatures private implementation detail
-lmoffice pptx --dsl-signatures
-lmscript --dsl-signatures private implementation detail
+lmoffice docx --lmcode-signatures
+lmscript --lmcode-signatures private implementation detail
+lmoffice xlsx --lmcode-signatures
+lmscript --lmcode-signatures private implementation detail
+lmoffice pptx --lmcode-signatures
+lmscript --lmcode-signatures private implementation detail
 # Compare just the host declarations (repeat for xlsx/pptx):
-lmoffice docx --dsl-signatures --without-std
-lmscript --dsl-signatures private implementation detail --without-std
+lmoffice docx --lmcode-signatures --without-std
+lmscript --lmcode-signatures private implementation detail --without-std
 ```
 
 The integration suite requires those two outputs to match. See `durable-memory/` for technical decisions, build facts, test behavior, and known limits.

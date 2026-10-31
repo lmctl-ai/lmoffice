@@ -11,4 +11,4 @@ let s4 = deck.slide(); s4.title("Campaign calendar and owners"); let t = s4.tabl
 let s5 = deck.slide(); s5.title("Message mix for the next quarter").pie_chart(100.0, 145.0, 600.0, 430.0, "Content mix", "Teach,Prove,Invite", "50,30,20").text(760.0, 190.0, 370.0, 250.0, "Every asset should\n• lead with a useful idea\n• show a specific proof point\n• end with one clear invitation\n\nReview checklist: voice, contrast, accessibility.").footer("Luma Grove | Internal marketing use");
 deck.save();
 end _lmcode_
-savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);
+savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000); assert(r.code == 0);

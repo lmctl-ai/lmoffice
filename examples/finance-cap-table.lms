@@ -52,4 +52,4 @@ s.border_box(4,1,9,5,"thin","#BCCDD5").freeze(4,0).fit_to_page(1,1).page_orienta
 book.save();
 end _lmcode_
 savedsl(p, output + ".dslb");
-r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);
+r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000); assert(r.code == 0);

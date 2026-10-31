@@ -18,4 +18,4 @@ d.signature("Cedar Peak Analytics");
 d.header_fields("Office Lease | {PAGE}/{NUMPAGES}").save();
 end _lmcode_
 savedsl(p,output+".dslb");
-r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);
+r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);

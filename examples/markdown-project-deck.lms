@@ -31,4 +31,4 @@ The team will ship the focused workflow first, then expand integrations after pi
 p=_lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
 let d=pptx.create(${output}); d.markdown(${body}).save();
 end _lmcode_
-savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);

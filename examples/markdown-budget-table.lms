@@ -10,4 +10,4 @@ output = ARGV.len() > 0 ? ARGV[0] : "markdown-budget-table.xlsx"; let body = """
 p=_lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
 let d=xlsx.create(${output}); d.sheet_from_markdown_table("Budget",${body}); d.save();
 end _lmcode_
-savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--dsl",output+".dslb"]),120000); assert(r.code==0);
+savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);

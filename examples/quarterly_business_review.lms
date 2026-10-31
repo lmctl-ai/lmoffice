@@ -53,5 +53,5 @@ s5.slide_number(true);
 deck.save();
 end _lmcode_
 savedsl(p, output + ".dslb");
-r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000);
+r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000);
 assert(r.code == 0);

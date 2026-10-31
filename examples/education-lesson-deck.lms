@@ -12,4 +12,4 @@ let s4 = deck.slide(); s4.title("Discussion data: water use priorities").line_ch
 let s5 = deck.slide(); s5.title("Reflection and next steps").pie_chart(110.0, 145.0, 560.0, 430.0, "Confidence check", "Ready,Nearly ready,Need help", "14,8,3").text(710.0, 190.0, 440.0, 250.0, "Collect\n• map annotations\n• claim paragraph\n• exit ticket\n\nNext lesson: compare two river restoration proposals.").footer("Cedar Grove Academy | Lesson 04");
 deck.save();
 end _lmcode_
-savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--dsl", output + ".dslb"]), 120000); assert(r.code == 0);
+savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000); assert(r.code == 0);

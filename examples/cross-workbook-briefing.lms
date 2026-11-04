@@ -2,7 +2,7 @@
 output = ARGV.len() > 0 ? ARGV[0] : "cross-workbook-briefing.pptx";
 workbook = output + ".xlsx";
 
-# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_px = load_schema(schema="../schema/xlsx.dsl.json");
 px = _lmcode_ schema_px;
 let book = xlsx.create(${workbook});
@@ -22,7 +22,7 @@ let cells = split(json_parse(rx.result.inspect).text, "\n");
 let forecast_total = json_parse(cells[3]) + json_parse(cells[5]) + json_parse(cells[7]);
 let workbook_readback = rx.result.markdown;
 
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_pp = load_schema(schema="../schema/pptx.dsl.json");
 pp = _lmcode_ schema_pp;
 let deck = pptx.create(${output});

@@ -1,6 +1,6 @@
 # Investor pitch deck with problem, solution, market size, traction chart, and team.
 output = ARGV.len() > 0 ? ARGV[0] : "pitch_deck.pptx";
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 let deck = pptx.create(${output});

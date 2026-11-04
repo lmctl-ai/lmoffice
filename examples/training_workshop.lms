@@ -1,6 +1,6 @@
 # Technical training workshop deck with agenda cards, workflow diagram, lab table, and resource links.
 output = ARGV.len() > 0 ? ARGV[0] : "training_workshop.pptx";
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 let deck = pptx.create(${output});

@@ -1,7 +1,7 @@
 # Pre- and post-round capitalization with ownership formulas All names and figures are fictional.
 output = ARGV.len() > 0 ? ARGV[0] : "finance-cap-table.xlsx";
 image = output + ".png";
-# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_p = load_schema(schema="../schema/xlsx.dsl.json");
 p = _lmcode_ schema_p;
 let book = xlsx.create(${output});

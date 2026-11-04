@@ -28,7 +28,7 @@ The pilot has two gates: an agreed owner for each milestone and a customer-ready
 
 The team will ship the focused workflow first, then expand integrations after pilot feedback.
 """;
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 let d=pptx.create(${output}); d.markdown(${body}).save();

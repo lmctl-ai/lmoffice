@@ -1,6 +1,6 @@
 # Fictional middle-school lesson plan.
 output = ARGV.len() > 0 ? ARGV[0] : "education-lesson-plan.docx";
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_p = load_schema(schema="../schema/docx.dsl.json");
 p = _lmcode_ schema_p;
 let d=docx.create(${output});

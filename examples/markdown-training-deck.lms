@@ -28,7 +28,7 @@ Use this checklist during the first project review. Bring a small working exampl
 | 2 | Show the result |
 | 3 | Verify the file |
 """;
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 let d=pptx.create(${output}); d.markdown(${body}).save();

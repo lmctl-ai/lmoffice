@@ -1,6 +1,6 @@
 # Monthly personal habit tracker with completion streaks, formulas, and conditional formatting.
 output = ARGV.len() > 0 ? ARGV[0] : "habit_tracker.xlsx";
-# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.33"
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.58"
 schema_p = load_schema(schema="../schema/xlsx.dsl.json");
 p = _lmcode_ schema_p;
 let book = xlsx.create(${output});

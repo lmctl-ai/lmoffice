@@ -60,6 +60,7 @@ jobs:
     env:
       LMOFFICE_DISABLE_RENDER: '1'
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/qualify-platform
         with:
           artifact: ${{ needs.candidate.outputs.artifact }}
@@ -85,6 +86,7 @@ jobs:
     env:
       LMOFFICE_DISABLE_RENDER: '1'
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/qualify-platform
         with:
           artifact: ${{ needs.candidate.outputs.artifact }}

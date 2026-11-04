@@ -1,1 +1,17 @@
-{"format":"native-release-state/2","candidates":{}}
+{
+  "candidates": {
+    "v0.1.59": {
+      "outcome": "revoked-throwaway",
+      "private_run": "https://github.com/lmctlhq/lmoffice/actions/runs/41902128327",
+      "public_run": "https://github.com/lmctl-ai/lmoffice/actions/runs/41907021916",
+      "qualification_run": "https://github.com/lmctl-ai/lmoffice/actions/runs/41907126745",
+      "request": {
+        "bundle_asset_id": 710752896,
+        "seal_asset_id": 710752784,
+        "seal_sha256": "ac59cd1ca6e0eb356ae2ebf1cae6b069511550901051ae96265a041a7fa96bb8",
+        "tag": "v0.1.59"
+      }
+    }
+  },
+  "format": "native-release-state/2"
+}

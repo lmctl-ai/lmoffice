@@ -115,20 +115,20 @@ jobs:
           "$LMOFFICE_TEST_PYTHON" -c 'import json,pathlib; pathlib.Path("VERSION").write_text(json.load(open("draft-assets/RELEASE-MANIFEST.json"))["version"]+chr(10))'
       - name: Run the 536-check host integration suite against the installed candidate
         run: |
-          $LMOFFICE_TEST_PYTHON" tests/integration.py
+          "$LMOFFICE_TEST_PYTHON" tests/integration.py
       - name: Run the pinned html-doc corpus against the installed candidate
         env:
           EVIDENCE_DIR: ${{ runner.temp }}/lmoffice-html-doc-evidence
         run: |
-          $LMOFFICE_TEST_PYTHON" tests/html-doc-conformance/run_lmoffice.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --evidence "$EVIDENCE_DIR
+          "$LMOFFICE_TEST_PYTHON" tests/html-doc-conformance/run_lmoffice.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --evidence "$EVIDENCE_DIR"
       - name: Check the public gallery scripts on this platform
         run: |
-          $LMOFFICE_TEST_PYTHON" tests/check-lmscript-examples.py "$LMSCRIPT_BIN
+          "$LMOFFICE_TEST_PYTHON" tests/check-lmscript-examples.py "$LMSCRIPT_BIN"
       - name: Run a representative user-facing sample against the installed candidate
         env:
           SAMPLE_DIR: ${{ runner.temp }}/lmoffice-public-sample
         run: |
-          $LMOFFICE_TEST_PYTHON" tests/run-release-sample.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --workdir "$SAMPLE_DIR
+          "$LMOFFICE_TEST_PYTHON" tests/run-release-sample.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --workdir "$SAMPLE_DIR"
       - name: Summarize platform qualification
         if: always()
         env:

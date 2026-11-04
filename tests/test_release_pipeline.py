@@ -7,7 +7,7 @@ def text(file):return (ROOT/file).read_text()
 
 def job_blocks():
  data={};current=None
- for line in text('.github/workflows/qualify-private-draft.yml').splitlines():
+ for line in text('.github/workflows/qualify-private-draft.yml').split('\njobs:\n',1)[1].splitlines():
   if line.startswith('  ') and not line.startswith('   ') and line.endswith(':'):
    current=line.strip()[:-1];data[current]=[]
   elif current:data[current].append(line)
@@ -32,6 +32,14 @@ class CredentialBoundary(unittest.TestCase):
    env={'PATH':'/usr/bin:/bin','RUNNER_TEMP':str(d),'GITHUB_ENV':str(d/'env'),'GITHUB_PATH':str(d/'path'),'GH_TOKEN':'SYNTHETIC_ONLY','GITHUB_TOKEN':'SYNTHETIC_ONLY'}
    r=subprocess.run([sys.executable,str(ROOT/'scripts/install-draft-host.py'),'--compiler',str(compiler),'--tag','v1.2.3','--asset','lmoffice-linux-x64','--candidate',str(candidate)],env=env,capture_output=True,text=True)
    self.assertEqual(r.returncode,0,r.stderr);self.assertFalse(json.loads(record.read_text())['credential'])
+ def test_documented_permissions_match_workflow(self):
+  doc=text('docs/release-pipeline.md');declared={}
+  for line in doc.splitlines():
+   if not line.startswith('|'):continue
+   cells=[x.strip().strip('`') for x in line.strip('|').split('|')]
+   if len(cells)>=2 and cells[0] in job_blocks():declared[cells[0]]=cells[1]
+  actual={name:('contents:write' if 'contents: write' in body else 'contents:read') for name,body in job_blocks().items()}
+  self.assertEqual(declared,actual)
  def test_actions_pinned(self):
   for f in ['.github/workflows/qualify-private-draft.yml','.github/workflows/public-ci.yml','.github/actions/qualify-platform/action.yml']:
    for line in text(f).splitlines():

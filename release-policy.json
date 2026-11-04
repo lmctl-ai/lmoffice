@@ -1,0 +1,9 @@
+{
+  "product": "lmoffice",
+  "public_repository": "lmctl-ai/lmoffice",
+  "private_repository": "lmctlhq/lmoffice",
+  "workflow": ".github/workflows/ci.yml",
+  "branch": "main",
+  "payloads": ["lmoffice-linux-x64", "lmoffice-linux-arm64", "lmoffice-macos-arm64", "lmoffice-macos-x64", "lmoffice-windows-x64.exe", "LICENSE", "THIRD_PARTY_NOTICES.md"],
+  "private_jobs": ["version", "Build and smoke linux-x64", "Build and smoke linux-arm64", "Build and smoke macos-arm64", "Build and smoke macos-x64", "Build and smoke windows-x64", "candidate", "private-smoke"]
+}

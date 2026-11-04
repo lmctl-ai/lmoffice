@@ -66,6 +66,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     permissions:
       contents: write
+    env:
+      # Keep the structural suite deterministic. Rendering is optional and
+      # LibreOffice startup can stall on hosted macOS runners.
+      LMOFFICE_DISABLE_RENDER: '1'
     defaults:
       run:
         shell: bash

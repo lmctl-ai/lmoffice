@@ -1,0 +1,6 @@
+<style xmlns="urn:lmctl:css:1">
+  <rule select="article"><set name="font-family" value="Calibri"/><set name="font-size" value="11pt"/><set name="color" value="#000000"/></rule>
+  <rule select="p"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="li"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="p"><set name="font-size" value="12px"/></rule>
+</style>

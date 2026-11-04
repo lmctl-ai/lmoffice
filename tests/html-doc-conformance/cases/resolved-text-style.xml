@@ -1,0 +1,1 @@
+<article xmlns="http://www.w3.org/1999/xhtml"><h1 class="plain">Plain heading</h1><p class="heavy">Bold <span class="plain">regular span</span></p><p><a id="link" href="https://example.invalid">Default link</a></p><ul class="large"><li>Large item</li></ul><p>repeat repeat word boundaries</p></article>

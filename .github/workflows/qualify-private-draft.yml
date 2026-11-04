@@ -1,0 +1,223 @@
+name: Qualify private lmoffice draft
+
+on:
+  repository_dispatch:
+    types: [lmoffice-release-draft]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lmoffice-public-release-qualification
+  cancel-in-progress: false
+
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.candidate.outputs.tag }}
+      version: ${{ steps.candidate.outputs.version }}
+      failure_control: ${{ steps.candidate.outputs.failure_control }}
+      artifact: lmoffice-draft-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate dispatch identity and download the public draft
+        id: candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRAFT_TAG: ${{ github.event.client_payload.tag }}
+          EXPECTED_SUMS_SHA: ${{ github.event.client_payload.sha256sums_sha256 }}
+          DELIBERATE_FAILURE: ${{ github.event.client_payload.deliberate_failure }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$DRAFT_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$EXPECTED_SUMS_SHA" =~ ^[0-9a-f]{64}$ ]]
+          [[ "$DELIBERATE_FAILURE" == true || "$DELIBERATE_FAILURE" == false ]]
+          release="$(gh release view "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --json tagName,isDraft)"
+          test "$(jq -r .tagName <<<"$release")" = "$DRAFT_TAG"
+          asset_names="$(gh release view "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --json assets --jq '[.assets[].name] | sort | @json')"
+          mkdir -p draft-assets
+          gh release download "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --dir draft-assets
+          python3 scripts/verify-draft-candidate.py "$DRAFT_TAG" "$EXPECTED_SUMS_SHA" draft-assets
+          RELEASE_ASSET_NAMES="$asset_names" python3 - <<'PY'
+          import json,os
+          manifest=json.load(open("draft-assets/RELEASE-MANIFEST.json",encoding="utf-8"))
+          expected=set(manifest["assets"])|{"RELEASE-MANIFEST.json","SHA256SUMS"}
+          actual=set(json.loads(os.environ["RELEASE_ASSET_NAMES"]))
+          if actual!=expected: raise SystemExit(f"draft release asset names differ from sealed candidate: {sorted(actual^expected)}")
+          PY
+          version="$(python3 -c 'import json;print(json.load(open("draft-assets/RELEASE-MANIFEST.json"))["version"])')"
+          echo "tag=$DRAFT_TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "failure_control=$DELIBERATE_FAILURE" >> "$GITHUB_OUTPUT"
+          echo "verified candidate $DRAFT_TAG ($EXPECTED_SUMS_SHA), isDraft=$(jq -r .isDraft <<<"$release")" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lmoffice-draft-${{ github.run_id }}-${{ github.run_attempt }}
+          path: draft-assets/*
+          if-no-files-found: error
+
+  integration:
+    needs: candidate
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-24.04, name: linux-x64, asset: lmoffice-linux-x64, python: python3 }
+          - { os: ubuntu-24.04-arm, name: linux-arm64, asset: lmoffice-linux-arm64, python: python3 }
+          - { os: macos-15, name: macos-arm64, asset: lmoffice-macos-arm64, python: python3 }
+          - { os: macos-15-intel, name: macos-x64, asset: lmoffice-macos-x64, python: python3 }
+          - { os: windows-2022, name: windows-x64, asset: lmoffice-windows-x64.exe, python: python }
+    name: Qualify ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.candidate.outputs.artifact }}
+          path: draft-assets
+      - name: Install the lmscript compiler in a runner-local prefix
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --prefix "$RUNNER_TEMP/compiler" --no-save --package-lock=false @lmctl-ai/lmctl@0.2.458
+          compiler="$RUNNER_TEMP/compiler/node_modules/.bin/lmscript"
+          if [ "$RUNNER_OS" = Windows ]; then compiler="$compiler.cmd"; fi
+          echo "LMSCRIPT_BIN=$compiler" >> "$GITHUB_ENV"
+          echo "$RUNNER_TEMP/compiler/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: Create isolated Python test environment
+        env:
+          PYTHON: ${{ matrix.python }}
+        run: |
+          "$PYTHON" -m venv .test-venv
+          if [ "$RUNNER_OS" = Windows ]; then py="$PWD/.test-venv/Scripts/python.exe"; else py="$PWD/.test-venv/bin/python"; fi
+          "$py" -m pip install python-docx==1.2.0 openpyxl==3.1.5 python-pptx==1.0.2
+          echo "LMOFFICE_TEST_PYTHON=$py" >> "$GITHUB_ENV"
+      - name: Install the exact draft binary through lmscript
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LMSCRIPT_TOOL_CACHE: ${{ runner.temp }}/lmoffice-tool-cache
+          DRAFT_TAG: ${{ needs.candidate.outputs.tag }}
+          DRAFT_ASSET: ${{ matrix.asset }}
+        run: |
+          set -euo pipefail
+          python3 scripts/install-draft-host.py \
+            --compiler "$LMSCRIPT_BIN" \
+            --tag "$DRAFT_TAG" \
+            --asset "$DRAFT_ASSET" \
+            --candidate draft-assets
+      - name: Match temporary suite version to candidate manifest
+        run: |
+          "$LMOFFICE_TEST_PYTHON" -c 'import json,pathlib; pathlib.Path("VERSION").write_text(json.load(open("draft-assets/RELEASE-MANIFEST.json"))["version"]+chr(10))'
+      - name: Run the 536-check host integration suite against the installed candidate
+        run: |
+          $LMOFFICE_TEST_PYTHON" tests/integration.py
+      - name: Run the pinned html-doc corpus against the installed candidate
+        env:
+          EVIDENCE_DIR: ${{ runner.temp }}/lmoffice-html-doc-evidence
+        run: |
+          $LMOFFICE_TEST_PYTHON" tests/html-doc-conformance/run_lmoffice.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --evidence "$EVIDENCE_DIR
+      - name: Check the public gallery scripts on this platform
+        run: |
+          $LMOFFICE_TEST_PYTHON" tests/check-lmscript-examples.py "$LMSCRIPT_BIN
+      - name: Run a representative user-facing sample against the installed candidate
+        env:
+          SAMPLE_DIR: ${{ runner.temp }}/lmoffice-public-sample
+        run: |
+          $LMOFFICE_TEST_PYTHON" tests/run-release-sample.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --workdir "$SAMPLE_DIR
+      - name: Summarize platform qualification
+        if: always()
+        env:
+          DRAFT_TAG: ${{ needs.candidate.outputs.tag }}
+        run: |
+          echo "## ${{ matrix.name }} candidate qualification" >> "$GITHUB_STEP_SUMMARY"
+          echo "Tag: $DRAFT_TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo "Result: ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
+
+  deliberate-failure-test:
+    needs: [candidate, integration]
+    if: ${{ needs.candidate.outputs.failure_control == 'true' && needs.integration.result == 'success' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Run the deliberate public failure-path test
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'SUMMARY'
+          ## Deliberate public qualification failure
+
+          The five-platform integration matrix passed. This throwaway dispatch
+          now fails one public test so the draft retention and no-promotion path
+          can be verified.
+          SUMMARY
+          python3 - <<'PY'
+          import unittest
+          class FailurePathTest(unittest.TestCase):
+              def test_public_draft_is_not_promoted_after_a_test_failure(self):
+                  self.fail("deliberate public draft qualification failure")
+          unittest.main()
+          PY
+
+  promote:
+    needs: [candidate, integration, deliberate-failure-test]
+    if: ${{ always() && needs.candidate.result == 'success' && needs.integration.result == 'success' && (needs.deliberate-failure-test.result == 'success' || needs.deliberate-failure-test.result == 'skipped') }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.candidate.outputs.artifact }}
+          path: draft-assets
+      - name: Promote only the tested, unchanged draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRAFT_TAG: ${{ needs.candidate.outputs.tag }}
+          EXPECTED_SUMS_SHA: ${{ github.event.client_payload.sha256sums_sha256 }}
+        run: bash scripts/promote-qualified-draft.sh "$DRAFT_TAG" "$EXPECTED_SUMS_SHA" draft-assets
+
+  cleanup-throwaway-draft:
+    needs: [candidate, integration, deliberate-failure-test]
+    if: ${{ always() && needs.candidate.result == 'success' && needs.integration.result == 'success' && needs.deliberate-failure-test.result == 'failure' && needs.candidate.outputs.failure_control == 'true' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.candidate.outputs.artifact }}
+          path: draft-assets
+      - name: Verify the throwaway stayed a draft, then remove only that release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRAFT_TAG: ${{ needs.candidate.outputs.tag }}
+          EXPECTED_SUMS_SHA: ${{ github.event.client_payload.sha256sums_sha256 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          release="$(gh release view "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --json tagName,isDraft)"
+          test "$(jq -r .tagName <<<"$release")" = "$DRAFT_TAG"
+          test "$(jq -r .isDraft <<<"$release")" = true
+          mkdir -p "$RUNNER_TEMP/throwaway-release"
+          gh release download "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --pattern SHA256SUMS --dir "$RUNNER_TEMP/throwaway-release"
+          sum="$(sha256sum "$RUNNER_TEMP/throwaway-release/SHA256SUMS" | awk '{print $1}')"
+          test "$sum" = "$EXPECTED_SUMS_SHA"
+          gh release delete "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --yes
+          if gh release view "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then echo "throwaway draft still exists" >&2; exit 1; fi
+          echo "Verified and removed only throwaway draft $DRAFT_TAG ($sum); Git tag left untouched." >> "$GITHUB_STEP_SUMMARY"

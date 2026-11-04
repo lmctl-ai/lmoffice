@@ -1,0 +1,12 @@
+<style xmlns="urn:lmctl:css:1">
+  <rule select="article"><set name="font-family" value="Calibri"/><set name="font-size" value="11pt"/><set name="color" value="#000000"/></rule>
+  <rule select="p"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="li"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="article"><set name="font-family" value="Calibri"/><set name="font-size" value="11pt"/><set name="color" value="#1E293B"/></rule>
+  <rule select="h1"><set name="font-size" value="20pt"/><set name="color" value="#0F172A"/><set name="margin-top" value="0pt"/><set name="margin-bottom" value="2pt"/></rule>
+  <rule select=".vendor"><set name="font-size" value="9.5pt"/><set name="color" value="#475569"/><set name="margin-bottom" value="12pt"/></rule>
+  <rule select="h2"><set name="font-size" value="12pt"/><set name="color" value="#0F172A"/><set name="margin-top" value="12pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select=".bill-to"><set name="margin-bottom" value="10pt"/></rule>
+  <rule select=".num"><set name="text-align" value="right"/></rule>
+  <rule select=".remit"><set name="font-size" value="9.5pt"/><set name="color" value="#334155"/><set name="margin-top" value="14pt"/><set name="margin-bottom" value="6pt"/></rule>
+</style>

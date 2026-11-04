@@ -1,0 +1,14 @@
+<style xmlns="urn:lmctl:css:1">
+  <rule select="article"><set name="font-family" value="Calibri"/><set name="font-size" value="11pt"/><set name="color" value="#000000"/></rule>
+  <rule select="p"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="li"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="article"><set name="font-family" value="Calibri"/><set name="font-size" value="11pt"/><set name="color" value="#1E293B"/></rule>
+  <rule select="h1"><set name="font-size" value="18pt"/><set name="color" value="#0F172A"/><set name="margin-top" value="0pt"/><set name="margin-bottom" value="4pt"/></rule>
+  <rule select=".subtitle"><set name="font-size" value="10pt"/><set name="font-style" value="italic"/><set name="color" value="#475569"/><set name="margin-bottom" value="12pt"/></rule>
+  <rule select="h2"><set name="font-size" value="13pt"/><set name="color" value="#1D4ED8"/><set name="margin-top" value="10pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="h3"><set name="font-size" value="11pt"/><set name="color" value="#0F172A"/><set name="margin-top" value="10pt"/><set name="margin-bottom" value="4pt"/></rule>
+  <rule select=".body"><set name="margin-bottom" value="8pt"/></rule>
+  <rule select=".caption"><set name="font-size" value="10pt"/><set name="font-style" value="italic"/><set name="color" value="#475569"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="li"><set name="margin-bottom" value="4pt"/></rule>
+  <rule select=".num"><set name="text-align" value="right"/></rule>
+</style>

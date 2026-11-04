@@ -1,0 +1,22 @@
+<article xmlns="http://www.w3.org/1999/xhtml" id="invoice-root" class="invoice">
+  <h1 id="inv-title">INVOICE</h1>
+  <p class="vendor"><strong>Apex Cloud Systems, Inc.</strong> — 700 Market Street, Floor 14, San Francisco, CA 94103 — Tax ID: 94-3819204</p>
+  <table id="inv-meta">
+    <tr><th>Invoice Number</th><th>Issue Date</th><th>Payment Terms</th><th>Due Date</th></tr>
+    <tr><td>INV-2026-1104</td><td>November 3, 2026</td><td>Net 30</td><td>December 3, 2026</td></tr>
+  </table>
+  <h2 id="bill-to-hdr">Bill To</h2>
+  <p class="bill-to"><strong>Meridian Health Group</strong><br/>Attn: Accounts Payable (AP-East)<br/>2900 Peachtree Road NW, Suite 500<br/>Atlanta, GA 30305</p>
+  <h2 id="items-hdr">Line Items &amp; Summary</h2>
+  <table id="line-items">
+    <tr><th>SKU</th><th>Description</th><th class="num">Qty</th><th class="num">Unit Price</th><th class="num">Amount (USD)</th></tr>
+    <tr><td>ACS-K8S-ENT</td><td>Managed Kubernetes Control Plane (3 Clusters, Nov 2026)</td><td class="num">3</td><td class="num">$1,450.00</td><td class="num">$4,350.00</td></tr>
+    <tr><td>ACS-NVME-10T</td><td>Replicated High-IOPS Block Storage (10 TB Block Tier)</td><td class="num">4</td><td class="num">$620.00</td><td class="num">$2,480.00</td></tr>
+    <tr><td>ACS-EGRESS-TB</td><td>Dedicated Direct-Connect Transit Commit (50 TB Bundle)</td><td class="num">1</td><td class="num">$1,800.00</td><td class="num">$1,800.00</td></tr>
+    <tr><td>ACS-TAM-RET</td><td>Designated Technical Account Manager Retainer (Monthly)</td><td class="num">1</td><td class="num">$2,500.00</td><td class="num">$2,500.00</td></tr>
+    <tr><td></td><td></td><td></td><td class="num">Subtotal</td><td class="num">$11,130.00</td></tr>
+    <tr><td></td><td></td><td></td><td class="num">CA/GA Enterprise Software Tax (0.00% Exempt)</td><td class="num">$0.00</td></tr>
+    <tr><td></td><td></td><td></td><td class="num"><strong>Total Due (USD)</strong></td><td class="num"><strong>$11,130.00</strong></td></tr>
+  </table>
+  <p class="remit"><strong>Remittance Instructions:</strong> Wire ACH to Silicon Valley Commercial Bank, Routing <strong>121140399</strong>, Account <strong>8804192031</strong>, referencing invoice <strong>INV-2026-1104</strong>. Late balances accrue 1.5% monthly after December 3, 2026.</p>
+</article>

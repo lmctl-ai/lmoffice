@@ -1,0 +1,6 @@
+<article xmlns="http://www.w3.org/1999/xhtml">
+  <p>Normal <strong>bold</strong> and <em>italic</em>.</p>
+  <p>A <span class="accent">B </span> C; A  B</p>
+  <p>Line one<br/> Line two</p>
+  <p>NBSP A&#160;B stays.</p>
+</article>

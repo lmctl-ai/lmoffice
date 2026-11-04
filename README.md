@@ -1,6 +1,6 @@
 # lmoffice
 
-> The public README, docs, images, and examples for `lmoffice` are MIT under `LICENSE-examples`. Binary releases use `LICENSE`; implementation source and its history are maintained privately in `lmctlhq/lmoffice`.
+> The public README, docs, images, examples and release qualification tests for `lmoffice` are MIT under `LICENSE-examples`. Binary releases use `LICENSE`; implementation source and its history are maintained privately in `lmctlhq/lmoffice`.
 
 `lmoffice` is a self-contained .NET 8 NativeAOT lmcode host for lmscript. It creates and inspects Word, Excel, and PowerPoint Open XML documents through Microsoft's Open XML SDK. The executable embeds three format-specific lmcode schemas and has no Office installation or network requirement at runtime.
 

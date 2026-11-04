@@ -1,0 +1,15 @@
+<style xmlns="urn:lmctl:css:1">
+  <rule select="article"><set name="font-family" value="Calibri"/><set name="font-size" value="11pt"/><set name="color" value="#000000"/></rule>
+  <rule select="p"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="li"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="article"><set name="font-family" value="Calibri"/><set name="font-size" value="11pt"/><set name="color" value="#1F2937"/></rule>
+  <rule select=".sender"><set name="text-align" value="right"/><set name="margin-bottom" value="12pt"/><set name="color" value="#334155"/></rule>
+  <rule select=".date"><set name="margin-bottom" value="12pt"/></rule>
+  <rule select=".recipient"><set name="margin-bottom" value="14pt"/></rule>
+  <rule select=".subject"><set name="font-size" value="12pt"/><set name="color" value="#0F172A"/><set name="margin-top" value="6pt"/><set name="margin-bottom" value="10pt"/></rule>
+  <rule select=".salutation"><set name="margin-bottom" value="8pt"/></rule>
+  <rule select=".body"><set name="margin-bottom" value="8pt"/></rule>
+  <rule select="li"><set name="margin-bottom" value="4pt"/></rule>
+  <rule select=".closing"><set name="margin-top" value="14pt"/><set name="margin-bottom" value="24pt"/></rule>
+  <rule select=".sig"><set name="margin-bottom" value="6pt"/></rule>
+</style>

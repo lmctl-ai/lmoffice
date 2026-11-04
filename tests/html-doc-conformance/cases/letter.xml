@@ -1,0 +1,17 @@
+<article xmlns="http://www.w3.org/1999/xhtml" id="letter-root" class="letter">
+  <p class="sender"><strong>Northwind Logistics, Inc.</strong><br/>450 Harborview Boulevard, Suite 800<br/>Seattle, WA 98104</p>
+  <p class="date">November 3, 2026</p>
+  <p class="recipient"><strong>Ms. Elena Rostova, VP of Supply Chain</strong><br/>Contoso Manufacturing Corp.<br/>1200 Industrial Parkway<br/>Detroit, MI 48201</p>
+  <h2 id="subject" class="subject">Subject: Q4 Dedicated Freight Corridor Renewal (Ref: NWL-2026-Q4-089)</h2>
+  <p class="salutation">Dear Ms. Rostova,</p>
+  <p class="body">Thank you for partnering with <strong>Northwind Logistics, Inc.</strong> across the 2026 shipping cycle. During the past twelve months, our Pacific-Midwest intermodal corridor achieved a <em>99.4% on-time arrival rate</em> across 1,420 dispatched loads while reducing per-pallet transit damage below 0.08%.</p>
+  <p class="body">To lock in priority winter capacity before the November 18 scheduling freeze, please review and countersign the enclosed renewal package:</p>
+  <ul id="enclosures">
+    <li><strong>Schedule A:</strong> Dedicated Lane Rate Card (Seattle to Detroit, Q1-Q4 2027)</li>
+    <li><strong>Schedule B:</strong> Fuel Surcharge Index Cap and SLA Credit Matrix</li>
+    <li><strong>Schedule C:</strong> Cold-Chain Telemetry Compliance Addendum</li>
+  </ul>
+  <p class="body">Please return the signed schedules by <strong>November 15, 2026</strong>. Our operations desk remains at your disposal for any routing adjustments.</p>
+  <p class="closing">Sincerely,</p>
+  <p class="sig"><strong>Marcus Vance</strong><br/><em>Director of Enterprise Accounts, Northwind Logistics, Inc.</em></p>
+</article>

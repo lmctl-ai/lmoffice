@@ -1,0 +1,2330 @@
+{
+  "format": "html-doc-release-baseline/1",
+  "platform": "linux-x86_64",
+  "corpus_sha256": "5ca22657ccd3269df5dbc4f452cf7459aeb2f24123536dbb3d437791afdc3b09",
+  "compiler": "lmscript 0.2.458",
+  "host_versions": {
+    "lmpdf": "lmpdf 0.2.6",
+    "lmoffice": "lmoffice 0.1.31"
+  },
+  "host_sha256": {
+    "lmpdf": "8a204f49257569d14f090e8e988829ecd2472e6a1fa78ecb9b136a5f5f8b1c03",
+    "lmoffice": "ae9ee8a9fc9e4c56e753d4a02da5e60c7a39751e5eaba2d3e2f7be2b55affb5a"
+  },
+  "frozen_profile_sha256": {
+    "html-subset-1.json": "dbc290fcc619a4674da8f9f0cbe3f33752f5a41d675a5e5c1b30893194294ab9",
+    "css-subset-1.json": "6e176f167b229322006c12da986306d80053f9bc94c2e3f25ddc8b2204151579"
+  },
+  "profile_identity": {
+    "exit": 2,
+    "diagnostic": "unknown XML profile \"html-doc@2\"",
+    "line": 2,
+    "column": 1
+  },
+  "cases": [
+    {
+      "host": "lmpdf",
+      "case": "letter",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "pages": 1,
+        "page_size": "612 x 792 pts (letter)",
+        "text": "                                                                                      Northwind Logistics, Inc.\n                                                                           450 Harborview Boulevard, Suite 800\n                                                                                            Seattle, WA 98104\n\nNovember 3, 2026\n\nMs. Elena Rostova, VP of Supply Chain\nContoso Manufacturing Corp.\n1200 Industrial Parkway\nDetroit, MI 48201\nSubject: Q4 Dedicated Freight Corridor Renewal (Ref: NWL-2026-Q4-089)\nDear Ms. Rostova,\nThank you for partnering with Northwind Logistics, Inc.across the 2026 shipping cycle. During the past twelve\nmonths, our Pacific-Midwest intermodal corridor achieved a 99.4% on-time arrival rateacross 1,420 dispatched\nloads while reducing per-pallet transit damage below 0.08%.\nTo lock in priority winter capacity before the November 18 scheduling freeze, please review and countersign the\nenclosed renewal package:\n•       Schedule A:Dedicated Lane Rate Card (Seattle to Detroit, Q1-Q4 2027)\n•       Schedule B:Fuel Surcharge Index Cap and SLA Credit Matrix\n•       Schedule C:Cold-Chain Telemetry Compliance Addendum\nPlease return the signed schedules by November 15, 2026. Our operations desk remains at your disposal for any\nrouting adjustments.\n\nSincerely,\n\n\nMarcus Vance\nDirector of Enterprise Accounts, Northwind Logistics, Inc.\n\f",
+        "fonts": [
+          "Carlito-Bold",
+          "Carlito",
+          "Carlito-Italic"
+        ],
+        "word_count": 155,
+        "links": 0,
+        "images": 0,
+        "tables": 0,
+        "headings": [
+          {
+            "level": 2,
+            "text": "Subject: Q4 Dedicated Freight Corridor Renewal (Ref: NWL\\-2026\\-Q4\\-089)"
+          }
+        ],
+        "bounds": {
+          "min_x": 54.0,
+          "min_y": 56.43,
+          "max_x": 560.35,
+          "max_y": 480.06
+        }
+      }
+    },
+    {
+      "host": "lmoffice",
+      "case": "letter",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [
+          {
+            "text": "Northwind Logistics, Inc.450 Harborview Boulevard, Suite 800Seattle, WA 98104",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Northwind Logistics, Inc.",
+                "bold": true,
+                "italic": false,
+                "color": "334155",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "450 Harborview Boulevard, Suite 800",
+                "bold": false,
+                "italic": false,
+                "color": "334155",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "Seattle, WA 98104",
+                "bold": false,
+                "italic": false,
+                "color": "334155",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "November 3, 2026",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "November 3, 2026",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Ms. Elena Rostova, VP of Supply ChainContoso Manufacturing Corp.1200 Industrial ParkwayDetroit, MI 48201",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Ms. Elena Rostova, VP of Supply Chain",
+                "bold": true,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "Contoso Manufacturing Corp.",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "1200 Industrial Parkway",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "Detroit, MI 48201",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Subject: Q4 Dedicated Freight Corridor Renewal (Ref: NWL-2026-Q4-089)",
+            "style": "Heading2",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Subject: Q4 Dedicated Freight Corridor Renewal (Ref: NWL-2026-Q4-089)",
+                "bold": false,
+                "italic": false,
+                "color": "0F172A",
+                "size": "24",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Dear Ms. Rostova,",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Dear Ms. Rostova,",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Thank you for partnering with Northwind Logistics, Inc. across the 2026 shipping cycle. During the past twelve months, our Pacific-Midwest intermodal corridor achieved a 99.4% on-time arrival rate across 1,420 dispatched loads while reducing per-pallet transit damage below 0.08%.",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Thank you for partnering with ",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "Northwind Logistics, Inc.",
+                "bold": true,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " across the 2026 shipping cycle. During the past twelve months, our Pacific-Midwest intermodal corridor achieved a ",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "99.4% on-time arrival rate",
+                "bold": false,
+                "italic": true,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " across 1,420 dispatched loads while reducing per-pallet transit damage below 0.08%.",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "To lock in priority winter capacity before the November 18 scheduling freeze, please review and countersign the enclosed renewal package:",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "To lock in priority winter capacity before the November 18 scheduling freeze, please review and countersign the enclosed renewal package:",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Schedule A: Dedicated Lane Rate Card (Seattle to Detroit, Q1-Q4 2027)",
+            "style": "ListBullet",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Schedule A:",
+                "bold": true,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " Dedicated Lane Rate Card (Seattle to Detroit, Q1-Q4 2027)",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Schedule B: Fuel Surcharge Index Cap and SLA Credit Matrix",
+            "style": "ListBullet",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Schedule B:",
+                "bold": true,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " Fuel Surcharge Index Cap and SLA Credit Matrix",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Schedule C: Cold-Chain Telemetry Compliance Addendum",
+            "style": "ListBullet",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Schedule C:",
+                "bold": true,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " Cold-Chain Telemetry Compliance Addendum",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Please return the signed schedules by November 15, 2026. Our operations desk remains at your disposal for any routing adjustments.",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Please return the signed schedules by ",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "November 15, 2026",
+                "bold": true,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": ". Our operations desk remains at your disposal for any routing adjustments.",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Sincerely,",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Sincerely,",
+                "bold": false,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Marcus VanceDirector of Enterprise Accounts, Northwind Logistics, Inc.",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Marcus Vance",
+                "bold": true,
+                "italic": false,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "Director of Enterprise Accounts, Northwind Logistics, Inc.",
+                "bold": false,
+                "italic": true,
+                "color": "1F2937",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          }
+        ],
+        "tables": [],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [
+          {
+            "style": "ListBullet",
+            "num_id": null
+          },
+          {
+            "style": "ListBullet",
+            "num_id": null
+          },
+          {
+            "style": "ListBullet",
+            "num_id": null
+          }
+        ],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "report-with-table-image",
+      "dry_ok": false,
+      "dry_message": "html-subset line 13 column 3: unsupported element <img>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 13 column 3: unsupported element <img>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "report-with-table-image",
+      "dry_ok": false,
+      "dry_message": "html-subset line 13 column 4: unsupported element <img>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 13 column 4: unsupported element <img>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "invoice",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "pages": 1,
+        "page_size": "612 x 792 pts (letter)",
+        "text": "INVOICE\nApex Cloud Systems, Inc.— 700 Market Street, Floor 14, San Francisco, CA 94103 — Tax ID: 94-3819204\n\n Invoice Number                 Issue Date                     Payment Terms                   Due Date\n INV-2026-1104                  November 3, 2026               Net 30                          December 3, 2026\n\nBill To\nMeridian Health Group\nAttn: Accounts Payable (AP-East)\n2900 Peachtree Road NW, Suite 500\nAtlanta, GA 30305\n\nLine Items & Summary\n SKU                      Description                                Qty               Unit Price         Amount (USD)\n ACS-K8S-ENT              Managed                                       3              $1,450.00               $4,350.00\n                          Kubernetes Control\n                          Plane (3 Clusters,\n                          Nov 2026)\n ACS-NVME-10T             Replicated High-                              4                $620.00               $2,480.00\n                          IOPS Block Storage\n                          (10 TB Block Tier)\n ACS-EGRESS-TB            Dedicated Direct-                             1              $1,800.00               $1,800.00\n                          Connect Transit\n                          Commit (50 TB\n                          Bundle)\n ACS-TAM-RET              Designated                                    1              $2,500.00               $2,500.00\n                          Technical Account\n                          Manager Retainer\n                          (Monthly)\n                                                                                         Subtotal             $11,130.00\n                                                                              CA/GA Enterprise                      $0.00\n                                                                            Software Tax (0.00%\n                                                                                       Exempt)\n                                                                                Total Due (USD)               $11,130.00\n\nRemittance Instructions:Wire ACH to Silicon Valley Commercial Bank, Routing 121140399, Account 8804192031, referencing\ninvoice INV-2026-1104. Late balances accrue 1.5% monthly after December 3, 2026.\n\f",
+        "fonts": [
+          "Carlito-Bold",
+          "Carlito"
+        ],
+        "word_count": 148,
+        "links": 0,
+        "images": 0,
+        "tables": 2,
+        "headings": [
+          {
+            "level": 1,
+            "text": "INVOICE"
+          },
+          {
+            "level": 2,
+            "text": "Bill To"
+          },
+          {
+            "level": 2,
+            "text": "Line Items & Summary"
+          }
+        ],
+        "bounds": {
+          "min_x": 54.0,
+          "min_y": 58.41,
+          "max_x": 552.6,
+          "max_y": 638.05
+        }
+      }
+    },
+    {
+      "host": "lmoffice",
+      "case": "invoice",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [
+          {
+            "text": "INVOICE",
+            "style": "Heading1",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "INVOICE",
+                "bold": false,
+                "italic": false,
+                "color": "0F172A",
+                "size": "40",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Apex Cloud Systems, Inc. — 700 Market Street, Floor 14, San Francisco, CA 94103 — Tax ID: 94-3819204",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Apex Cloud Systems, Inc.",
+                "bold": true,
+                "italic": false,
+                "color": "475569",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " — 700 Market Street, Floor 14, San Francisco, CA 94103 — Tax ID: 94-3819204",
+                "bold": false,
+                "italic": false,
+                "color": "475569",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Bill To",
+            "style": "Heading2",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Bill To",
+                "bold": false,
+                "italic": false,
+                "color": "0F172A",
+                "size": "24",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Meridian Health GroupAttn: Accounts Payable (AP-East)2900 Peachtree Road NW, Suite 500Atlanta, GA 30305",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Meridian Health Group",
+                "bold": true,
+                "italic": false,
+                "color": "1E293B",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "Attn: Accounts Payable (AP-East)",
+                "bold": false,
+                "italic": false,
+                "color": "1E293B",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "2900 Peachtree Road NW, Suite 500",
+                "bold": false,
+                "italic": false,
+                "color": "1E293B",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": "Atlanta, GA 30305",
+                "bold": false,
+                "italic": false,
+                "color": "1E293B",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Line Items & Summary",
+            "style": "Heading2",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Line Items & Summary",
+                "bold": false,
+                "italic": false,
+                "color": "0F172A",
+                "size": "24",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Remittance Instructions: Wire ACH to Silicon Valley Commercial Bank, Routing 121140399, Account 8804192031, referencing invoice INV-2026-1104. Late balances accrue 1.5% monthly after December 3, 2026.",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Remittance Instructions:",
+                "bold": true,
+                "italic": false,
+                "color": "334155",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " Wire ACH to Silicon Valley Commercial Bank, Routing ",
+                "bold": false,
+                "italic": false,
+                "color": "334155",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "121140399",
+                "bold": true,
+                "italic": false,
+                "color": "334155",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": ", Account ",
+                "bold": false,
+                "italic": false,
+                "color": "334155",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "8804192031",
+                "bold": true,
+                "italic": false,
+                "color": "334155",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": ", referencing invoice ",
+                "bold": false,
+                "italic": false,
+                "color": "334155",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "INV-2026-1104",
+                "bold": true,
+                "italic": false,
+                "color": "334155",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": ". Late balances accrue 1.5% monthly after December 3, 2026.",
+                "bold": false,
+                "italic": false,
+                "color": "334155",
+                "size": "19",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          }
+        ],
+        "tables": [
+          {
+            "rows": 2,
+            "columns": 4,
+            "repeat_header_rows": 0,
+            "first_row": [
+              "Invoice Number",
+              "Issue Date",
+              "Payment Terms",
+              "Due Date"
+            ],
+            "last_row": [
+              "INV-2026-1104",
+              "November 3, 2026",
+              "Net 30",
+              "December 3, 2026"
+            ],
+            "cell_text_sha256": "9f57b162eea0b9d3906d13caa007a18c39dd7ad556f4c93aea457cf659c66b12"
+          },
+          {
+            "rows": 8,
+            "columns": 5,
+            "repeat_header_rows": 0,
+            "first_row": [
+              "SKU",
+              "Description",
+              "Qty",
+              "Unit Price",
+              "Amount (USD)"
+            ],
+            "last_row": [
+              "",
+              "",
+              "",
+              "Total Due (USD)",
+              "$11,130.00"
+            ],
+            "cell_text_sha256": "e52ad8aa039517d6c368f2a1b6acd92bb7507854b38abb19934cb08c2df6004a"
+          }
+        ],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "whitespace-run-boundary",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "pages": 1,
+        "page_size": "612 x 792 pts (letter)",
+        "text": "Normal boldand italic.\nA B C; A B\nLine one\nLine two\nNBSP A B stays.\n\f",
+        "fonts": [
+          "Carlito",
+          "Carlito-Bold",
+          "Carlito-Italic"
+        ],
+        "word_count": 16,
+        "links": 0,
+        "images": 0,
+        "tables": 0,
+        "headings": [],
+        "bounds": {
+          "min_x": 54.0,
+          "min_y": 56.43,
+          "max_x": 153.66,
+          "max_y": 139.14
+        }
+      }
+    },
+    {
+      "host": "lmoffice",
+      "case": "whitespace-run-boundary",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [
+          {
+            "text": "Normal bold and italic.",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Normal ",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "bold",
+                "bold": true,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " and ",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "italic",
+                "bold": false,
+                "italic": true,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": ".",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "A B  C; A  B",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "A ",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "B ",
+                "bold": false,
+                "italic": false,
+                "color": "185A80",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": " C; A  B",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Line one Line two",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Line one",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              },
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              },
+              {
+                "text": " Line two",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "NBSP A B stays.",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "NBSP A B stays.",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          }
+        ],
+        "tables": [],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "empty-paragraph",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "pages": 1,
+        "page_size": "612 x 792 pts (letter)",
+        "text": "Before\n\n\nAfter\n\f",
+        "fonts": [
+          "Carlito"
+        ],
+        "word_count": 2,
+        "links": 0,
+        "images": 0,
+        "tables": 0,
+        "headings": [],
+        "bounds": {
+          "min_x": 54.0,
+          "min_y": 56.43,
+          "max_x": 83.45,
+          "max_y": 106.28
+        }
+      }
+    },
+    {
+      "host": "lmoffice",
+      "case": "empty-paragraph",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [
+          {
+            "text": "Before",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Before",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "",
+                "bold": false,
+                "italic": false,
+                "color": null,
+                "size": null,
+                "fonts": null
+              }
+            ]
+          },
+          {
+            "text": "After",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "After",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          }
+        ],
+        "tables": [],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "independent-list-restart",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "pages": 1,
+        "page_size": "612 x 792 pts (letter)",
+        "text": "1.     One\n2.     Two\nNext sequence\n1.     One again\n2.     Two again\n\f",
+        "fonts": [
+          "Carlito"
+        ],
+        "word_count": 12,
+        "links": 0,
+        "images": 0,
+        "tables": 0,
+        "headings": [],
+        "bounds": {
+          "min_x": 54.0,
+          "min_y": 56.43,
+          "max_x": 134.84,
+          "max_y": 145.14
+        }
+      }
+    },
+    {
+      "host": "lmoffice",
+      "case": "independent-list-restart",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [
+          {
+            "text": "One",
+            "style": "ListNumber",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "One",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Two",
+            "style": "ListNumber",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Two",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Next sequence",
+            "style": null,
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Next sequence",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "One again",
+            "style": "ListNumber",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "One again",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Two again",
+            "style": "ListNumber",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Two again",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          }
+        ],
+        "tables": [],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [
+          {
+            "style": "ListNumber",
+            "num_id": null
+          },
+          {
+            "style": "ListNumber",
+            "num_id": null
+          },
+          {
+            "style": "ListNumber",
+            "num_id": null
+          },
+          {
+            "style": "ListNumber",
+            "num_id": null
+          }
+        ],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "adjacent-different-lists",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "pages": 1,
+        "page_size": "612 x 792 pts (letter)",
+        "text": "•    Bullet\n1.   Numbered\n\f",
+        "fonts": [
+          "Carlito"
+        ],
+        "word_count": 4,
+        "links": 0,
+        "images": 0,
+        "tables": 0,
+        "headings": [],
+        "bounds": {
+          "min_x": 54.0,
+          "min_y": 56.43,
+          "max_x": 137.86,
+          "max_y": 86.86
+        }
+      }
+    },
+    {
+      "host": "lmoffice",
+      "case": "adjacent-different-lists",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [
+          {
+            "text": "Bullet",
+            "style": "ListBullet",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Bullet",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Numbered",
+            "style": "ListNumber",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Numbered",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          }
+        ],
+        "tables": [],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [
+          {
+            "style": "ListBullet",
+            "num_id": null
+          },
+          {
+            "style": "ListNumber",
+            "num_id": null
+          }
+        ],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "styled-headings",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "pages": 1,
+        "page_size": "612 x 792 pts (letter)",
+        "text": "                    Primary heading\nSecondary heading\nThird heading\n\f",
+        "fonts": [
+          "Carlito-Bold",
+          "Carlito-BoldItalic"
+        ],
+        "word_count": 6,
+        "links": 0,
+        "images": 0,
+        "tables": 0,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Primary heading"
+          },
+          {
+            "level": 2,
+            "text": "*Secondary heading*"
+          },
+          {
+            "level": 3,
+            "text": "Third heading"
+          }
+        ],
+        "bounds": {
+          "min_x": 54.0,
+          "min_y": 71.3,
+          "max_x": 387.92,
+          "max_y": 149.81
+        }
+      }
+    },
+    {
+      "host": "lmoffice",
+      "case": "styled-headings",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [
+          {
+            "text": "Primary heading",
+            "style": "Heading1",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Primary heading",
+                "bold": false,
+                "italic": false,
+                "color": "123456",
+                "size": "48",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Secondary heading",
+            "style": "Heading2",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Secondary heading",
+                "bold": false,
+                "italic": true,
+                "color": "000000",
+                "size": "28",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          },
+          {
+            "text": "Third heading",
+            "style": "Heading3",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Third heading",
+                "bold": false,
+                "italic": false,
+                "color": "654321",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          }
+        ],
+        "tables": [],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "column-alignment",
+      "dry_ok": false,
+      "dry_message": "html-subset line 4 column 24: text-align must be consistent within a table column",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 4 column 24: text-align must be consistent within a table column",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "column-alignment",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [],
+        "tables": [
+          {
+            "rows": 2,
+            "columns": 2,
+            "repeat_header_rows": 0,
+            "first_row": [
+              "Item",
+              "Amount"
+            ],
+            "last_row": [
+              "Sample",
+              "10.00"
+            ],
+            "cell_text_sha256": "d478cba960111cabad982214d88d73a5992e84150c4f31d7f15c3df2f3eb30f8"
+          }
+        ],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "long-table",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "pages": 4,
+        "page_size": "612 x 792 pts (letter)",
+        "text": "Long table\n Item        Value\n ROW-000     value\n ROW-001     value\n ROW-002     value\n ROW-003     value\n ROW-004     value\n ROW-005     value\n ROW-006     value\n ROW-007     value\n ROW-008     value\n ROW-009     value\n ROW-010     value\n ROW-011     value\n ROW-012     value\n ROW-013     value\n ROW-014     value\n ROW-015     value\n ROW-016     value\n ROW-017     value\n ROW-018     value\n ROW-019     value\n ROW-020     value\n ROW-021     value\n ROW-022     value\n ROW-023     value\n ROW-024     value\n ROW-025     value\n ROW-026     value\n ROW-027     value\n ROW-028     value\n ROW-029     value\n ROW-030     value\n\fItem      Value\nROW-031   value\nROW-032   value\nROW-033   value\nROW-034   value\nROW-035   value\nROW-036   value\nROW-037   value\nROW-038   value\nROW-039   value\nROW-040   value\nROW-041   value\nROW-042   value\nROW-043   value\nROW-044   value\nROW-045   value\nROW-046   value\nROW-047   value\nROW-048   value\nROW-049   value\nROW-050   value\nROW-051   value\nROW-052   value\nROW-053   value\nROW-054   value\nROW-055   value\nROW-056   value\nROW-057   value\nROW-058   value\nROW-059   value\nROW-060   value\nROW-061   value\nROW-062   value\nROW-063   value\n\fItem      Value\nROW-064   value\nROW-065   value\nROW-066   value\nROW-067   value\nROW-068   value\nROW-069   value\nROW-070   value\nROW-071   value\nROW-072   value\nROW-073   value\nROW-074   value\nROW-075   value\nROW-076   value\nROW-077   value\nROW-078   value\nROW-079   value\nROW-080   value\nROW-081   value\nROW-082   value\nROW-083   value\nROW-084   value\nROW-085   value\nROW-086   value\nROW-087   value\nROW-088   value\nROW-089   value\nROW-090   value\nROW-091   value\nROW-092   value\nROW-093   value\nROW-094   value\nROW-095   value\nROW-096   value\n\fItem      Value\nROW-097   value\nROW-098   value\nROW-099   value\n\f",
+        "fonts": [
+          "Carlito-Bold",
+          "Carlito"
+        ],
+        "word_count": 210,
+        "links": 0,
+        "images": 0,
+        "tables": 1,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Long table"
+          }
+        ],
+        "bounds": {
+          "min_x": 54.0,
+          "min_y": 56.93,
+          "max_x": 336.87,
+          "max_y": 725.54
+        }
+      }
+    },
+    {
+      "host": "lmoffice",
+      "case": "long-table",
+      "dry_ok": true,
+      "dry_message": null,
+      "dry_code": null,
+      "dry_phase": null,
+      "real_ok": true,
+      "real_message": null,
+      "real_code": null,
+      "output_exists": true,
+      "dry_output_unchanged": true,
+      "output": {
+        "paragraphs": [
+          {
+            "text": "Long table",
+            "style": "Heading1",
+            "num_id": null,
+            "runs": [
+              {
+                "text": "Long table",
+                "bold": false,
+                "italic": false,
+                "color": "000000",
+                "size": "22",
+                "fonts": {
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ascii": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hAnsi": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}eastAsia": "Calibri",
+                  "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs": "Calibri"
+                }
+              }
+            ]
+          }
+        ],
+        "tables": [
+          {
+            "rows": 101,
+            "columns": 2,
+            "repeat_header_rows": 0,
+            "first_row": [
+              "Item",
+              "Value"
+            ],
+            "last_row": [
+              "ROW-099",
+              "value"
+            ],
+            "cell_text_sha256": "5b741cd547ce5b3bf5c8232393551025486b8640e9cb8a77a25a8dd0488a6049"
+          }
+        ],
+        "page_size": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w": "12240",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}h": "15840",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}orient": "portrait"
+        },
+        "margins": {
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}top": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}right": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}bottom": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left": "1080",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}header": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footer": "360",
+          "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}gutter": "0"
+        },
+        "links": [],
+        "image_relationships": [],
+        "media": [],
+        "list_paragraphs": [],
+        "list_style_num_ids": {
+          "ListBullet": "1",
+          "ListNumber": "2"
+        }
+      }
+    },
+    {
+      "host": "lmpdf",
+      "case": "page-box",
+      "dry_ok": false,
+      "dry_message": "css-subset line 1 column 32: selector must be one element name, .class, or #id",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "css-subset line 1 column 32: selector must be one element name, .class, or #id",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "page-box",
+      "dry_ok": false,
+      "dry_message": "css-subset line 1 column 33: selector must be one element name, .class, or #id",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "css-subset line 1 column 33: selector must be one element name, .class, or #id",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "page-break",
+      "dry_ok": false,
+      "dry_message": "css-subset line 5 column 24: unsupported or invalid property 'page-break-before'",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "css-subset line 5 column 24: unsupported or invalid property 'page-break-before'",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "page-break",
+      "dry_ok": false,
+      "dry_message": "css-subset line 5 column 25: unsupported property 'page-break-before'",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "css-subset line 5 column 25: unsupported property 'page-break-before'",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "link",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 50: unsupported element <a>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 50: unsupported element <a>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "link",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 51: unsupported element <a>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 51: unsupported element <a>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "reject-unknown-element",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 47: unsupported element <script>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 47: unsupported element <script>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "reject-unknown-element",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 48: unsupported element <script>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 48: unsupported element <script>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "reject-unknown-attribute",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 47: unsupported attribute 'onclick' on <p>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 47: unsupported attribute 'onclick' on <p>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "reject-unknown-attribute",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 48: unsupported attribute 'onclick' on <p>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 48: unsupported attribute 'onclick' on <p>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "reject-bad-nesting",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 51: <p> is not allowed in <ul>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 51: <p> is not allowed in <ul>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "reject-bad-nesting",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 52: <p> is not allowed in <ul>",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 52: <p> is not allowed in <ul>",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "reject-ragged-table",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 47: table rows must have the same nonzero cell count",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 47: table rows must have the same nonzero cell count",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "reject-ragged-table",
+      "dry_ok": false,
+      "dry_message": "html-subset line 1 column 48: table rows must have the same nonzero number of cells",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "html-subset line 1 column 48: table rows must have the same nonzero number of cells",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "reject-bad-css",
+      "dry_ok": false,
+      "dry_message": "css-subset line 5 column 20: unsupported or invalid property 'position'",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "css-subset line 5 column 20: unsupported or invalid property 'position'",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "reject-bad-css",
+      "dry_ok": false,
+      "dry_message": "css-subset line 5 column 21: unsupported property 'position'",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "css-subset line 5 column 21: unsupported property 'position'",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmpdf",
+      "case": "reject-px-unit",
+      "dry_ok": false,
+      "dry_message": "css-subset line 5 column 20: font-size must use pt units",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "css-subset line 5 column 20: font-size must use pt units",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    },
+    {
+      "host": "lmoffice",
+      "case": "reject-px-unit",
+      "dry_ok": false,
+      "dry_message": "css-subset line 5 column 21: font-size must use positive pt units within the supported range",
+      "dry_code": "RUN_HOST",
+      "dry_phase": "run",
+      "real_ok": false,
+      "real_message": "css-subset line 5 column 21: font-size must use positive pt units within the supported range",
+      "real_code": "RUN_HOST",
+      "output_exists": false,
+      "dry_output_unchanged": true,
+      "output": null
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<article xmlns="http://www.w3.org/1999/xhtml" id="report-root" class="report">
+  <h1 id="title">Platform Reliability &amp; Capacity Report (Q4 2026)</h1>
+  <p class="subtitle">Prepared by Core Infrastructure Engineering — November 3, 2026</p>
+  <h2 id="exec-summary">1. Executive Summary</h2>
+  <p class="body">Across Q4 2026, global API availability reached <strong>99.982%</strong>, exceeding the 99.95% quarterly objective. Peak ingress traffic grew <em>18.4% quarter-over-quarter</em> to 412,000 requests per second during the October regional failover drill with zero customer-visible packet loss.</p>
+  <ul id="highlights">
+    <li><strong>Zero P1 incidents:</strong> Automated canary rollback intercepted 3 faulty configuration pushes under 45 seconds.</li>
+    <li><strong>Database read-replica tail latency:</strong> P99 decreased from 14.2 ms to <strong>8.7 ms</strong> after NVMe queue tuning.</li>
+    <li><strong>Headroom verification:</strong> All three primary regions sustained N+1 zone loss at 130% synthetic load.</li>
+  </ul>
+  <h2 id="fig-section">2. Throughput &amp; Tail-Latency Telemetry</h2>
+  <p class="caption">Figure 1: Normalized cluster saturation banner (320×120 px deterministic PNG sample).</p>
+  <img id="saturation-chart" src="assets/chart.png" width="270pt" height="72pt" alt="Cluster saturation chart"/>
+  <h2 id="table-section">3. Regional SLA &amp; Latency Breakdown</h2>
+  <p class="body">The table below summarizes availability, P99 latency, and provisioned compute headroom across all active production regions for Q4 2026:</p>
+  <table id="regional-sla">
+    <tr><th>Region</th><th class="num">Availability</th><th class="num">P99 Latency</th><th class="num">Peak RPS</th><th class="num">Headroom</th></tr>
+    <tr><td>us-east-1 (Virginia)</td><td class="num">99.986%</td><td class="num">8.4 ms</td><td class="num">184,200</td><td class="num">42%</td></tr>
+    <tr><td>eu-central-1 (Frankfurt)</td><td class="num">99.979%</td><td class="num">9.1 ms</td><td class="num">138,500</td><td class="num">38%</td></tr>
+    <tr><td>ap-northeast-1 (Tokyo)</td><td class="num">99.981%</td><td class="num">8.6 ms</td><td class="num">89,300</td><td class="num">47%</td></tr>
+  </table>
+  <h3 id="rec-section">3.1 Capacity Recommendation</h3>
+  <p>Provision 12 additional storage nodes in <strong>eu-central-1</strong> prior to December 1 to raise buffer capacity above the <strong>40% threshold</strong> ahead of year-end settlement batch workloads.</p>
+</article>

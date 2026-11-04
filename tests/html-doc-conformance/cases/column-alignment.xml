@@ -1,0 +1,6 @@
+<article xmlns="http://www.w3.org/1999/xhtml">
+  <table>
+    <tr><th>Item</th><th class="head">Amount</th></tr>
+    <tr><td>Sample</td><td class="num">10.00</td></tr>
+  </table>
+</article>

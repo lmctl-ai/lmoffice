@@ -1,0 +1,8 @@
+<style xmlns="urn:lmctl:css:1">
+  <rule select="article"><set name="font-family" value="Calibri"/><set name="font-size" value="11pt"/><set name="color" value="#000000"/></rule>
+  <rule select="p"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="li"><set name="margin-top" value="0pt"/><set name="margin-bottom" value="6pt"/></rule>
+  <rule select="#hero"><set name="font-size" value="24pt"/><set name="color" value="#123456"/><set name="text-align" value="center"/></rule>
+  <rule select="h2"><set name="font-size" value="14pt"/><set name="font-style" value="italic"/></rule>
+  <rule select="h3"><set name="color" value="#654321"/></rule>
+</style>

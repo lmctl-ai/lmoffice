@@ -1,0 +1,540 @@
+{
+  "format": "html-doc-regressions/1",
+  "base_commit": "31b6688bd67619f5beae99ea3582f81a642e8363",
+  "policy": "Additive normative vectors; original corpus and release baseline remain immutable. Hosts load cases from both manifests.",
+  "cases": [
+    {
+      "id": "resolved-text-style",
+      "xml": "cases/resolved-text-style.xml",
+      "css": "cases/resolved-text-style.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "resolved-text-style.xml": "9c978164c04bc67d880629022b8025db0d61cb19bf061b7a8275cf38f7a94861",
+        "resolved-text-style.css.xml": "733a5af7924c44d309cad48e4b9ee1dad0ff0c4ffb0bbef4fc95206b4864212e"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "h1",
+          "p",
+          "p",
+          "ul",
+          "p"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Plain heading"
+          }
+        ],
+        "lists": [
+          {
+            "kind": "ul",
+            "items": [
+              "Large item"
+            ]
+          }
+        ],
+        "tables": [],
+        "images": [],
+        "links": [
+          {
+            "href": "https://example.invalid",
+            "text": "Default link"
+          }
+        ],
+        "empty_paragraphs": 0,
+        "normalized_text_blocks": [
+          "Plain heading",
+          "Bold regular span",
+          "Default link",
+          "Large item",
+          "repeat repeat word boundaries"
+        ],
+        "author_stylesheet": [
+          {
+            "select": ".plain",
+            "sets": [
+              {
+                "name": "font-weight",
+                "value": "normal"
+              }
+            ]
+          },
+          {
+            "select": ".heavy",
+            "sets": [
+              {
+                "name": "font-weight",
+                "value": "bold"
+              }
+            ]
+          },
+          {
+            "select": ".large",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "20pt"
+              }
+            ]
+          },
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          }
+        ],
+        "computed_styles": {}
+      },
+      "render_assertions": {
+        "spans": [
+          {
+            "text": "Plain heading",
+            "bold": false
+          },
+          {
+            "text": "regular span",
+            "bold": false
+          },
+          {
+            "text": "Default link",
+            "rgb": "0563C1"
+          },
+          {
+            "text": "Large item",
+            "size_pt": 20.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "authored-spacing",
+      "xml": "cases/authored-spacing.xml",
+      "css": "cases/authored-spacing.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "authored-spacing.xml": "8f693ff3a4f8724f8f535e54b9cd7112016154312ebbc0d210804c9a8d2823c9",
+        "authored-spacing.css.xml": "2de27a57edce421a0d45d6d3fec37d029028fe8f38f171e32e4198cfc4f0d643"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "h1",
+          "p",
+          "ul"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Heading"
+          }
+        ],
+        "lists": [
+          {
+            "kind": "ul",
+            "items": [
+              "First",
+              "Second"
+            ]
+          }
+        ],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "normalized_text_blocks": [
+          "Heading",
+          "Following",
+          "First",
+          "Second"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "h1",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "60pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "60pt"
+              }
+            ]
+          }
+        ],
+        "computed_styles": {}
+      },
+      "render_assertions": {
+        "vertical_gaps": [
+          {
+            "first": "Heading",
+            "second": "Following",
+            "minimum_pt": 70
+          },
+          {
+            "first": "First",
+            "second": "Second",
+            "minimum_pt": 65
+          }
+        ],
+        "paragraph_spacing": [
+          {
+            "text": "Heading",
+            "after_pt": 60
+          },
+          {
+            "text": "First",
+            "after_pt": 60
+          }
+        ]
+      }
+    },
+    {
+      "id": "exact-decimal-margin",
+      "xml": "cases/exact-decimal-margin.xml",
+      "css": "cases/exact-decimal-margin.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "exact-decimal-margin.xml": "35dfa0fe3cd6f1624482fb5b77806def6405d542a512f587b52159c0bb8fee1c",
+        "exact-decimal-margin.css.xml": "fb79a9bbba5066e0e27baf3c18937d925d36ecd7729119a33898af0c345fe9e8"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "normalized_text_blocks": [
+          "Exact margin"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "@page",
+            "sets": [
+              {
+                "name": "margin-left",
+                "value": "54.02499999999999999999999pt"
+              }
+            ]
+          }
+        ],
+        "computed_styles": {}
+      },
+      "render_assertions": {
+        "spans": [
+          {
+            "text": "Exact margin",
+            "x": 54.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "half-point-font",
+      "xml": "cases/half-point-font.xml",
+      "css": "cases/half-point-font.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "half-point-font.xml": "99ca0b10c3b8a5455614e5780ab3e9f70580fc6b0f3e3865178be467a875435d",
+        "half-point-font.css.xml": "eda061cf7618850bbab748c1c43ed5101c88e21cc92553bd522ad9e55c380dec"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "normalized_text_blocks": [
+          "Tiny text"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "1.25pt"
+              }
+            ]
+          }
+        ],
+        "computed_styles": {}
+      },
+      "render_assertions": {
+        "spans": [
+          {
+            "text": "Tiny text",
+            "size_pt": 1.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "reject-br-content",
+      "xml": "cases/reject-br-content.xml",
+      "css": "cases/reject-br-content.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-br-content.xml": "7ef83a29600adce33403361bb188caaf205494aaf73288d85b8ba8e28568b131",
+        "reject-br-content.css.xml": "527d0ebe6c8d692c5b50c77329b812632bd2859a3768873b189707872e30564c"
+      },
+      "expected": {},
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "html-doc"
+      }
+    },
+    {
+      "id": "reject-nested-link",
+      "xml": "cases/reject-nested-link.xml",
+      "css": "cases/reject-nested-link.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-nested-link.xml": "b62f3861e43fd365d786869b490314933de3e1a67da58077ac2883119f9fd092",
+        "reject-nested-link.css.xml": "527d0ebe6c8d692c5b50c77329b812632bd2859a3768873b189707872e30564c"
+      },
+      "expected": {},
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "html-doc"
+      }
+    },
+    {
+      "id": "reject-second-page-rule",
+      "xml": "cases/reject-second-page-rule.xml",
+      "css": "cases/reject-second-page-rule.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-second-page-rule.xml": "612ad76ca2762671598f15107dc6b13e70d75385ce5bcd17410b7034b643e3e6",
+        "reject-second-page-rule.css.xml": "881aeff535a9522fd31b0ddc40f4ac56e2a3a6e22a904d7b066bcbd22638c8ff"
+      },
+      "expected": {},
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "css-doc"
+      }
+    },
+    {
+      "id": "reject-encoded-link-control",
+      "xml": "cases/reject-encoded-link-control.xml",
+      "css": "cases/reject-encoded-link-control.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-encoded-link-control.xml": "2b9e197b0efc3dc4b8c8e57a02e7277271d85e42b84ad730721bafb7c3cb7390",
+        "reject-encoded-link-control.css.xml": "527d0ebe6c8d692c5b50c77329b812632bd2859a3768873b189707872e30564c"
+      },
+      "expected": {},
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "html-doc"
+      }
+    },
+    {
+      "id": "reject-image-zero-rounded",
+      "xml": "cases/reject-image-zero-rounded.xml",
+      "css": "cases/reject-image-zero-rounded.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-image-zero-rounded.xml": "34aa2eaecd4e5ea9aa56c4fccc59b78f0ca94261d9c8004d4a782ce8f5819547",
+        "reject-image-zero-rounded.css.xml": "527d0ebe6c8d692c5b50c77329b812632bd2859a3768873b189707872e30564c"
+      },
+      "expected": {},
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "doc"
+      }
+    },
+    {
+      "id": "reject-image-unrepresentable",
+      "xml": "cases/reject-image-unrepresentable.xml",
+      "css": "cases/reject-image-unrepresentable.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-image-unrepresentable.xml": "e9686fe17cfe8faccaa14d3fceac956c84ab80df80b3d34d104449b6a36ace9b",
+        "reject-image-unrepresentable.css.xml": "527d0ebe6c8d692c5b50c77329b812632bd2859a3768873b189707872e30564c"
+      },
+      "expected": {},
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "doc"
+      }
+    },
+    {
+      "id": "reject-unassigned-glyph",
+      "xml": "cases/reject-unassigned-glyph.xml",
+      "css": "cases/reject-unassigned-glyph.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-unassigned-glyph.xml": "b89d5d5c0a653a1cbdedb40f9ddc34decc126ee237adbffa7e986b20563b38f8",
+        "reject-unassigned-glyph.css.xml": "527d0ebe6c8d692c5b50c77329b812632bd2859a3768873b189707872e30564c"
+      },
+      "expected": {},
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "html-doc"
+      }
+    },
+    {
+      "id": "page-box-Letter",
+      "xml": "cases/page-box-Letter.xml",
+      "css": "cases/page-box-Letter.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "page-box-Letter.xml": "5537a2aaf15752494b8ab7a41aa802868d8b4c7320044460efe6a6f7694a349f",
+        "page-box-Letter.css.xml": "cd9c26a2cec0ff99c8401db63b6cabc0b495790db7d0a8d4578b7cede52e5ca0"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "normalized_text_blocks": [
+          "Page box"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "@page",
+            "sets": [
+              {
+                "name": "size",
+                "value": "Letter"
+              },
+              {
+                "name": "margin-left",
+                "value": "54pt"
+              }
+            ]
+          }
+        ],
+        "computed_styles": {
+          "@page": {
+            "size": "Letter",
+            "margin-left": "54pt"
+          }
+        }
+      },
+      "render_assertions": {
+        "page": {
+          "width_pt": 612,
+          "height_pt": 792
+        },
+        "spans": [
+          {
+            "text": "Page box",
+            "x": 54
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-box-A4",
+      "xml": "cases/page-box-A4.xml",
+      "css": "cases/page-box-A4.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "page-box-A4.xml": "5537a2aaf15752494b8ab7a41aa802868d8b4c7320044460efe6a6f7694a349f",
+        "page-box-A4.css.xml": "739324cc28646c16749997ebee6b22d1475c2ac17a7c45927aab448b752f4a54"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "normalized_text_blocks": [
+          "Page box"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "@page",
+            "sets": [
+              {
+                "name": "size",
+                "value": "A4"
+              },
+              {
+                "name": "margin-left",
+                "value": "20mm"
+              }
+            ]
+          }
+        ],
+        "computed_styles": {
+          "@page": {
+            "size": "A4",
+            "margin-left": "20mm"
+          }
+        }
+      },
+      "render_assertions": {
+        "page": {
+          "width_pt": 595.3,
+          "height_pt": 841.9
+        },
+        "spans": [
+          {
+            "text": "Page box",
+            "x": 56.7
+          }
+        ]
+      }
+    },
+    {
+      "id": "reject-font-format-minimum",
+      "xml": "cases/reject-font-format-minimum.xml",
+      "css": "cases/reject-font-format-minimum.css.xml",
+      "kind": "dry-negative",
+      "expected": {},
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "css-doc"
+      },
+      "input_sha256": {
+        "reject-font-format-minimum.xml": "cb20d5a12cec0b905a180c885bac8e06246dfbd42e99c7decebe7f185b711927",
+        "reject-font-format-minimum.css.xml": "be802ea1ac769716cb7d6a3c4a32efe2d4e7a936f19c5cb11f6ef58717c93cf8"
+      }
+    }
+  ],
+  "case_overrides": {
+    "page-box": {
+      "kind": "dry-negative",
+      "reason": "Historical lowercase letter is not the strict WP285 spelling. Preserve its frozen bytes/baseline; page-box-Letter below retains its physical geometry assertions.",
+      "controls": {
+        "expected_code": "RUN_HOST",
+        "expected_message": "css-doc"
+      }
+    }
+  }
+}

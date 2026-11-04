@@ -1,0 +1,2513 @@
+{
+  "format": "html-doc-conformance/1",
+  "home": "https://github.com/lmctl-ai/lmcode/tree/main/tests/html-doc-conformance",
+  "profiles": {
+    "html": "html-doc@1",
+    "css": "css-doc@1"
+  },
+  "profile_policy": "wp285-smallest-approved-subset; existing html-subset@1/css-subset@1 remain unchanged",
+  "host_releases": {
+    "lmpdf": "0.2.6",
+    "lmoffice": "0.1.31"
+  },
+  "frozen_legacy_profiles": {
+    "html-subset-1.json": "dbc290fcc619a4674da8f9f0cbe3f33752f5a41d675a5e5c1b30893194294ab9",
+    "css-subset-1.json": "6e176f167b229322006c12da986306d80053f9bc94c2e3f25ddc8b2204151579"
+  },
+  "assets": [
+    {
+      "path": "assets/chart.png",
+      "sha256": "a2af2b4216246cdccf986146adbcbd42a49a1e98d3f2c16e1d31ffae5dca73f1",
+      "media_type": "image/png",
+      "width_px": 320,
+      "height_px": 120
+    }
+  ],
+  "normalization": {
+    "ascii_whitespace": "collapse across all inline runs to one U+0020; trim paragraph edges and spaces at br; preserve NBSP U+00A0",
+    "lengths": "pt/mm only, exact decimal arithmetic, 1/20pt ties-away; font-size half-point ties-away",
+    "pagination": "automatic line/page/row breaks may differ; explicit page-break-before/after must preserve boundary"
+  },
+  "profile_subset": {
+    "roots": [
+      "article",
+      "div"
+    ],
+    "elements": [
+      "article",
+      "div",
+      "h1",
+      "h2",
+      "h3",
+      "p",
+      "span",
+      "strong",
+      "em",
+      "br",
+      "ul",
+      "ol",
+      "li",
+      "table",
+      "tr",
+      "th",
+      "td",
+      "img",
+      "a"
+    ],
+    "global_attributes": [
+      "id",
+      "class"
+    ],
+    "selectors": [
+      "*",
+      "tag",
+      ".class",
+      "#id"
+    ],
+    "css_properties": [
+      "font-family",
+      "font-size",
+      "font-weight",
+      "font-style",
+      "color",
+      "text-align",
+      "margin-top",
+      "margin-bottom",
+      "page-break-before",
+      "page-break-after"
+    ],
+    "units": [
+      "pt",
+      "mm"
+    ],
+    "table_policy": "flat rectangular grid; equal fixed columns; first all-th row repeats; no spans, colgroup, or separate thead/tbody",
+    "page_policy": "letter or A4; 54pt default margins; no orientation, custom size, running header/footer, page numbers, keep-together, RTL/CJK certification"
+  },
+  "default_styles": {
+    "@page": {
+      "size": "letter",
+      "orientation": "portrait",
+      "margin-top": "54pt",
+      "margin-right": "54pt",
+      "margin-bottom": "54pt",
+      "margin-left": "54pt"
+    },
+    "*": {
+      "font-family": "Calibri",
+      "font-size": "11pt",
+      "font-weight": "normal",
+      "font-style": "normal",
+      "color": "#000000",
+      "text-align": "left"
+    },
+    "h1": {
+      "font-size": "16pt",
+      "font-weight": "bold",
+      "margin-top": "12pt",
+      "margin-bottom": "6pt"
+    },
+    "h2": {
+      "font-size": "13pt",
+      "font-weight": "bold",
+      "margin-top": "12pt",
+      "margin-bottom": "6pt"
+    },
+    "h3": {
+      "font-size": "11pt",
+      "font-weight": "bold",
+      "margin-top": "12pt",
+      "margin-bottom": "6pt"
+    },
+    "p": {
+      "margin-top": "0pt",
+      "margin-bottom": "6pt"
+    },
+    "ul": {
+      "margin-top": "0pt",
+      "margin-bottom": "6pt"
+    },
+    "ol": {
+      "margin-top": "0pt",
+      "margin-bottom": "6pt"
+    },
+    "li": {
+      "margin-top": "0pt",
+      "margin-bottom": "6pt"
+    },
+    "table": {
+      "width": "100%",
+      "border": "0.5pt solid #000000",
+      "margin-bottom": "6pt"
+    },
+    "th": {
+      "font-weight": "bold",
+      "padding-top": "0.5pt",
+      "padding-right": "5.4pt",
+      "padding-bottom": "6pt",
+      "padding-left": "5.4pt",
+      "border": "0.5pt solid #000000"
+    },
+    "td": {
+      "padding-top": "0.5pt",
+      "padding-right": "5.4pt",
+      "padding-bottom": "6pt",
+      "padding-left": "5.4pt",
+      "border": "0.5pt solid #000000"
+    },
+    "strong": {
+      "font-weight": "bold"
+    },
+    "em": {
+      "font-style": "italic"
+    },
+    "a": {
+      "color": "#0563C1",
+      "text-decoration": "underline"
+    },
+    "img": {
+      "margin-top": "0pt",
+      "margin-bottom": "6pt"
+    }
+  },
+  "cases": [
+    {
+      "id": "letter",
+      "xml": "cases/letter.xml",
+      "css": "cases/letter.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "letter.xml": "a73d1ca2eb623d48fa1f7169794434df48b91ba0b7368ff6c10f3c1284c17ce6",
+        "letter.css.xml": "dbc2cfbf2bd4e52de2b4a9feee87a939b7a6b4cd8fe27fadd40d88c398f6ca8b"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p",
+          "p",
+          "p",
+          "h2",
+          "p",
+          "p",
+          "p",
+          "ul",
+          "p",
+          "p",
+          "p"
+        ],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Subject: Q4 Dedicated Freight Corridor Renewal (Ref: NWL-2026-Q4-089)"
+          }
+        ],
+        "lists": [
+          {
+            "kind": "ul",
+            "items": [
+              "Schedule A: Dedicated Lane Rate Card (Seattle to Detroit, Q1-Q4 2027)",
+              "Schedule B: Fuel Surcharge Index Cap and SLA Credit Matrix",
+              "Schedule C: Cold-Chain Telemetry Compliance Addendum"
+            ]
+          }
+        ],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {
+          "p.sender": {
+            "font-family": "Calibri",
+            "font-size": "11pt",
+            "text-align": "right",
+            "margin-bottom": "12pt",
+            "color": "#334155"
+          },
+          "h2#subject": {
+            "font-family": "Calibri",
+            "font-size": "12pt",
+            "font-weight": "bold",
+            "color": "#0F172A",
+            "text-align": "left",
+            "margin-top": "6pt",
+            "margin-bottom": "10pt"
+          }
+        },
+        "normalized_text_blocks": [
+          "Northwind Logistics, Inc.\n450 Harborview Boulevard, Suite 800\nSeattle, WA 98104",
+          "November 3, 2026",
+          "Ms. Elena Rostova, VP of Supply Chain\nContoso Manufacturing Corp.\n1200 Industrial Parkway\nDetroit, MI 48201",
+          "Subject: Q4 Dedicated Freight Corridor Renewal (Ref: NWL-2026-Q4-089)",
+          "Dear Ms. Rostova,",
+          "Thank you for partnering with Northwind Logistics, Inc. across the 2026 shipping cycle. During the past twelve months, our Pacific-Midwest intermodal corridor achieved a 99.4% on-time arrival rate across 1,420 dispatched loads while reducing per-pallet transit damage below 0.08%.",
+          "To lock in priority winter capacity before the November 18 scheduling freeze, please review and countersign the enclosed renewal package:",
+          "Schedule A: Dedicated Lane Rate Card (Seattle to Detroit, Q1-Q4 2027)",
+          "Schedule B: Fuel Surcharge Index Cap and SLA Credit Matrix",
+          "Schedule C: Cold-Chain Telemetry Compliance Addendum",
+          "Please return the signed schedules by November 15, 2026. Our operations desk remains at your disposal for any routing adjustments.",
+          "Sincerely,",
+          "Marcus Vance\nDirector of Enterprise Accounts, Northwind Logistics, Inc."
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#1F2937"
+              }
+            ]
+          },
+          {
+            "select": ".sender",
+            "sets": [
+              {
+                "name": "text-align",
+                "value": "right"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "12pt"
+              },
+              {
+                "name": "color",
+                "value": "#334155"
+              }
+            ]
+          },
+          {
+            "select": ".date",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "12pt"
+              }
+            ]
+          },
+          {
+            "select": ".recipient",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "14pt"
+              }
+            ]
+          },
+          {
+            "select": ".subject",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "12pt"
+              },
+              {
+                "name": "color",
+                "value": "#0F172A"
+              },
+              {
+                "name": "margin-top",
+                "value": "6pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "10pt"
+              }
+            ]
+          },
+          {
+            "select": ".salutation",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "8pt"
+              }
+            ]
+          },
+          {
+            "select": ".body",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "8pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "4pt"
+              }
+            ]
+          },
+          {
+            "select": ".closing",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "14pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "24pt"
+              }
+            ]
+          },
+          {
+            "select": ".sig",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "report-with-table-image",
+      "xml": "cases/report-with-table-image.xml",
+      "css": "cases/report-with-table-image.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "report-with-table-image.xml": "bbac1cba3d434832e0a98bd925c64801cccfd06d905dc64c6565f5a3f1a4e8be",
+        "report-with-table-image.css.xml": "784f07e928720aa71ddb350582506732604816d491f078fa246bd7805912959a"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "h1",
+          "p",
+          "h2",
+          "p",
+          "ul",
+          "h2",
+          "p",
+          "img",
+          "h2",
+          "p",
+          "table",
+          "h3",
+          "p"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Platform Reliability & Capacity Report (Q4 2026)"
+          },
+          {
+            "level": 2,
+            "text": "1. Executive Summary"
+          },
+          {
+            "level": 2,
+            "text": "2. Throughput & Tail-Latency Telemetry"
+          },
+          {
+            "level": 2,
+            "text": "3. Regional SLA & Latency Breakdown"
+          },
+          {
+            "level": 3,
+            "text": "3.1 Capacity Recommendation"
+          }
+        ],
+        "lists": [
+          {
+            "kind": "ul",
+            "items": [
+              "Zero P1 incidents: Automated canary rollback intercepted 3 faulty configuration pushes under 45 seconds.",
+              "Database read-replica tail latency: P99 decreased from 14.2 ms to 8.7 ms after NVMe queue tuning.",
+              "Headroom verification: All three primary regions sustained N+1 zone loss at 130% synthetic load."
+            ]
+          }
+        ],
+        "tables": [
+          {
+            "rows": 4,
+            "columns": 5,
+            "header_rows": [
+              0
+            ],
+            "repeat_header": true,
+            "cells": [
+              [
+                "Region",
+                "Availability",
+                "P99 Latency",
+                "Peak RPS",
+                "Headroom"
+              ],
+              [
+                "us-east-1 (Virginia)",
+                "99.986%",
+                "8.4 ms",
+                "184,200",
+                "42%"
+              ],
+              [
+                "eu-central-1 (Frankfurt)",
+                "99.979%",
+                "9.1 ms",
+                "138,500",
+                "38%"
+              ],
+              [
+                "ap-northeast-1 (Tokyo)",
+                "99.981%",
+                "8.6 ms",
+                "89,300",
+                "47%"
+              ]
+            ],
+            "cell_alignments": [
+              [
+                "left",
+                "right",
+                "right",
+                "right",
+                "right"
+              ],
+              [
+                "left",
+                "right",
+                "right",
+                "right",
+                "right"
+              ],
+              [
+                "left",
+                "right",
+                "right",
+                "right",
+                "right"
+              ],
+              [
+                "left",
+                "right",
+                "right",
+                "right",
+                "right"
+              ]
+            ]
+          }
+        ],
+        "images": [
+          {
+            "src": "assets/chart.png",
+            "alt": "Cluster saturation chart",
+            "width": "270pt",
+            "height": "72pt"
+          }
+        ],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {
+          "h1#title": {
+            "font-family": "Calibri",
+            "font-size": "18pt",
+            "font-weight": "bold",
+            "color": "#0F172A"
+          }
+        },
+        "normalized_text_blocks": [
+          "Platform Reliability & Capacity Report (Q4 2026)",
+          "Prepared by Core Infrastructure Engineering — November 3, 2026",
+          "1. Executive Summary",
+          "Across Q4 2026, global API availability reached 99.982%, exceeding the 99.95% quarterly objective. Peak ingress traffic grew 18.4% quarter-over-quarter to 412,000 requests per second during the October regional failover drill with zero customer-visible packet loss.",
+          "Zero P1 incidents: Automated canary rollback intercepted 3 faulty configuration pushes under 45 seconds.",
+          "Database read-replica tail latency: P99 decreased from 14.2 ms to 8.7 ms after NVMe queue tuning.",
+          "Headroom verification: All three primary regions sustained N+1 zone loss at 130% synthetic load.",
+          "2. Throughput & Tail-Latency Telemetry",
+          "Figure 1: Normalized cluster saturation banner (320×120 px deterministic PNG sample).",
+          "3. Regional SLA & Latency Breakdown",
+          "The table below summarizes availability, P99 latency, and provisioned compute headroom across all active production regions for Q4 2026:",
+          "Region",
+          "Availability",
+          "P99 Latency",
+          "Peak RPS",
+          "Headroom",
+          "us-east-1 (Virginia)",
+          "99.986%",
+          "8.4 ms",
+          "184,200",
+          "42%",
+          "eu-central-1 (Frankfurt)",
+          "99.979%",
+          "9.1 ms",
+          "138,500",
+          "38%",
+          "ap-northeast-1 (Tokyo)",
+          "99.981%",
+          "8.6 ms",
+          "89,300",
+          "47%",
+          "3.1 Capacity Recommendation",
+          "Provision 12 additional storage nodes in eu-central-1 prior to December 1 to raise buffer capacity above the 40% threshold ahead of year-end settlement batch workloads."
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#1E293B"
+              }
+            ]
+          },
+          {
+            "select": "h1",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "18pt"
+              },
+              {
+                "name": "color",
+                "value": "#0F172A"
+              },
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "4pt"
+              }
+            ]
+          },
+          {
+            "select": ".subtitle",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "10pt"
+              },
+              {
+                "name": "font-style",
+                "value": "italic"
+              },
+              {
+                "name": "color",
+                "value": "#475569"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "12pt"
+              }
+            ]
+          },
+          {
+            "select": "h2",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "13pt"
+              },
+              {
+                "name": "color",
+                "value": "#1D4ED8"
+              },
+              {
+                "name": "margin-top",
+                "value": "10pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "h3",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#0F172A"
+              },
+              {
+                "name": "margin-top",
+                "value": "10pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "4pt"
+              }
+            ]
+          },
+          {
+            "select": ".body",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "8pt"
+              }
+            ]
+          },
+          {
+            "select": ".caption",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "10pt"
+              },
+              {
+                "name": "font-style",
+                "value": "italic"
+              },
+              {
+                "name": "color",
+                "value": "#475569"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "4pt"
+              }
+            ]
+          },
+          {
+            "select": ".num",
+            "sets": [
+              {
+                "name": "text-align",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "invoice",
+      "xml": "cases/invoice.xml",
+      "css": "cases/invoice.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "invoice.xml": "a507f294452b9de2755e52c9402094f78cf18ca6cda2365485a89d6c7f5ca855",
+        "invoice.css.xml": "318d4ed06f83a9499b605ace0413d07948f29d59e5e4609997282618d87598bc"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "h1",
+          "p",
+          "table",
+          "h2",
+          "p",
+          "h2",
+          "table",
+          "p"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "INVOICE"
+          },
+          {
+            "level": 2,
+            "text": "Bill To"
+          },
+          {
+            "level": 2,
+            "text": "Line Items & Summary"
+          }
+        ],
+        "lists": [],
+        "tables": [
+          {
+            "rows": 2,
+            "columns": 4,
+            "header_rows": [
+              0
+            ],
+            "repeat_header": true,
+            "cells": [
+              [
+                "Invoice Number",
+                "Issue Date",
+                "Payment Terms",
+                "Due Date"
+              ],
+              [
+                "INV-2026-1104",
+                "November 3, 2026",
+                "Net 30",
+                "December 3, 2026"
+              ]
+            ]
+          },
+          {
+            "rows": 8,
+            "columns": 5,
+            "header_rows": [
+              0
+            ],
+            "repeat_header": true,
+            "first_row": [
+              "SKU",
+              "Description",
+              "Qty",
+              "Unit Price",
+              "Amount (USD)"
+            ],
+            "last_row": [
+              "",
+              "",
+              "",
+              "Total Due (USD)",
+              "$11,130.00"
+            ],
+            "cell_text_sha256": "e52ad8aa039517d6c368f2a1b6acd92bb7507854b38abb19934cb08c2df6004a"
+          }
+        ],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {
+          "h1#inv-title": {
+            "font-family": "Calibri",
+            "font-size": "20pt",
+            "font-weight": "bold",
+            "color": "#0F172A"
+          },
+          "p.vendor": {
+            "font-family": "Calibri",
+            "font-size": "9.5pt",
+            "color": "#475569",
+            "margin-bottom": "12pt"
+          }
+        },
+        "normalized_text_blocks": [
+          "INVOICE",
+          "Apex Cloud Systems, Inc. — 700 Market Street, Floor 14, San Francisco, CA 94103 — Tax ID: 94-3819204",
+          "Invoice Number",
+          "Issue Date",
+          "Payment Terms",
+          "Due Date",
+          "INV-2026-1104",
+          "November 3, 2026",
+          "Net 30",
+          "December 3, 2026",
+          "Bill To",
+          "Meridian Health Group\nAttn: Accounts Payable (AP-East)\n2900 Peachtree Road NW, Suite 500\nAtlanta, GA 30305",
+          "Line Items & Summary",
+          "SKU",
+          "Description",
+          "Qty",
+          "Unit Price",
+          "Amount (USD)",
+          "ACS-K8S-ENT",
+          "Managed Kubernetes Control Plane (3 Clusters, Nov 2026)",
+          "3",
+          "$1,450.00",
+          "$4,350.00",
+          "ACS-NVME-10T",
+          "Replicated High-IOPS Block Storage (10 TB Block Tier)",
+          "4",
+          "$620.00",
+          "$2,480.00",
+          "ACS-EGRESS-TB",
+          "Dedicated Direct-Connect Transit Commit (50 TB Bundle)",
+          "1",
+          "$1,800.00",
+          "$1,800.00",
+          "ACS-TAM-RET",
+          "Designated Technical Account Manager Retainer (Monthly)",
+          "1",
+          "$2,500.00",
+          "$2,500.00",
+          "",
+          "",
+          "",
+          "Subtotal",
+          "$11,130.00",
+          "",
+          "",
+          "",
+          "CA/GA Enterprise Software Tax (0.00% Exempt)",
+          "$0.00",
+          "",
+          "",
+          "",
+          "Total Due (USD)",
+          "$11,130.00",
+          "Remittance Instructions: Wire ACH to Silicon Valley Commercial Bank, Routing 121140399, Account 8804192031, referencing invoice INV-2026-1104. Late balances accrue 1.5% monthly after December 3, 2026."
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#1E293B"
+              }
+            ]
+          },
+          {
+            "select": "h1",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "20pt"
+              },
+              {
+                "name": "color",
+                "value": "#0F172A"
+              },
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "2pt"
+              }
+            ]
+          },
+          {
+            "select": ".vendor",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "9.5pt"
+              },
+              {
+                "name": "color",
+                "value": "#475569"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "12pt"
+              }
+            ]
+          },
+          {
+            "select": "h2",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "12pt"
+              },
+              {
+                "name": "color",
+                "value": "#0F172A"
+              },
+              {
+                "name": "margin-top",
+                "value": "12pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": ".bill-to",
+            "sets": [
+              {
+                "name": "margin-bottom",
+                "value": "10pt"
+              }
+            ]
+          },
+          {
+            "select": ".num",
+            "sets": [
+              {
+                "name": "text-align",
+                "value": "right"
+              }
+            ]
+          },
+          {
+            "select": ".remit",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "9.5pt"
+              },
+              {
+                "name": "color",
+                "value": "#334155"
+              },
+              {
+                "name": "margin-top",
+                "value": "14pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "whitespace-run-boundary",
+      "xml": "cases/whitespace-run-boundary.xml",
+      "css": "cases/whitespace-run-boundary.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "whitespace-run-boundary.xml": "d04170bb7af7fbacf2be70ffe26c06253d56e1d9d0c7c3291c85703d7a85526b",
+        "whitespace-run-boundary.css.xml": "f8a2c7be894e398f25823b7e6c34a8f740a0d8b8f43150d38a50e1ac5471db4d"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p",
+          "p",
+          "p",
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {
+          "p[1]": {
+            "font-family": "Calibri",
+            "font-size": "11pt",
+            "color": "#000000"
+          }
+        },
+        "normalized_text_blocks": [
+          "Normal bold and italic.",
+          "A B C; A B",
+          "Line one\nLine two",
+          "NBSP A B stays."
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": ".accent",
+            "sets": [
+              {
+                "name": "color",
+                "value": "#185A80"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "empty-paragraph",
+      "xml": "cases/empty-paragraph.xml",
+      "css": "cases/empty-paragraph.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "empty-paragraph.xml": "493c8ca7c3ca5d1e8d5e1de1d5892f5330c79633243fb921a29e7cd72aa25a49",
+        "empty-paragraph.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p",
+          "p",
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 1,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "Before",
+          "",
+          "After"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "independent-list-restart",
+      "xml": "cases/independent-list-restart.xml",
+      "css": "cases/independent-list-restart.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "independent-list-restart.xml": "88e01ba26b4a7dd10995e549e9572ffdf791178bec34c3f9e7a723d08aa6934c",
+        "independent-list-restart.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "ol",
+          "p",
+          "ol"
+        ],
+        "headings": [],
+        "lists": [
+          {
+            "kind": "ol",
+            "items": [
+              "One",
+              "Two"
+            ],
+            "starts_at": 1
+          },
+          {
+            "kind": "ol",
+            "items": [
+              "One again",
+              "Two again"
+            ],
+            "starts_at": 1
+          }
+        ],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "One",
+          "Two",
+          "Next sequence",
+          "One again",
+          "Two again"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "adjacent-different-lists",
+      "xml": "cases/adjacent-different-lists.xml",
+      "css": "cases/adjacent-different-lists.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "adjacent-different-lists.xml": "3e0a971cd4334415fc285af1840639db1ce5aab3fba0a05191530dc8eed598f7",
+        "adjacent-different-lists.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "ul",
+          "ol"
+        ],
+        "headings": [],
+        "lists": [
+          {
+            "kind": "ul",
+            "items": [
+              "Bullet"
+            ]
+          },
+          {
+            "kind": "ol",
+            "items": [
+              "Numbered"
+            ],
+            "starts_at": 1
+          }
+        ],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "Bullet",
+          "Numbered"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "styled-headings",
+      "xml": "cases/styled-headings.xml",
+      "css": "cases/styled-headings.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "styled-headings.xml": "7aa4c710f44d3dc251bdcfdb9a3881d3a19f5c12620b8dc71e218195ca145a3a",
+        "styled-headings.css.xml": "6324e19f3ecf65baac8ebb336b14864f474ee8e930749e709faf3cdc25a6ad45"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "h1",
+          "h2",
+          "h3"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Primary heading"
+          },
+          {
+            "level": 2,
+            "text": "Secondary heading"
+          },
+          {
+            "level": 3,
+            "text": "Third heading"
+          }
+        ],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {
+          "h1#hero": {
+            "font-family": "Calibri",
+            "font-size": "24pt",
+            "font-weight": "bold",
+            "color": "#123456",
+            "text-align": "center"
+          },
+          "h2[0]": {
+            "font-family": "Calibri",
+            "font-size": "14pt",
+            "font-weight": "bold",
+            "font-style": "italic"
+          },
+          "h3[0]": {
+            "font-family": "Calibri",
+            "font-size": "11pt",
+            "font-weight": "bold",
+            "color": "#654321"
+          }
+        },
+        "normalized_text_blocks": [
+          "Primary heading",
+          "Secondary heading",
+          "Third heading"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "#hero",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "24pt"
+              },
+              {
+                "name": "color",
+                "value": "#123456"
+              },
+              {
+                "name": "text-align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "select": "h2",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "14pt"
+              },
+              {
+                "name": "font-style",
+                "value": "italic"
+              }
+            ]
+          },
+          {
+            "select": "h3",
+            "sets": [
+              {
+                "name": "color",
+                "value": "#654321"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "column-alignment",
+      "xml": "cases/column-alignment.xml",
+      "css": "cases/column-alignment.css.xml",
+      "kind": "cross-host-red",
+      "input_sha256": {
+        "column-alignment.xml": "bce031b6f9013407bfce8519f5e632a99bbbf3417dec0a0d46167c967506f7d1",
+        "column-alignment.css.xml": "edaea40156178cba13e1024c34ff4422cb37fc783fab0495c41881ee7bcd0c10"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "table"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [
+          {
+            "rows": 2,
+            "columns": 2,
+            "header_rows": [
+              0
+            ],
+            "repeat_header": true,
+            "cells": [
+              [
+                "Item",
+                "Amount"
+              ],
+              [
+                "Sample",
+                "10.00"
+              ]
+            ],
+            "cell_alignments": [
+              [
+                "left",
+                "center"
+              ],
+              [
+                "left",
+                "right"
+              ]
+            ]
+          }
+        ],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "Item",
+          "Amount",
+          "Sample",
+          "10.00"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": ".head",
+            "sets": [
+              {
+                "name": "text-align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "select": ".num",
+            "sets": [
+              {
+                "name": "text-align",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "long-table",
+      "xml": "cases/long-table.xml",
+      "css": "cases/long-table.css.xml",
+      "kind": "render",
+      "input_sha256": {
+        "long-table.xml": "ef4c1379edb752e54d2d05964e0a1745115d096d33820fd7c4505815a55138b2",
+        "long-table.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "h1",
+          "table"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Long table"
+          }
+        ],
+        "lists": [],
+        "tables": [
+          {
+            "rows": 101,
+            "columns": 2,
+            "header_rows": [
+              0
+            ],
+            "repeat_header": true,
+            "first_row": [
+              "Item",
+              "Value"
+            ],
+            "last_row": [
+              "ROW-099",
+              "value"
+            ],
+            "cell_text_sha256": "5b741cd547ce5b3bf5c8232393551025486b8640e9cb8a77a25a8dd0488a6049"
+          }
+        ],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_sha256": "de508c723700cb07587c14f4f81c2831ef4ef6d5ca82027ceb7e95267f18d883",
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-box",
+      "xml": "cases/page-box.xml",
+      "css": "cases/page-box.css.xml",
+      "kind": "cross-host-red",
+      "input_sha256": {
+        "page-box.xml": "5537a2aaf15752494b8ab7a41aa802868d8b4c7320044460efe6a6f7694a349f",
+        "page-box.css.xml": "4eaba7171287d793205be92814cd21064a0ff2f57341ed5d4329e3542a57bf7c"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {
+          "@page": {
+            "size": "letter",
+            "margin-top": "54pt",
+            "margin-right": "54pt",
+            "margin-bottom": "54pt",
+            "margin-left": "54pt"
+          }
+        },
+        "normalized_text_blocks": [
+          "Page box"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "@page",
+            "sets": [
+              {
+                "name": "size",
+                "value": "letter"
+              },
+              {
+                "name": "margin-top",
+                "value": "54pt"
+              },
+              {
+                "name": "margin-right",
+                "value": "54pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "54pt"
+              },
+              {
+                "name": "margin-left",
+                "value": "54pt"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-break",
+      "xml": "cases/page-break.xml",
+      "css": "cases/page-break.css.xml",
+      "kind": "cross-host-red",
+      "input_sha256": {
+        "page-break.xml": "887cd0d6e7cf1d8b7ad396d70cb07aa9d8746f0cf59317e319edbc2b03fe2652",
+        "page-break.css.xml": "ac3a7a4ff26109f0204ecd2ad405f2df39310886fc6348c2510c3859d157a29c"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p",
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {
+          "p.next": {
+            "font-family": "Calibri",
+            "font-size": "11pt",
+            "page-break-before": "always"
+          }
+        },
+        "normalized_text_blocks": [
+          "Page one",
+          "Page two"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": ".next",
+            "sets": [
+              {
+                "name": "page-break-before",
+                "value": "always"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "link",
+      "xml": "cases/link.xml",
+      "css": "cases/link.css.xml",
+      "kind": "cross-host-red",
+      "input_sha256": {
+        "link.xml": "304737016fbe07853366732916f33bb1432a14413b675aaeb29ab78a7c0795f2",
+        "link.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [
+          "p"
+        ],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [
+          {
+            "href": "https://example.invalid/reference",
+            "text": "Reference"
+          }
+        ],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "Reference"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "reject-unknown-element",
+      "xml": "cases/reject-unknown-element.xml",
+      "css": "cases/reject-unknown-element.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-unknown-element.xml": "41e5bc860dffd9f50819956deeb5af37d55764f20ddc61f7ebce3d59aaab9b13",
+        "reject-unknown-element.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      },
+      "controls": {
+        "category": "element",
+        "expected_message": "unsupported element <script>"
+      }
+    },
+    {
+      "id": "reject-unknown-attribute",
+      "xml": "cases/reject-unknown-attribute.xml",
+      "css": "cases/reject-unknown-attribute.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-unknown-attribute.xml": "2323c59e33669369d2232f7b05d28a9946a8eab9898d0dd72578c026ee4df8fb",
+        "reject-unknown-attribute.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "x"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      },
+      "controls": {
+        "category": "element",
+        "expected_message": "unsupported attribute 'onclick'"
+      }
+    },
+    {
+      "id": "reject-bad-nesting",
+      "xml": "cases/reject-bad-nesting.xml",
+      "css": "cases/reject-bad-nesting.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-bad-nesting.xml": "ed2b302bc1910bcb495e197b717244bcb660958d53220cf96951d23348f73b78",
+        "reject-bad-nesting.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      },
+      "controls": {
+        "category": "element",
+        "expected_message": "not allowed in <ul>"
+      }
+    },
+    {
+      "id": "reject-ragged-table",
+      "xml": "cases/reject-ragged-table.xml",
+      "css": "cases/reject-ragged-table.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-ragged-table.xml": "74cf51465a580330a1531ee116859c9841060338a51bf90af1fb0af1eac11d12",
+        "reject-ragged-table.css.xml": "7277ad8af4459b5697fdbf5a7be9f5b67b411768237f5ed541023570f3df1fb3"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "A",
+          "B",
+          "C"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          }
+        ]
+      },
+      "controls": {
+        "category": "element",
+        "expected_message": "same nonzero"
+      }
+    },
+    {
+      "id": "reject-bad-css",
+      "xml": "cases/reject-bad-css.xml",
+      "css": "cases/reject-bad-css.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-bad-css.xml": "9c077663c55e21083b6616cfea61727cb9f9803b35e6c180ac604f81a0b9e235",
+        "reject-bad-css.css.xml": "a57bf64bb1c46bac5b5a0ad7450e018606f12c7a1a8bab71a894752fec279e45"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "x"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "position",
+                "value": "fixed"
+              }
+            ]
+          }
+        ]
+      },
+      "controls": {
+        "category": "css",
+        "expected_message": "unsupported"
+      }
+    },
+    {
+      "id": "reject-px-unit",
+      "xml": "cases/reject-px-unit.xml",
+      "css": "cases/reject-px-unit.css.xml",
+      "kind": "dry-negative",
+      "input_sha256": {
+        "reject-px-unit.xml": "9c077663c55e21083b6616cfea61727cb9f9803b35e6c180ac604f81a0b9e235",
+        "reject-px-unit.css.xml": "808853f88bbe82e4cf3b7b7bc715b40d0dac015b130b2fd02c75211232687c9c"
+      },
+      "expected": {
+        "root": "article",
+        "blocks": [],
+        "headings": [],
+        "lists": [],
+        "tables": [],
+        "images": [],
+        "links": [],
+        "empty_paragraphs": 0,
+        "computed_styles": {},
+        "normalized_text_blocks": [
+          "x"
+        ],
+        "author_stylesheet": [
+          {
+            "select": "article",
+            "sets": [
+              {
+                "name": "font-family",
+                "value": "Calibri"
+              },
+              {
+                "name": "font-size",
+                "value": "11pt"
+              },
+              {
+                "name": "color",
+                "value": "#000000"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "li",
+            "sets": [
+              {
+                "name": "margin-top",
+                "value": "0pt"
+              },
+              {
+                "name": "margin-bottom",
+                "value": "6pt"
+              }
+            ]
+          },
+          {
+            "select": "p",
+            "sets": [
+              {
+                "name": "font-size",
+                "value": "12px"
+              }
+            ]
+          }
+        ]
+      },
+      "controls": {
+        "category": "css",
+        "expected_message": "unit"
+      }
+    }
+  ],
+  "compiler_controls": [
+    {
+      "id": "unmatched-profile",
+      "file": "controls/unmatched-profile.lms",
+      "expected_exit": 2,
+      "expected_diagnostic": "unknown XML profile \"html-doc@2\"",
+      "line": 2,
+      "column": 1
+    }
+  ]
+}

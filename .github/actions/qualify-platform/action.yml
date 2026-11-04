@@ -1,0 +1,94 @@
+name: Qualify one lmoffice release platform
+description: Install and exercise the exact sealed public draft asset
+inputs:
+  artifact:
+    description: Candidate artifact uploaded by the public candidate job
+    required: true
+  asset:
+    description: Exact platform executable in the candidate
+    required: true
+  name:
+    description: Platform label for the step summary
+    required: true
+  python:
+    description: Python executable name for this runner
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 24
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.artifact }}
+        path: draft-assets
+    - name: Install the lmscript compiler in a runner-local prefix
+      shell: bash
+      run: |
+        set -euo pipefail
+        npm install --prefix "$RUNNER_TEMP/compiler" --no-save --package-lock=false @lmctl-ai/lmctl@0.2.458
+        compiler="$RUNNER_TEMP/compiler/node_modules/.bin/lmscript"
+        if [ "$RUNNER_OS" = Windows ]; then compiler="$compiler.cmd"; fi
+        echo "LMSCRIPT_BIN=$compiler" >> "$GITHUB_ENV"
+        echo "$RUNNER_TEMP/compiler/node_modules/.bin" >> "$GITHUB_PATH"
+    - name: Create isolated Python test environment
+      shell: bash
+      env:
+        PYTHON: ${{ inputs.python }}
+      run: |
+        "$PYTHON" -m venv .test-venv
+        if [ "$RUNNER_OS" = Windows ]; then py="$PWD/.test-venv/Scripts/python.exe"; else py="$PWD/.test-venv/bin/python"; fi
+        "$py" -m pip install python-docx==1.2.0 openpyxl==3.1.5 python-pptx==1.0.2
+        echo "LMOFFICE_TEST_PYTHON=$py" >> "$GITHUB_ENV"
+    - name: Install the exact draft binary through lmscript
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+        DRAFT_TAG: ${{ github.event.client_payload.tag }}
+        DRAFT_ASSET: ${{ inputs.asset }}
+      run: |
+        set -euo pipefail
+        python3 scripts/install-draft-host.py \
+          --compiler "$LMSCRIPT_BIN" \
+          --tag "$DRAFT_TAG" \
+          --asset "$DRAFT_ASSET" \
+          --candidate draft-assets
+    - name: Match temporary suite version to candidate manifest
+      shell: bash
+      run: |
+        "$LMOFFICE_TEST_PYTHON" -c 'import json,pathlib; pathlib.Path("VERSION").write_text(json.load(open("draft-assets/RELEASE-MANIFEST.json"))["version"]+chr(10))'
+    - name: Run the 536-check host integration suite against the installed candidate
+      shell: bash
+      run: |
+        "$LMOFFICE_TEST_PYTHON" tests/integration.py
+    - name: Run the pinned html-doc corpus against the installed candidate
+      shell: bash
+      env:
+        EVIDENCE_DIR: ${{ runner.temp }}/lmoffice-html-doc-evidence
+      run: |
+        "$LMOFFICE_TEST_PYTHON" tests/html-doc-conformance/run_lmoffice.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --evidence "$EVIDENCE_DIR"
+    - name: Check the public gallery scripts on this platform
+      shell: bash
+      run: |
+        "$LMOFFICE_TEST_PYTHON" tests/check-lmscript-examples.py "$LMSCRIPT_BIN"
+    - name: Run a representative user-facing sample against the installed candidate
+      shell: bash
+      env:
+        SAMPLE_DIR: ${{ runner.temp }}/lmoffice-public-sample
+      run: |
+        "$LMOFFICE_TEST_PYTHON" tests/run-release-sample.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --workdir "$SAMPLE_DIR"
+    - name: Summarize platform qualification
+      if: always()
+      shell: bash
+      env:
+        DRAFT_TAG: ${{ github.event.client_payload.tag }}
+        PLATFORM_NAME: ${{ inputs.name }}
+      run: |
+        echo "## $PLATFORM_NAME candidate qualification" >> "$GITHUB_STEP_SUMMARY"
+        echo "Tag: $DRAFT_TAG" >> "$GITHUB_STEP_SUMMARY"
+        echo "Result: ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"

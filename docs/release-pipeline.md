@@ -53,6 +53,8 @@ gh run list --repo lmctlhq/lmoffice --workflow ci.yml --limit 5
 gh run view PRIVATE_RUN --repo lmctlhq/lmoffice
 gh run list --repo lmctl-ai/lmoffice --workflow qualify-private-draft.yml --limit 10
 gh run view PUBLIC_RUN --repo lmctl-ai/lmoffice
+gh run list --repo lmctl-ai/lmoffice --workflow qualify-platforms.yml --limit 10
+gh run view WORKER_RUN --repo lmctl-ai/lmoffice
 gh release list --repo lmctl-ai/lmoffice --limit 10
 ```
 
@@ -85,7 +87,7 @@ Every always()-based writer predicate also requires !cancelled(). Before the mut
 
 The candidate version is the committed VERSION floor plus that workflow's run number in PATCH. Keep the floor nondecreasing and preserve the workflow counter. Freshness is additionally checked against the live published Latest, so a lowered floor, out-of-order completion or stale retry cannot silently move Latest backward. A same-version conflicting seal is refused.
 
-Rollback is a revocation operation FIRST. Do not merely make a bad release a draft: a delayed old event could otherwise republish it.
+Rollback is a revocation operation FIRST. Pause manual dispatch/redrive, cancel any active broker for the bad tag with `gh run cancel PUBLIC_RUN --repo lmctl-ai/lmoffice`, and wait for it to reach a terminal state. Then record revocation before changing release visibility/Latest. Cancellation alone is not durable revocation. Do not merely make a bad mutable release a draft: a delayed old event could otherwise republish it.
 
 1. Record the bad tag, known-good tag, checksum and run URLs. Append `BAD_TAG reason-and-incident-link` to the public repo's `REVOKED` file, commit/push normally to main, and verify the append landed. Never remove old entries. Publication checks this file live before fetching and immediately before mutation.
 2. Mark the bad immutable release as a prerelease and move Latest to an already-published known-good release, with operator approval:
@@ -94,6 +96,8 @@ Rollback is a revocation operation FIRST. Do not merely make a bad release a dra
    gh release edit BAD_TAG --repo lmctl-ai/lmoffice --prerelease --latest=false
    gh release edit GOOD_TAG --repo lmctl-ai/lmoffice --latest
    ```
+
+Marking a release as prerelease and moving Latest does not withdraw its existing downloads; pinned consumers can still request it. Revocation protects this pipeline, not arbitrary download clients.
 
 3. If a release object must be removed, `gh release delete BAD_TAG --repo lmctl-ai/lmoffice --yes` intentionally omits --cleanup-tag. GitHub immutability has tag-name reuse restrictions: do not reuse that tag. Dispatch a NEW corrected private candidate and update downstream pins. Already-installed copies and caches do not roll back automatically.
 
@@ -109,6 +113,20 @@ The private side still pays for five NativeAOT builds; public standard-runner in
 
 This pilot publishes GitHub assets/Latest only. npm latest needs its own tested immutable-byte/provenance gate; it is not implemented by copying these workflows.
 
+## Verified wp313 pilot
+
+- Production private run [41908553795](https://github.com/lmctlhq/lmoffice/actions/runs/41908553795), private source `26148477459b34c8f881e2c1af55add9bee0bf58`, created **v0.1.60**. Trusted writer [41909373642](https://github.com/lmctl-ai/lmoffice/actions/runs/41909373642) and read-only native worker [41909474545](https://github.com/lmctl-ai/lmoffice/actions/runs/41909474545) succeeded. All five platforms ran 536 integration checks, 47 profile controls, 90 gallery checks and the representative sample. Native jobs had no contents-write permission.
+- The published release is immutable and Latest. Independent download verified all 11 API digests, all signed frozen asset IDs and the private provenance bundle; the Linux executable reports `lmoffice 0.1.60`. Frozen seal SHA-256: `b5b135cd54048b1fceea3183a9dc927d741a45cfca5a26679c0919bb8cff1743`.
+- Throwaway **v0.1.59** used original private run [41902128327](https://github.com/lmctlhq/lmoffice/actions/runs/41902128327). Writer [41907021916](https://github.com/lmctl-ai/lmoffice/actions/runs/41907021916) and worker [41907126745](https://github.com/lmctl-ai/lmoffice/actions/runs/41907126745) passed every native lane, failed the sealed deliberate test, then recorded REVOKED/replay identity and deleted only the draft object. No v0.1.59 tag ref existed; Latest stayed v0.1.58 until production succeeded. Publisher-only retries reused the same frozen IDs/signature after the read-only-download and artifact-layout corrections.
+- Stale [v0.1.58 replay 41912515207](https://github.com/lmctl-ai/lmoffice/actions/runs/41912515207) was refused as older than Latest. Revoked [v0.1.59 replay 41912521025](https://github.com/lmctl-ai/lmoffice/actions/runs/41912521025) was refused before asset download. Latest remained the same immutable v0.1.60 object.
+- Committed local/CI gate: **33 offline tests and 18 caught mutations**. Original-manager controls fail on actual PATCH/DELETE, not missing imports. The first live read-only draft fetch failed closed, proving why the sole trusted writer must broker assets; the first cross-run download failed closed until single-artifact flattening was explicit. Neither attempt published anything.
+- Measured production private work: nine jobs, 821 summed runner-seconds, 19 per-job-rounded minutes; the existing publisher including API checks/sealing/signing took 45 seconds. At the referenced runner rates the marginal estimate is ~$0.46 before included allowances; actual invoice unverified. There is no added private native matrix/job or long-lived secret. Public broker/worker standard-runner compute is free.
+
+## Primary references- [Private artifact attestations require Enterprise Cloud](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations).
+- [Bundled/offline verification and private Sigstore roots](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/verify-attestations-offline); [gh verification flags and certificate-versus-predicate distinction](https://cli.github.com/manual/gh_attestation_verify).
+- [Actual concurrency/pending queue behavior](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
+- [Immutable release protections and tag reuse restrictions](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).
+
 ## Exact porting checklist for wp312 copies (lmpdf and lmvideo)
 
 Apply this file-by-file; preserve each host's actual native/platform/test requirements. Do not copy private host implementation into a public repo.
@@ -122,16 +140,9 @@ Apply this file-by-file; preserve each host's actual native/platform/test requir
 - PUBLIC `scripts/check-local-candidate.py` and `install-draft-host.py`: validate the trusted checksum identity, stage exact PATH bytes and strip GitHub/OIDC credentials from candidate subprocesses. Never put GH_TOKEN in candidate-executing steps.
 - PUBLIC `scripts/manage-qualified-draft.py`: recheck attestation, live revocation/Latest and ALL frozen IDs/digests; publish non-Latest, require immutable tested identities, then set Latest. Only sealed throwaways can be revoked/cleaned. Record replay identity/outcome in `release-state.json`; append revocations in `REVOKED` before destructive cleanup.
 - PUBLIC `.github/workflows/qualify-private-draft.yml`: add the offline gate and the single trusted writer/broker. It fetches draft bytes, uploads the immutable handoff, dispatches read-only qualification, verifies every native result through the Actions API and only then mutates releases. Only this job has contents write, !cancelled() and global queue:max. Group broker requests per candidate version; retain failure visibility and recorded-tag replay input. Do not execute candidates here.
-- PUBLIC `.github/workflows/qualify-platforms.yml`, `scripts/qualification_broker.py` and `scripts/verify-parent-handoff.py`: add the cross-workflow API gate. Pin public source SHA, active parent run/attempt, artifact ID/digest and exact five native job names. ID-based download steps MUST set merge-multiple:true even for one artifact, or the sealed files land in a named subdirectory. Require every result; sealed throwaway failure is the only accepted failed run and selects cleanup. All worker jobs are read-only with non-persisted credentials. There is no unverified pass/fail dispatch payload.
+- PUBLIC `.github/workflows/qualify-platforms.yml`, `scripts/qualification_broker.py` and `scripts/verify-parent-handoff.py`: add the cross-workflow API gate. Pin public source SHA, active parent run/attempt, artifact ID/digest and exact five native job names. Adapt the artifact-name prefix in verify-parent-handoff.py to match the parent workflow (the pilot uses lmoffice-draft), and the repository_dispatch event names in both workflows to match release-policy.json product. ID-based download steps MUST set merge-multiple:true even for one artifact, or the sealed files land in a named subdirectory. Require every result; sealed throwaway failure is the only accepted failed run and selects cleanup. All worker jobs are read-only with non-persisted credentials. There is no unverified pass/fail dispatch payload.
 - PUBLIC `.github/actions/qualify-platform/action.yml`: add trusted sums identity, remove token env, pin every external action by its resolved full SHA. Retain that host's corpus/gallery/user example and Windows launcher handling.
 - PUBLIC `.github/workflows/public-ci.yml`: pin its existing actions and disable checkout credential persistence too. Add no automatic private push release trigger.
-- PUBLIC: initialize `REVOKED` and `release-state.json`; copy/adapt `tests/test_release_pipeline.py`, `tests/test_release_security.py`, `tests/release_fixtures.py`, `tests/mutate-release-pipeline.py` and this guide. Update product-specific expected private gates, not the security invariants. Run the actual candidate-credential probe and mutations, not missing-import failures.
+- PUBLIC: initialize `REVOKED` and `release-state.json`; copy/adapt `tests/test_release_pipeline.py`, `tests/test_release_security.py`, `tests/release_fixtures.py`, `tests/mutate-release-pipeline.py` and this guide. Adapt product/asset names in release_fixtures.py and test_release_legacy.py (including the legacy API URL), the candidate-group mutation target and the expected private gate names; preserve the security invariants. Run the actual candidate-credential probe and mutations, not missing-import failures.
 - Repository setting: enable immutable releases before the proof through the repository admin API/UI; do not give Actions administration permission. Verify the CI-published candidate reports immutable:true. Older releases remain governed by their existing state.
 - Prove one sealed throwaway failure, one five-platform success and an older/revoked replay refusal through the repositories' OWN workflows. Record source SHAs, action pins, run IDs, release tag, checksum/seal IDs and signer identity. No manual tags/promotions, secret copying or registry login.
-
-## Primary references
-
-- [Private artifact attestations require Enterprise Cloud](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations).
-- [Bundled/offline verification and private Sigstore roots](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/verify-attestations-offline); [gh verification flags and certificate-versus-predicate distinction](https://cli.github.com/manual/gh_attestation_verify).
-- [Actual concurrency/pending queue behavior](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
-- [Immutable release protections and tag reuse restrictions](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).

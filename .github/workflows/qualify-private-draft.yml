@@ -15,7 +15,7 @@ jobs:
   candidate:
     runs-on: ubuntu-24.04
     permissions:
-      contents: read
+      contents: write
     outputs:
       tag: ${{ steps.candidate.outputs.tag }}
       version: ${{ steps.candidate.outputs.version }}
@@ -74,7 +74,7 @@ jobs:
     name: Qualify ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     permissions:
-      contents: read
+      contents: write
     defaults:
       run:
         shell: bash

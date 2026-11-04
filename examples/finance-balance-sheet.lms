@@ -1,7 +1,9 @@
 # Detailed assets, liabilities and equity with a zero-balance control All names and figures are fictional.
 output = ARGV.len() > 0 ? ARGV[0] : "finance-balance-sheet.xlsx";
 image = output + ".png";
-p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/xlsx.dsl.json");
+p = _lmcode_ schema_p;
 let book = xlsx.create(${output});
 let s = book.sheet("Balance Sheet");
 s.merge(1,1,1,3).set(1,1,"Statement of financial position").bold(1,1).font_size(1,1,18.0).font_color(1,1,"#FFFFFF").fill(1,1,"#173D55").row_height(1,34.0);
@@ -64,5 +66,4 @@ s.border_box(4,1,14,3,"thin","#BCCDD5").freeze(4,0).fit_to_page(1,1).page_orient
 
 book.save();
 end _lmcode_
-savedsl(p, output + ".dslb");
-r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000); assert(r.code == 0);
+r = run_lmcode(p, {command:["lmoffice","xlsx","--lmcode","$DSLFILE"]}); assert(r.ok);

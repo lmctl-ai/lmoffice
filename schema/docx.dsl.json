@@ -1,0 +1,499 @@
+{
+  "dsl.schema": 2,
+  "name": "lmoffice_docx",
+  "types": {
+    "DocxHost": {
+      "methods": {
+        "create": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "inspect": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "string"
+          }
+        ],
+        "to_markdown": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "string"
+          }
+        ],
+        "sample_image": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "void"
+          }
+        ]
+      }
+    },
+    "Docx": {
+      "methods": {
+        "heading": [
+          {
+            "params": [
+              "string",
+              "int"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "paragraph": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "bullet": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "numbered": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "table": [
+          {
+            "params": [
+              "int",
+              "int"
+            ],
+            "returns": "Table"
+          }
+        ],
+        "image": [
+          {
+            "params": [
+              "string",
+              "int",
+              "int"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "page_break": [
+          {
+            "params": [],
+            "returns": "Docx"
+          }
+        ],
+        "header": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "footer": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "title": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "author": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "save": [
+          {
+            "params": [],
+            "returns": "void"
+          }
+        ],
+        "font": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "font_size": [
+          {
+            "params": [
+              "float"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "page_size": [
+          {
+            "params": [
+              "float",
+              "float"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "orientation": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "margins": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "columns": [
+          {
+            "params": [
+              "int",
+              "float"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "header_fields": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "footer_fields": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "toc": [
+          {
+            "params": [
+              "string",
+              "int"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "clause": [
+          {
+            "params": [
+              "string",
+              "int"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "signature": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "section_break": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "text_box": [
+          {
+            "params": [
+              "string",
+              "float",
+              "float"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "heading_numbering": [
+          {
+            "params": [
+              "bool"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "markdown": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "html_xml": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ],
+        "markdown_file": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Docx"
+          }
+        ]
+      }
+    },
+    "Paragraph": {
+      "methods": {
+        "bold": [
+          {
+            "params": [
+              "bool"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "italic": [
+          {
+            "params": [
+              "bool"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "size": [
+          {
+            "params": [
+              "float"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "color": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "align": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "font": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "spacing": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "indent": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "keep_with_next": [
+          {
+            "params": [
+              "bool"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "tab_stop": [
+          {
+            "params": [
+              "float",
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "hyperlink": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "footnote": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "comment": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "inserted": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "deleted": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ]
+      }
+    },
+    "Table": {
+      "methods": {
+        "cell": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Table"
+          }
+        ],
+        "borders": [
+          {
+            "params": [
+              "bool"
+            ],
+            "returns": "Table"
+          }
+        ],
+        "column_width": [
+          {
+            "params": [
+              "int",
+              "float"
+            ],
+            "returns": "Table"
+          }
+        ],
+        "shade": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Table"
+          }
+        ],
+        "paragraph": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Paragraph"
+          }
+        ],
+        "merge": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int"
+            ],
+            "returns": "Table"
+          }
+        ],
+        "cell_border": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string",
+              "string",
+              "int"
+            ],
+            "returns": "Table"
+          }
+        ]
+      }
+    }
+  },
+  "functions": {},
+  "context": {
+    "docx": "DocxHost"
+  }
+}

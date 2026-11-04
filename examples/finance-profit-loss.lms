@@ -1,7 +1,9 @@
 # Quarterly P&L with formulas, native chart and an embedded image All names and figures are fictional.
 output = ARGV.len() > 0 ? ARGV[0] : "finance-profit-loss.xlsx";
 image = output + ".png";
-p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/xlsx.dsl.json");
+p = _lmcode_ schema_p;
 let book = xlsx.create(${output});
 let s = book.sheet("P and L");
 s.merge(1,1,1,5).set(1,1,"Quarterly profit and loss").bold(1,1).font_size(1,1,18.0).font_color(1,1,"#FFFFFF").fill(1,1,"#173D55").row_height(1,34.0);
@@ -56,5 +58,4 @@ s.border_box(4,1,8,5,"thin","#BCCDD5").freeze(4,0).fit_to_page(1,1).page_orienta
 xlsx.sample_image(${image}); book.image(${image},2,7,140,100); s.set(8,7,"Embedded brand image").col_width(7,25.0); s.bar_chart(11,1,26,6,"Monthly revenue","A5:A7","B5:B7");
 book.save();
 end _lmcode_
-savedsl(p, output + ".dslb");
-r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000); assert(r.code == 0);
+r = run_lmcode(p, {command:["lmoffice","xlsx","--lmcode","$DSLFILE"]}); assert(r.ok);

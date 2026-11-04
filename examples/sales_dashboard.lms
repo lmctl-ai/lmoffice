@@ -1,6 +1,8 @@
 # Multi-sheet sales dashboard with pivot-like regional summaries, cross-sheet formulas, and charts.
 output = ARGV.len() > 0 ? ARGV[0] : "sales_dashboard.xlsx";
-p = _lmcode_ cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/xlsx.dsl.json");
+p = _lmcode_ schema_p;
 let book = xlsx.create(${output});
 
 # Sheet 1: Dashboard
@@ -76,6 +78,5 @@ s2.autofilter(1, 1, 9, 5);
 
 book.save();
 end _lmcode_
-savedsl(p, output + ".dslb");
-r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000);
-assert(r.code == 0);
+r = run_lmcode(p, {command:["lmoffice","xlsx","--lmcode","$DSLFILE"]});
+assert(r.ok);

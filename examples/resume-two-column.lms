@@ -1,5 +1,8 @@
 # Two-column resume balancing a sidebar with recent work.
-output = ARGV.len() > 0 ? ARGV[0] : "resume-two-column.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+output = ARGV.len() > 0 ? ARGV[0] : "resume-two-column.docx";
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/docx.dsl.json");
+p = _lmcode_ schema_p;
 let d=docx.create(${output});
 d.title("Jordan Lee Resume").author("Jordan Lee").font("Calibri").font_size(10.0).margins(42.0,42.0,42.0,42.0);
 d.heading("JORDAN LEE",1).color("#17324D");
@@ -23,5 +26,4 @@ t.paragraph(1,2,"SELECTED WORK").bold(true);
 t.paragraph(1,2,"Inventory planning · Dispatch systems · Accessible data tables");
 d.footer_fields("Jordan Lee | {PAGE}/{NUMPAGES}").save();
 end _lmcode_
-savedsl(p,output+".dslb");
-r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);
+r = run_lmcode(p, {command:["lmoffice","docx","--lmcode","$DSLFILE"]}); assert(r.ok);

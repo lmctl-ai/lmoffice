@@ -1,7 +1,9 @@
 # Offline lesson plan deck: literacy workshop with charts, a table, and a generated image.
 output = ARGV.len() > 0 ? ARGV[0] : "education-lesson-deck.pptx";
 image = output + ".png";
-p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/pptx.dsl.json");
+p = _lmcode_ schema_p;
 pptx.sample_image(${image});
 let deck = pptx.create(${output});
 deck.theme("#365F91", "#70AD47", "Aptos Display", "Aptos");
@@ -12,4 +14,4 @@ let s4 = deck.slide(); s4.title("Discussion data: water use priorities").line_ch
 let s5 = deck.slide(); s5.title("Reflection and next steps").pie_chart(110.0, 145.0, 560.0, 430.0, "Confidence check", "Ready,Nearly ready,Need help", "14,8,3").text(710.0, 190.0, 440.0, 250.0, "Collect\n• map annotations\n• claim paragraph\n• exit ticket\n\nNext lesson: compare two river restoration proposals.").footer("Cedar Grove Academy | Lesson 04");
 deck.save();
 end _lmcode_
-savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000); assert(r.code == 0);
+r = run_lmcode(p, {command:["lmoffice","pptx","--lmcode","$DSLFILE"]}); assert(r.ok);

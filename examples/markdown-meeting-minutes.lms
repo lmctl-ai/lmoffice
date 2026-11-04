@@ -36,7 +36,9 @@ The council reviewed the pilot feedback. The strongest signal was faster handoff
 
 The next council meets July 2 at 10:00 a.m.
 """;
-p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/docx.dsl.json");
+p = _lmcode_ schema_p;
 let d=docx.create(${output}); d.markdown(${body}).save();
 end _lmcode_
-savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);
+r = run_lmcode(p, {command:["lmoffice","docx","--lmcode","$DSLFILE"]}); assert(r.ok);

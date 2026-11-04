@@ -1,6 +1,8 @@
 # Outside counsel engagement letter with scope and billing terms.
 output = ARGV.len() > 0 ? ARGV[0] : "legal-services-agreement.docx";
-p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/docx.dsl.json");
+p = _lmcode_ schema_p;
 let d = docx.create(${output});
 d.title("Legal Services Agreement").author("Harborline Legal").font("Times New Roman").font_size(11.0);
 d.heading("LEGAL SERVICES AGREEMENT",1).align("center");
@@ -17,4 +19,4 @@ d.signature("Cedar Peak Analytics LLC");
 d.signature("Harborline Legal PLLC");
 d.footer_fields("Legal Services Agreement | {PAGE} of {NUMPAGES}").save();
 end _lmcode_
-savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]),120000); assert(r.code == 0);
+r = run_lmcode(p, {command:["lmoffice","docx","--lmcode","$DSLFILE"]}); assert(r.ok);

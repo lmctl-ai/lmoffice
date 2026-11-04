@@ -1,0 +1,397 @@
+{
+  "dsl.schema": 2,
+  "name": "lmoffice_pptx",
+  "types": {
+    "PptxHost": {
+      "methods": {
+        "create": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Pptx"
+          }
+        ],
+        "inspect": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "string"
+          }
+        ],
+        "to_markdown": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "string"
+          }
+        ],
+        "sample_image": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "void"
+          }
+        ]
+      }
+    },
+    "Pptx": {
+      "methods": {
+        "slide": [
+          {
+            "params": [],
+            "returns": "Slide"
+          }
+        ],
+        "save": [
+          {
+            "params": [],
+            "returns": "void"
+          }
+        ],
+        "theme": [
+          {
+            "params": [
+              "string",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Pptx"
+          }
+        ],
+        "markdown": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Pptx"
+          }
+        ]
+      }
+    },
+    "Slide": {
+      "methods": {
+        "title": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "text": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "bullet": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "image": [
+          {
+            "params": [
+              "string",
+              "float",
+              "float",
+              "float",
+              "float"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "rect": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "notes": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "ellipse": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "rounded_rect": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "line": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string",
+              "float"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "arrow": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string",
+              "float"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "hyperlink": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "footer": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "slide_number": [
+          {
+            "params": [
+              "bool"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "transition": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "title_slide": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "section_header": [
+          {
+            "params": [
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "two_content": [
+          {
+            "params": [
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "table": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "int",
+              "int"
+            ],
+            "returns": "PptxTable"
+          }
+        ],
+        "bar_chart": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "line_chart": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ],
+        "pie_chart": [
+          {
+            "params": [
+              "float",
+              "float",
+              "float",
+              "float",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Slide"
+          }
+        ]
+      }
+    },
+    "PptxTable": {
+      "methods": {
+        "cell": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "PptxTable"
+          }
+        ],
+        "cell_bg": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "PptxTable"
+          }
+        ],
+        "cell_color": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "PptxTable"
+          }
+        ],
+        "bold": [
+          {
+            "params": [
+              "int",
+              "int",
+              "bool"
+            ],
+            "returns": "PptxTable"
+          }
+        ],
+        "font_size": [
+          {
+            "params": [
+              "int",
+              "int",
+              "float"
+            ],
+            "returns": "PptxTable"
+          }
+        ],
+        "align": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "PptxTable"
+          }
+        ],
+        "header_row": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "PptxTable"
+          }
+        ]
+      }
+    }
+  },
+  "functions": {},
+  "context": {
+    "pptx": "PptxHost"
+  }
+}

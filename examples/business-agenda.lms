@@ -1,5 +1,8 @@
 # Facilitated agenda for a quarterly planning workshop.
-output = ARGV.len() > 0 ? ARGV[0] : "business-agenda.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+output = ARGV.len() > 0 ? ARGV[0] : "business-agenda.docx";
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/docx.dsl.json");
+p = _lmcode_ schema_p;
 let d=docx.create(${output});
 d.title("Q3 Planning Workshop Agenda").author("Harborline Devices").font("Calibri").font_size(11.0).margins(54.0,54.0,54.0,54.0);
 d.heading("Q3 PLANNING WORKSHOP",1).color("#17324D");
@@ -12,5 +15,4 @@ d.bullet("Review the Q2 operating report before the workshop.");
 d.bullet("Write proposed Q3 outcomes on the shared board.");
 d.footer_fields("Q3 Planning Workshop | {PAGE}/{NUMPAGES}").save();
 end _lmcode_
-savedsl(p,output+".dslb");
-r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);
+r = run_lmcode(p, {command:["lmoffice","docx","--lmcode","$DSLFILE"]}); assert(r.ok);

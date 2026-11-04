@@ -1,6 +1,8 @@
 # Tech conference keynote presentation with speaker bio, architectural flow, and benchmark chart.
 output = ARGV.len() > 0 ? ARGV[0] : "conference_talk.pptx";
-p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/pptx.dsl.json");
+p = _lmcode_ schema_p;
 let deck = pptx.create(${output});
 deck.theme("#203864", "#2E75B6", "Segoe UI", "Calibri");
 
@@ -49,6 +51,5 @@ s5.slide_number(true);
 
 deck.save();
 end _lmcode_
-savedsl(p, output + ".dslb");
-r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000);
-assert(r.code == 0);
+r = run_lmcode(p, {command:["lmoffice","pptx","--lmcode","$DSLFILE"]});
+assert(r.ok);

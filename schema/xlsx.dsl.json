@@ -1,0 +1,554 @@
+{
+  "dsl.schema": 2,
+  "name": "lmoffice_xlsx",
+  "types": {
+    "XlsxHost": {
+      "methods": {
+        "create": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Xlsx"
+          }
+        ],
+        "inspect": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "string"
+          }
+        ],
+        "to_markdown": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "string"
+          }
+        ],
+        "sample_image": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "void"
+          }
+        ]
+      }
+    },
+    "Xlsx": {
+      "methods": {
+        "sheet": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "save": [
+          {
+            "params": [],
+            "returns": "void"
+          }
+        ],
+        "named_range": [
+          {
+            "params": [
+              "string",
+              "string",
+              "int",
+              "int",
+              "int",
+              "int"
+            ],
+            "returns": "Xlsx"
+          }
+        ],
+        "image": [
+          {
+            "params": [
+              "string",
+              "int",
+              "int",
+              "int",
+              "int"
+            ],
+            "returns": "Xlsx"
+          }
+        ],
+        "sheet_from_markdown_table": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "sheet_from_csv": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ]
+      }
+    },
+    "Sheet": {
+      "methods": {
+        "set": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          },
+          {
+            "params": [
+              "int",
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          },
+          {
+            "params": [
+              "int",
+              "int",
+              "float"
+            ],
+            "returns": "Sheet"
+          },
+          {
+            "params": [
+              "int",
+              "int",
+              "bool"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "formula": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "bold": [
+          {
+            "params": [
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "fill": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "number_format": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "col_width": [
+          {
+            "params": [
+              "int",
+              "float"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "freeze": [
+          {
+            "params": [
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "merge": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "italic": [
+          {
+            "params": [
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "font_size": [
+          {
+            "params": [
+              "int",
+              "int",
+              "float"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "font_color": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "font_name": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "align": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "valign": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "wrap": [
+          {
+            "params": [
+              "int",
+              "int",
+              "bool"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "border": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "border_box": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "row_height": [
+          {
+            "params": [
+              "int",
+              "float"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "col_hide": [
+          {
+            "params": [
+              "int",
+              "bool"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "row_hide": [
+          {
+            "params": [
+              "int",
+              "bool"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "col_group": [
+          {
+            "params": [
+              "int",
+              "int",
+              "bool"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "tab_color": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "page_orientation": [
+          {
+            "params": [
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "fit_to_page": [
+          {
+            "params": [
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "repeat_rows": [
+          {
+            "params": [
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "autofilter": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "table": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "data_validation_list": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "hyperlink": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "comment": [
+          {
+            "params": [
+              "int",
+              "int",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "conditional_cell_is": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "conditional_color_scale": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "conditional_color_scale3": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "named_range": [
+          {
+            "params": [
+              "string",
+              "int",
+              "int",
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "bar_chart": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "line_chart": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "pie_chart": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string",
+              "string",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "image": [
+          {
+            "params": [
+              "string",
+              "int",
+              "int",
+              "int",
+              "int"
+            ],
+            "returns": "Sheet"
+          }
+        ],
+        "conditional_icon_set": [
+          {
+            "params": [
+              "int",
+              "int",
+              "int",
+              "int",
+              "string"
+            ],
+            "returns": "Sheet"
+          }
+        ]
+      }
+    }
+  },
+  "functions": {},
+  "context": {
+    "xlsx": "XlsxHost"
+  }
+}

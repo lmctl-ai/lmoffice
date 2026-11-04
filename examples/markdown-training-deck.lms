@@ -28,7 +28,9 @@ Use this checklist during the first project review. Bring a small working exampl
 | 2 | Show the result |
 | 3 | Verify the file |
 """;
-p=_lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/pptx.dsl.json");
+p = _lmcode_ schema_p;
 let d=pptx.create(${output}); d.markdown(${body}).save();
 end _lmcode_
-savedsl(p,output+".dslb"); r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);
+r = run_lmcode(p, {command:["lmoffice","pptx","--lmcode","$DSLFILE"]}); assert(r.ok);

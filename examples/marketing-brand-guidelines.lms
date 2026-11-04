@@ -1,7 +1,9 @@
 # Offline brand guidelines deck for a fictional company.
 output = ARGV.len() > 0 ? ARGV[0] : "marketing-brand-guidelines.pptx";
 image = output + ".png";
-p = _lmcode_ cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/pptx.dsl.json");
+p = _lmcode_ schema_p;
 pptx.sample_image(${image}); let deck = pptx.create(${output});
 deck.theme("#5B1F69", "#D97925", "Aptos Display", "Aptos");
 let s1 = deck.slide(); s1.title_slide("Luma Grove Brand System", "A practical guide to a warm, confident identity\nVersion 1.0 | October 2026").image(${image}, 1000.0, 420.0, 170.0, 170.0).footer("Luma Grove | Internal marketing use").transition("fade");
@@ -11,4 +13,4 @@ let s4 = deck.slide(); s4.title("Campaign calendar and owners"); let t = s4.tabl
 let s5 = deck.slide(); s5.title("Message mix for the next quarter").pie_chart(100.0, 145.0, 600.0, 430.0, "Content mix", "Teach,Prove,Invite", "50,30,20").text(760.0, 190.0, 370.0, 250.0, "Every asset should\n• lead with a useful idea\n• show a specific proof point\n• end with one clear invitation\n\nReview checklist: voice, contrast, accessibility.").footer("Luma Grove | Internal marketing use");
 deck.save();
 end _lmcode_
-savedsl(p, output + ".dslb"); r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000); assert(r.code == 0);
+r = run_lmcode(p, {command:["lmoffice","pptx","--lmcode","$DSLFILE"]}); assert(r.ok);

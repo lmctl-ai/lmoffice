@@ -1,7 +1,9 @@
 # A small project report with a generated image and a table.
 output = ARGV.len() > 0 ? ARGV[0] : "report.docx";
 image = output + ".png";
-p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/docx.dsl.json");
+p = _lmcode_ schema_p;
 docx.sample_image(${image});
 let doc = docx.create(${output});
 doc.title("Quarterly report").author("Lattice Systems");
@@ -17,6 +19,5 @@ t.cell(3, 1, "Customers").cell(3, 2, "416");
 doc.image(${image}, 160, 100).page_break();
 doc.header("Lattice Systems").footer("Confidential").save();
 end _lmcode_
-savedsl(p, output + ".dslb");
-r = system(concat(dsl_cli(p), ["--lmcode", output + ".dslb"]), 120000);
-assert(r.code == 0);
+r = run_lmcode(p, {command:["lmoffice","docx","--lmcode","$DSLFILE"]});
+assert(r.ok);

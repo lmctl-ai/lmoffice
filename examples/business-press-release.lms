@@ -1,5 +1,8 @@
 # Press release announcing a fictional partnership.
-output = ARGV.len() > 0 ? ARGV[0] : "business-press-release.docx"; p=_lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+output = ARGV.len() > 0 ? ARGV[0] : "business-press-release.docx";
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/docx.dsl.json");
+p = _lmcode_ schema_p;
 let d=docx.create(${output});
 d.title("Cedar Peak and Harborline Partnership").author("Cedar Peak Analytics").font("Calibri").font_size(11.0).columns(2,24.0);
 d.paragraph("FOR IMMEDIATE RELEASE").bold(true).align("center");
@@ -12,5 +15,4 @@ d.heading("Media contact",2);
 d.paragraph("Maya Chen · media@cedarpeak.example · (312) 555-0111");
 d.footer_fields("Press release | {PAGE}/{NUMPAGES}").save();
 end _lmcode_
-savedsl(p,output+".dslb");
-r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);
+r = run_lmcode(p, {command:["lmoffice","docx","--lmcode","$DSLFILE"]}); assert(r.ok);

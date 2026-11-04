@@ -1,6 +1,8 @@
 # Demand for correction of a fictional delivery and invoice dispute.
 output = ARGV.len() > 0 ? ARGV[0] : "legal-demand-letter.docx";
-p = _lmcode_ cli="lmoffice docx" install="github:lmctl-ai/lmoffice@latest";
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+schema_p = load_schema(schema="../schema/docx.dsl.json");
+p = _lmcode_ schema_p;
 let d=docx.create(${output});
 d.title("Demand for Corrective Delivery").author("Harborline Legal").font("Times New Roman").font_size(11.0).margins(54.0,54.0,54.0,54.0);
 d.paragraph("June 18, 2026").tab_stop(504.0,"right");
@@ -13,5 +15,4 @@ d.paragraph("Sincerely,");
 d.signature("Riley Chen, Harborline Legal");
 d.footer_fields("Demand Letter | {PAGE}/{NUMPAGES}").save();
 end _lmcode_
-savedsl(p,output+".dslb");
-r=system(concat(dsl_cli(p),["--lmcode",output+".dslb"]),120000); assert(r.code==0);
+r = run_lmcode(p, {command:["lmoffice","docx","--lmcode","$DSLFILE"]}); assert(r.ok);

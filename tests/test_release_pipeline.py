@@ -43,6 +43,11 @@ class CredentialBoundary(unittest.TestCase):
    if len(cells)>=2 and cells[0] in job_blocks():declared[cells[0]]=cells[1]
   actual={name:('contents:write' if 'contents: write' in body else 'contents:read')+('; actions:read' if 'actions: read' in body else '') for name,body in job_blocks().items()}
   self.assertEqual(declared,actual)
+ def test_cross_run_artifacts_are_flattened(self):
+  for file in ['.github/workflows/qualify-platforms.yml','.github/actions/qualify-platform/action.yml']:
+   source=text(file)
+   self.assertIn('artifact-ids:',source)
+   self.assertIn('merge-multiple: true',source,file)
  def test_actions_pinned(self):
   for f in ['.github/workflows/qualify-private-draft.yml','.github/workflows/public-ci.yml','.github/workflows/qualify-platforms.yml','.github/actions/qualify-platform/action.yml']:
    for line in text(f).splitlines():

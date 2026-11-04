@@ -17,6 +17,7 @@ mutations=[
  ('cancel',' .github/workflows/qualify-private-draft.yml'.strip(),"!cancelled() && ",""),
  ('queue-candidate','.github/workflows/qualify-private-draft.yml',"group: lmoffice-qualification-${{ inputs.tag || github.event.client_payload.tag }}","group: one-shared-pending-slot"),
  ('queue-writer','.github/workflows/qualify-private-draft.yml',"      queue: max\n",""),
+ ('artifact-layout','.github/actions/qualify-platform/action.yml','merge-multiple: true','merge-multiple: false'),
  ('action-pin','.github/workflows/qualify-private-draft.yml','actions/checkout@11d5960a326750d5838078e36cf38b85af677262','actions/checkout@v4'),
  ('doc-permissions','docs/release-pipeline.md','| promote | contents:write; actions:read |','| promote | contents:read; actions:read |'),
 ]

@@ -19,7 +19,7 @@ def record(api,manifest,request,outcome):
  data,_=api.file('release-state.json',missing=True);state=json.loads(data) if data else {'format':'native-release-state/2','candidates':{}}
  previous=state['candidates'].get(manifest['tag'])
  if previous and previous['request']!=request:raise ValueError('conflicting recorded release identity')
- state['candidates'][manifest['tag']]={'request':request,'outcome':outcome,'private_run':'https://github.com/'+manifest['private_repository']+'/actions/runs/'+manifest['run_id'],'public_run':'https://github.com/'+PUBLIC+'/actions/runs/'+os.environ.get('GITHUB_RUN_ID','offline')}
+ state['candidates'][manifest['tag']]={'request':request,'outcome':outcome,'private_run':'https://github.com/'+manifest['private_repository']+'/actions/runs/'+manifest['run_id'],'public_run':'https://github.com/'+PUBLIC+'/actions/runs/'+os.environ.get('GITHUB_RUN_ID','offline'),'qualification_run':'https://github.com/'+PUBLIC+'/actions/runs/'+os.environ.get('QUALIFICATION_RUN_ID','offline')}
  api.put_file('release-state.json',canonical(state),'Record qualified release identity '+manifest['tag'])
 
 def revoke(api,tag,reason):

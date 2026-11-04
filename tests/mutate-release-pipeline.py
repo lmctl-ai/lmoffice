@@ -13,11 +13,12 @@ mutations=[
  ('asset-id','scripts/release_policy.py',"'id':positive(asset['id'])","'id':1"),
  ('late-recheck','scripts/manage-qualified-draft.py',"policy(api,tag);release,etag=recheck(api,root,seal,request,False)","policy(api,tag)"),
  ('frozen-repair','scripts/stage-frozen-draft.py',"if any(a['name'] in {SEAL,BUNDLE} for a in release.get('assets',[])) and name!=BUNDLE:","if False:"),
+ ('native-api-gate','scripts/qualification_broker.py',"for name in {'candidate'}|PLATFORMS:","for name in {'candidate'}:"),
  ('cancel',' .github/workflows/qualify-private-draft.yml'.strip(),"!cancelled() && ",""),
  ('queue-candidate','.github/workflows/qualify-private-draft.yml',"group: lmoffice-qualification-${{ inputs.tag || github.event.client_payload.tag }}","group: one-shared-pending-slot"),
  ('queue-writer','.github/workflows/qualify-private-draft.yml',"      queue: max\n",""),
  ('action-pin','.github/workflows/qualify-private-draft.yml','actions/checkout@11d5960a326750d5838078e36cf38b85af677262','actions/checkout@v4'),
- ('doc-permissions','docs/release-pipeline.md','| promote | contents:write |','| promote | contents:read |'),
+ ('doc-permissions','docs/release-pipeline.md','| promote | contents:write; actions:read |','| promote | contents:read; actions:read |'),
 ]
 with tempfile.TemporaryDirectory(prefix='release-mutations-') as temporary:
  root=Path(temporary)

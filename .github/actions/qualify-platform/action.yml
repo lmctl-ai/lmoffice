@@ -4,6 +4,9 @@ inputs:
   artifact:
     description: Candidate artifact uploaded by the public candidate job
     required: true
+  parent_run:
+    description: Trusted broker run that owns this artifact
+    required: true
   asset:
     description: Exact platform executable in the candidate
     required: true
@@ -27,7 +30,9 @@ runs:
         python-version: '3.12'
     - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.1.8
       with:
-        name: ${{ inputs.artifact }}
+        artifact-ids: ${{ inputs.artifact }}
+        run-id: ${{ inputs.parent_run }}
+        github-token: ${{ github.token }}
         path: draft-assets
     - name: Install the lmscript compiler in a runner-local prefix
       shell: bash

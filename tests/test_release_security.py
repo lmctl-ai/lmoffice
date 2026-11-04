@@ -74,7 +74,7 @@ class ReleaseSecurity(unittest.TestCase):
    for key,value in values.items():result=result.replace(key,repr(value))
    return eval(result.replace('&&',' and ').replace('||',' or '),{'__builtins__':{}},{})
   self.assertTrue(evaluate(False));self.assertFalse(evaluate(True))
-  values['needs.integration.result']='failure';self.assertFalse(evaluate(False))
+  values['needs.regression.result']='failure';self.assertFalse(evaluate(False))
 
 
 class ProducerFreeze(unittest.TestCase):
@@ -101,3 +101,24 @@ class ProducerFreeze(unittest.TestCase):
    with self.assertRaises(ValueError):upload(object(),{'assets':[a]},p.name,p)
 
 if __name__=='__main__':unittest.main()
+
+class NativeAPIGates(unittest.TestCase):
+ def test_all_native_legs_and_exact_workflow_source_are_required(self):
+  module=runpy.run_path(str(ROOT/'scripts/qualification_broker.py'));validate=module['validate_qualification']
+  run={'path':'.github/workflows/qualify-platforms.yml','head_branch':'main','head_sha':'a'*40,'event':'repository_dispatch','status':'completed','conclusion':'success'}
+  jobs=[{'name':n,'status':'completed','conclusion':'success'} for n in ['candidate','Qualify macos-arm64','Qualify macos-x64','Qualify linux-x64','Qualify linux-arm64','Qualify windows-x64']]+[{'name':'deliberate-failure-test','status':'completed','conclusion':'skipped'}]
+  validate(run,jobs,'a'*40,False)
+  for index in range(6):
+   bad=copy.deepcopy(jobs);bad[index]['conclusion']='failure'
+   with self.assertRaises(ValueError,msg=jobs[index]['name']):validate(run,bad,'a'*40,False)
+  for key,value in [('head_sha','b'*40),('head_branch','fork'),('event','workflow_dispatch'),('path','other.yml'),('status','in_progress')]:
+   bad=dict(run);bad[key]=value
+   with self.assertRaises(ValueError,msg=key):validate(bad,jobs,'a'*40,False)
+ def test_throwaway_only_accepts_the_expected_failure(self):
+  module=runpy.run_path(str(ROOT/'scripts/qualification_broker.py'));validate=module['validate_qualification']
+  run={'path':'.github/workflows/qualify-platforms.yml','head_branch':'main','head_sha':'a'*40,'event':'repository_dispatch','status':'completed','conclusion':'failure'}
+  jobs=[{'name':n,'status':'completed','conclusion':'success'} for n in ['candidate','Qualify macos-arm64','Qualify macos-x64','Qualify linux-x64','Qualify linux-arm64','Qualify windows-x64']]+[{'name':'deliberate-failure-test','status':'completed','conclusion':'failure'}]
+  validate(run,jobs,'a'*40,True)
+  with self.assertRaises(ValueError):validate(run,jobs,'a'*40,False)
+  jobs[-1]['conclusion']='skipped'
+  with self.assertRaises(ValueError):validate(run,jobs,'a'*40,True)

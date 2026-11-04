@@ -13,16 +13,19 @@ inputs:
   python:
     description: Python executable name for this runner
     required: true
+  sums_sha256:
+    description: Checksum identity verified by the trusted handoff job
+    required: true
 runs:
   using: composite
   steps:
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
       with:
         node-version: 24
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
       with:
         python-version: '3.12'
-    - uses: actions/download-artifact@v4
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.1.8
       with:
         name: ${{ inputs.artifact }}
         path: draft-assets
@@ -44,10 +47,14 @@ runs:
         if [ "$RUNNER_OS" = Windows ]; then py="$PWD/.test-venv/Scripts/python.exe"; else py="$PWD/.test-venv/bin/python"; fi
         "$py" -m pip install python-docx==1.2.0 openpyxl==3.1.5 python-pptx==1.0.2
         echo "LMOFFICE_TEST_PYTHON=$py" >> "$GITHUB_ENV"
+    - name: Verify the credential-free candidate handoff
+      shell: bash
+      env:
+        EXPECTED_SUMS_SHA: ${{ inputs.sums_sha256 }}
+      run: python3 scripts/check-local-candidate.py draft-assets "$EXPECTED_SUMS_SHA"
     - name: Install the exact draft binary through lmscript
       shell: bash
       env:
-        GH_TOKEN: ${{ github.token }}
         DRAFT_TAG: ${{ github.event.client_payload.tag }}
         DRAFT_ASSET: ${{ inputs.asset }}
       run: |

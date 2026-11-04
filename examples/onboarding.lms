@@ -1,6 +1,6 @@
 # New employee onboarding orientation with first-week checklist, tool links, and mentorship table.
 output = ARGV.len() > 0 ? ARGV[0] : "onboarding.pptx";
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 let deck = pptx.create(${output});

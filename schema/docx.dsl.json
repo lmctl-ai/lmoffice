@@ -281,6 +281,15 @@
             ],
             "returns": "Docx"
           }
+        ],
+        "html_doc": [
+          {
+            "params": [
+              "string",
+              "string"
+            ],
+            "returns": "Docx"
+          }
         ]
       }
     },

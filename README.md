@@ -26,7 +26,7 @@ private implementation detail
 
 Requires the .NET 8 SDK, git, Python 3, and `lmscript` (npm `@lmctl-ai/lmctl@0.2.458`) on PATH. Native publishing also needs a platform C toolchain; Linux needs clang and zlib development headers.
 
-The SDK checkout in ignored `private implementation detail` is pinned by `private build metadata`; the application uses `DocumentFormat.OpenXml` 3.5.1 and its locked `System.IO.Packaging` 8.0.1 dependency. `private implementation detail` publishes one self-contained NativeAOT executable for the selected runtime identifier. The current release lane publishes Linux x64 and arm64, dynamically linked to the platform C, math, and zlib libraries (and using platform cryptography). Earlier releases may contain macOS and Windows assets; those platforms are not produced by the current lane. Each Linux binary is a single deployable file, but it is not a statically linked libc binary.
+The SDK checkout in ignored `private implementation detail` is pinned by `private build metadata`; the application uses `DocumentFormat.OpenXml` 3.5.1 and its locked `System.IO.Packaging` 8.0.1 dependency. `private implementation detail` publishes one self-contained NativeAOT executable for the selected runtime identifier (`linux-x64`, `linux-arm64`, `macos-arm64`, `macos-x64`, or `windows-x64`). On Linux, the executable is dynamically linked to the platform C, math, and zlib libraries (and uses platform cryptography). Each Linux binary is a single deployable file, but it is not a statically linked libc binary.
 
 ```sh
 lmoffice --version
@@ -39,7 +39,9 @@ lmoffice inspect report.docx
 
 The `docx`, `xlsx`, and `pptx` subcommands each embed and expose their own schema. Use `--lmcode FILE` to execute an invocation manifest; builder invocations may repeat the flag. The schema and signature flags are available on each format route. Each example declares the pinned host dependency in an adjacent comment that the gallery installer reads. `inspect` is the shared top-level command: it validates a `.docx`, `.xlsx`, or `.pptx` and returns a JSON summary containing format-specific counts and extracted text. Add `--markdown` to extract the supported Markdown subset. The schema's strings are UTF-8 strings; the host converts them at the document boundary.
 
-The context factories are `docx.create(path)`, `xlsx.create(path)`, and `pptx.create(path)`. Their types are `DocxHost`, `XlsxHost`, and `PptxHost`; document methods belong to the returned handles. All three registries include the SDK’s built-in string, math, collection and file catalogs. The examples load the checked-in schema and declare the host dependency in a comment for the gallery installer; the pin is `install="github:lmctl-ai/lmoffice@v0.1.32"`. See the subcommand layout.
+The context factories are `docx.create(path)`, `xlsx.create(path)`, and `pptx.create(path)`. Their types are `DocxHost`, `XlsxHost`, and `PptxHost`; document methods belong to the returned handles. All three registries include the SDK’s built-in string, math, collection and file catalogs. The examples load the checked-in schema and declare the host dependency in a comment for the gallery installer; the pin is `install="github:lmctl-ai/lmoffice@v0.1.33"`. See the subcommand layout.
+
+The DOCX host provides `Docx.html_doc(xml, css)` for the additive `html-doc@1` / `css-doc@1` profile. The legacy `html_xml` operation remains supported. See [the DOCX profile contract](docs/html-doc-profile.md) and its [pinned cross-host corpus](https://github.com/lmctl-ai/lmcode/tree/main/tests/html-doc-conformance).
 
 Coordinates and indices are deliberately small and predictable: Word table cells and spreadsheet rows/columns are 1-based; spreadsheet formulas are stored in the workbook and are not evaluated by lmoffice; slide coordinates are pixels on a 1280×720 canvas at 96 DPI. Paragraph styles use boolean bold/italic, point sizes, six-digit hex colors, and named alignment values. The format contexts expose the shared sample-image helper for examples that need a self-contained 64×64 PNG.
 
@@ -57,7 +59,7 @@ body = """# Weekly brief
 
 {{sign: Avery Chen}}
 """;
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="schema/docx.dsl.json");
 p = _lmcode_ schema_p;
 docx.create("brief.docx").markdown(${body}).save();

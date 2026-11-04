@@ -1,7 +1,7 @@
 # Offline HR onboarding review for a fictional company.
 output = ARGV.len() > 0 ? ARGV[0] : "hr-onboarding-review.pptx";
 image = output + ".png";
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 pptx.sample_image(${image}); let deck = pptx.create(${output});

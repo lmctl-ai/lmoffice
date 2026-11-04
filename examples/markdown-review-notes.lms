@@ -32,7 +32,7 @@ Prepared for **Cedar Valley Cooperative** on June 21, 2026.
 
 {{sign: Imani Reed}}
 """;
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="../schema/docx.dsl.json");
 p = _lmcode_ schema_p;
 let d=docx.create(${output}); d.markdown(${body}).save();

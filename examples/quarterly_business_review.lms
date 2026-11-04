@@ -1,6 +1,6 @@
 # Executive Quarterly Business Review (QBR) presentation with performance metrics, table, and chart.
 output = ARGV.len() > 0 ? ARGV[0] : "quarterly_business_review.pptx";
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 let deck = pptx.create(${output});

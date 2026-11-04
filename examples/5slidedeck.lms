@@ -1,6 +1,6 @@
 # A five-slide project briefing.
 output = ARGV.len() > 0 ? ARGV[0] : "5slidedeck.pptx";
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 pptx.sample_image(${output} + ".png");

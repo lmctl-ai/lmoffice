@@ -1,6 +1,6 @@
 # Employee travel and business expense report with receipt itemization and formulas.
 output = ARGV.len() > 0 ? ARGV[0] : "expense_report.xlsx";
-# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="../schema/xlsx.dsl.json");
 p = _lmcode_ schema_p;
 let book = xlsx.create(${output});

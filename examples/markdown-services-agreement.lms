@@ -35,7 +35,7 @@ The client will review each deliverable within five business days. Silence after
 {{sign: Harborline Devices}}
 {{sign: Juniper Property Group}}
 """;
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="../schema/docx.dsl.json");
 p = _lmcode_ schema_p;
 let d=docx.create(${output}); d.markdown(${body}).save();

@@ -1,6 +1,6 @@
 # Realistic monthly household/personal budget with category breakdown, formulas, and chart.
 output = ARGV.len() > 0 ? ARGV[0] : "monthly_budget.xlsx";
-# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.32"
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.33"
 schema_p = load_schema(schema="../schema/xlsx.dsl.json");
 p = _lmcode_ schema_p;
 let book = xlsx.create(${output});

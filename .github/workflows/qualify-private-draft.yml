@@ -101,7 +101,6 @@ jobs:
       - name: Install the exact draft binary through lmscript
         env:
           GH_TOKEN: ${{ github.token }}
-          LMSCRIPT_TOOL_CACHE: ${{ runner.temp }}/lmoffice-tool-cache
           DRAFT_TAG: ${{ needs.candidate.outputs.tag }}
           DRAFT_ASSET: ${{ matrix.asset }}
         run: |

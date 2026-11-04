@@ -36,24 +36,15 @@ jobs:
           [[ "$DRAFT_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
           [[ "$EXPECTED_SUMS_SHA" =~ ^[0-9a-f]{64}$ ]]
           [[ "$DELIBERATE_FAILURE" == true || "$DELIBERATE_FAILURE" == false ]]
-          release="$(gh release view "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --json tagName,isDraft)"
-          test "$(jq -r .tagName <<<"$release")" = "$DRAFT_TAG"
-          asset_names="$(gh release view "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --json assets --jq '[.assets[].name] | sort | @json')"
           mkdir -p draft-assets
-          gh release download "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --dir draft-assets
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/releases?per_page=100" |
+            python3 scripts/download-draft-candidate.py "$DRAFT_TAG" "$EXPECTED_SUMS_SHA" draft-assets
           python3 scripts/verify-draft-candidate.py "$DRAFT_TAG" "$EXPECTED_SUMS_SHA" draft-assets
-          RELEASE_ASSET_NAMES="$asset_names" python3 - <<'PY'
-          import json,os
-          manifest=json.load(open("draft-assets/RELEASE-MANIFEST.json",encoding="utf-8"))
-          expected=set(manifest["assets"])|{"RELEASE-MANIFEST.json","SHA256SUMS"}
-          actual=set(json.loads(os.environ["RELEASE_ASSET_NAMES"]))
-          if actual!=expected: raise SystemExit(f"draft release asset names differ from sealed candidate: {sorted(actual^expected)}")
-          PY
           version="$(python3 -c 'import json;print(json.load(open("draft-assets/RELEASE-MANIFEST.json"))["version"])')"
           echo "tag=$DRAFT_TAG" >> "$GITHUB_OUTPUT"
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "failure_control=$DELIBERATE_FAILURE" >> "$GITHUB_OUTPUT"
-          echo "verified candidate $DRAFT_TAG ($EXPECTED_SUMS_SHA), isDraft=$(jq -r .isDraft <<<"$release")" >> "$GITHUB_STEP_SUMMARY"
+          echo "verified candidate $DRAFT_TAG ($EXPECTED_SUMS_SHA)" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: lmoffice-draft-${{ github.run_id }}-${{ github.run_attempt }}

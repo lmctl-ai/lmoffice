@@ -122,7 +122,9 @@ This pilot publishes GitHub assets/Latest only. npm latest needs its own tested 
 - Committed local/CI gate: **33 offline tests and 18 caught mutations**. Original-manager controls fail on actual PATCH/DELETE, not missing imports. The first live read-only draft fetch failed closed, proving why the sole trusted writer must broker assets; the first cross-run download failed closed until single-artifact flattening was explicit. Neither attempt published anything.
 - Measured production private work: nine jobs, 821 summed runner-seconds, 19 per-job-rounded minutes; the existing publisher including API checks/sealing/signing took 45 seconds. At the referenced runner rates the marginal estimate is ~$0.46 before included allowances; actual invoice unverified. There is no added private native matrix/job or long-lived secret. Public broker/worker standard-runner compute is free.
 
-## Primary references- [Private artifact attestations require Enterprise Cloud](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations).
+## Primary references
+
+- [Private artifact attestations require Enterprise Cloud](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations).
 - [Bundled/offline verification and private Sigstore roots](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/verify-attestations-offline); [gh verification flags and certificate-versus-predicate distinction](https://cli.github.com/manual/gh_attestation_verify).
 - [Actual concurrency/pending queue behavior](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
 - [Immutable release protections and tag reuse restrictions](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).

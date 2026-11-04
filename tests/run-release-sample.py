@@ -15,7 +15,9 @@ root=Path(__file__).resolve().parents[1];work=a.workdir.resolve();work.mkdir(par
 compiler=Path(a.compiler);cli=compiler.with_name("lmctl.cmd" if os.name=="nt" else "lmctl")
 command=[str(cli),"autorun",str(root/"examples/5slidedeck.lms")]
 if os.name=="nt" and cli.suffix.lower() in (".cmd",".bat"):
- command=["cmd.exe","/d","/s","/c",subprocess.list2cmdline(command)]
+ # cmd /s /c strips the quote pair around the complete command and caused
+ # Node to execute the batch shim itself as JavaScript on current runners.
+ command=["cmd.exe","/d","/c","call "+subprocess.list2cmdline(command)]
 env=dict(os.environ,PATH=str(Path(a.host).resolve().parent)+os.pathsep+str(compiler.parent)+os.pathsep+os.environ.get("PATH",""))
 run=subprocess.run(command,cwd=work,env=env,text=True,capture_output=True)
 if run.returncode: raise SystemExit("lmctl autorun failed:\n"+run.stdout+run.stderr)

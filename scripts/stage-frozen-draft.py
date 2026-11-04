@@ -2,7 +2,7 @@
 """Upload missing candidate assets once. Never clobber/delete an existing asset."""
 import argparse,json,os,subprocess
 from pathlib import Path
-from release_policy import API,CONFIG,PUBLIC,PRIVATE,PAYLOADS,MANIFEST,SUMS,SEAL,BUNDLE,CORE,ALL,asset_identity,canonical,digest,output,same_assets,summary,validate_manifest,verify_attestation
+from release_policy import API,CONFIG,PUBLIC,PRIVATE,PAYLOADS,MANIFEST,SUMS,SEAL,BUNDLE,CORE,ALL,asset_identity,canonical,digest,output,same_assets,summary,validate_manifest,validate_producer,verify_attestation
 
 def upload(api,release,name,path):
  existing=[a for a in release.get('assets',[]) if a['name']==name]
@@ -37,6 +37,7 @@ def main():
   api.request('dispatches',method='POST',data={'event_type':CONFIG['product']+'-release-draft','client_payload':request})
   summary('Dispatched frozen '+request['tag']+'; seal SHA256 '+request['seal_sha256']);print('Dispatched verified frozen '+request['tag']);return
  core=json.loads((root/MANIFEST).read_text());receipt=json.loads((root/'PRIVATE-RUN.json').read_text())
+ validate_producer(dict(core,private_run=receipt))
  if core['source_sha']!=os.environ['GITHUB_SHA'] or core['run_id']!=os.environ['GITHUB_RUN_ID']:raise ValueError('foreign core candidate')
  # Verify the immutable build artifact before changing its core manifest into the final public one.
  core_entries={}

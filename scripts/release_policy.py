@@ -51,8 +51,8 @@ def same_assets(expected,actual):
  left={a['name']:asset_identity(a) for a in expected};right={a['name']:asset_identity(a) for a in actual}
  if len(left)!=len(expected) or len(right)!=len(actual) or left!=right:raise ValueError('frozen release asset ids/digests/sizes changed')
 
-def validate_manifest(m):
- if m.get('format')!='native-release-candidate/2' or m.get('repository')!=PUBLIC:raise ValueError('unsupported candidate manifest')
+def validate_producer(m):
+ if m.get('format') not in {'native-release-core/2','native-release-candidate/2'} or m.get('repository')!=PUBLIC:raise ValueError('unsupported candidate manifest')
  tag=m.get('tag');version(tag)
  if m.get('version')!=tag[1:]:raise ValueError('manifest version/tag mismatch')
  if m.get('private_repository')!=PRIVATE or m.get('workflow')!=CONFIG['workflow'] or m.get('branch')!=CONFIG['branch'] or m.get('ref')!='refs/heads/'+CONFIG['branch']:raise ValueError('foreign private producer workflow/ref')
@@ -67,6 +67,11 @@ def validate_manifest(m):
  for job in jobs:
   positive(job['id'])
   if job.get('conclusion')!='success' or job.get('status')!='completed':raise ValueError('private build gate did not pass')
+ return m
+
+def validate_manifest(m):
+ if m.get('format')!='native-release-candidate/2':raise ValueError('unsupported candidate manifest')
+ validate_producer(m)
  assets=m.get('assets',[])
  if {a.get('name') for a in assets}!=PAYLOADS or len(assets)!=len(PAYLOADS):raise ValueError('manifest payload list mismatch')
  for a in assets:validate_asset(a)

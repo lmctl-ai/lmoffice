@@ -7,6 +7,8 @@ mutations=[
  ('credential-inheritance','scripts/release_policy.py',"return {k:v for k,v in env.items() if k not in {'GH_TOKEN','GITHUB_TOKEN','GH_ENTERPRISE_TOKEN','GITHUB_ENTERPRISE_TOKEN','ACTIONS_ID_TOKEN_REQUEST_TOKEN','ACTIONS_ID_TOKEN_REQUEST_URL'}}",'return dict(env)'),
  ('producer-identity','scripts/release_policy.py',"m.get('private_repository')!=PRIVATE","False"),
  ('certificate-run','scripts/release_policy.py',"if parts[4]==str(m['run_id']) and positive(parts[6])>=positive(m['run_attempt']):","if True:"),
+ ('selected-tag','scripts/verify-private-build.py',"if m.get('tag')!=os.environ['EXPECTED_TAG']:","if False:"),
+ ('selected-purpose','scripts/verify-private-build.py'," or m['deliberate_failure']!=(purpose=='true')",""),
  ('sealed-cleanup','scripts/release_policy.py',"if manifest.get('deliberate_failure') is not True:","if False:"),
  ('older-candidate','scripts/release_policy.py',"if latest and key<version(latest):","if False:"),
  ('revoked-candidate','scripts/release_policy.py',"if tag in revoked:","if False:"),

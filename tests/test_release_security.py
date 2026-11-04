@@ -122,3 +122,17 @@ class NativeAPIGates(unittest.TestCase):
   with self.assertRaises(ValueError):validate(run,jobs,'a'*40,False)
   jobs[-1]['conclusion']='skipped'
   with self.assertRaises(ValueError):validate(run,jobs,'a'*40,True)
+
+class ProducerInputBinding(unittest.TestCase):
+ def test_private_receipt_cannot_change_the_selected_tag_or_throwaway_input(self):
+  with tempfile.TemporaryDirectory() as directory:
+   root=Path(directory);m,seal,request=candidate(root,throwaway=True)
+   class PrivateAPI:
+    def request(self,path):
+     if '/jobs?' in path:return {'jobs':m['private_run']['jobs']}
+     return {'id':123,'run_attempt':1,'head_sha':'a'*40,'head_branch':'main','path':'.github/workflows/ci.yml','event':'workflow_dispatch'}
+   for expected_tag,purpose in [(m['tag'],'false'),('v9.9.9','true')]:
+    env={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'123','EXPECTED_TAG':expected_tag,'DELIBERATE_FAILURE':purpose}
+    with patch.dict(os.environ,env),patch.object(sys,'argv',['verify',str(root)]),patch.object(policy,'API',lambda repo:PrivateAPI()):
+     with self.assertRaises((ValueError,SystemExit)):
+      runpy.run_path(str(ROOT/'scripts/verify-private-build.py'))

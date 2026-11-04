@@ -183,7 +183,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           DRAFT_TAG: ${{ needs.candidate.outputs.tag }}
           EXPECTED_SUMS_SHA: ${{ github.event.client_payload.sha256sums_sha256 }}
-        run: bash scripts/promote-qualified-draft.sh "$DRAFT_TAG" "$EXPECTED_SUMS_SHA" draft-assets
+        run: python3 scripts/manage-qualified-draft.py promote "$DRAFT_TAG" "$EXPECTED_SUMS_SHA" draft-assets
 
   cleanup-throwaway-draft:
     needs: [candidate, integration, deliberate-failure-test]
@@ -202,16 +202,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           DRAFT_TAG: ${{ needs.candidate.outputs.tag }}
           EXPECTED_SUMS_SHA: ${{ github.event.client_payload.sha256sums_sha256 }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          release="$(gh release view "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --json tagName,isDraft)"
-          test "$(jq -r .tagName <<<"$release")" = "$DRAFT_TAG"
-          test "$(jq -r .isDraft <<<"$release")" = true
-          mkdir -p "$RUNNER_TEMP/throwaway-release"
-          gh release download "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --pattern SHA256SUMS --dir "$RUNNER_TEMP/throwaway-release"
-          sum="$(sha256sum "$RUNNER_TEMP/throwaway-release/SHA256SUMS" | awk '{print $1}')"
-          test "$sum" = "$EXPECTED_SUMS_SHA"
-          gh release delete "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" --yes
-          if gh release view "$DRAFT_TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then echo "throwaway draft still exists" >&2; exit 1; fi
-          echo "Verified and removed only throwaway draft $DRAFT_TAG ($sum); Git tag left untouched." >> "$GITHUB_STEP_SUMMARY"
+        run: python3 scripts/manage-qualified-draft.py cleanup "$DRAFT_TAG" "$EXPECTED_SUMS_SHA" draft-assets

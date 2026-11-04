@@ -4,7 +4,7 @@ output = ARGV.len() > 0 ? ARGV[0] : "markdown-contacts-csv.xlsx"; let body = """
 Rowan Price,Blue Orchard Labs,rowan@example.test,false
 Maya Chen,Juniper Works,maya@example.test,true
 """;
-# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_p = load_schema(schema="../schema/xlsx.dsl.json");
 p = _lmcode_ schema_p;
 let d=xlsx.create(${output}); d.sheet_from_csv("Contacts",${body}); d.save();

@@ -39,7 +39,7 @@ lmoffice inspect report.docx
 
 The `docx`, `xlsx`, and `pptx` subcommands each embed and expose their own schema. Use `--lmcode FILE` to execute an invocation manifest; builder invocations may repeat the flag. The schema and signature flags are available on each format route. Each example declares the pinned host dependency in an adjacent comment that the gallery installer reads. `inspect` is the shared top-level command: it validates a `.docx`, `.xlsx`, or `.pptx` and returns a JSON summary containing format-specific counts and extracted text. Add `--markdown` to extract the supported Markdown subset. The schema's strings are UTF-8 strings; the host converts them at the document boundary.
 
-The context factories are `docx.create(path)`, `xlsx.create(path)`, and `pptx.create(path)`. Their types are `DocxHost`, `XlsxHost`, and `PptxHost`; document methods belong to the returned handles. All three registries include the SDK’s built-in string, math, collection and file catalogs. The examples load the checked-in schema and declare the host dependency in a comment for the gallery installer; the pin is `install="github:lmctl-ai/lmoffice@v0.1.31"`. See the subcommand layout.
+The context factories are `docx.create(path)`, `xlsx.create(path)`, and `pptx.create(path)`. Their types are `DocxHost`, `XlsxHost`, and `PptxHost`; document methods belong to the returned handles. All three registries include the SDK’s built-in string, math, collection and file catalogs. The examples load the checked-in schema and declare the host dependency in a comment for the gallery installer; the pin is `install="github:lmctl-ai/lmoffice@v0.1.32"`. See the subcommand layout.
 
 Coordinates and indices are deliberately small and predictable: Word table cells and spreadsheet rows/columns are 1-based; spreadsheet formulas are stored in the workbook and are not evaluated by lmoffice; slide coordinates are pixels on a 1280×720 canvas at 96 DPI. Paragraph styles use boolean bold/italic, point sizes, six-digit hex colors, and named alignment values. The format contexts expose the shared sample-image helper for examples that need a self-contained 64×64 PNG.
 
@@ -57,7 +57,7 @@ body = """# Weekly brief
 
 {{sign: Avery Chen}}
 """;
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_p = load_schema(schema="schema/docx.dsl.json");
 p = _lmcode_ schema_p;
 docx.create("brief.docx").markdown(${body}).save();

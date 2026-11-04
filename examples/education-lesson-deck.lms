@@ -1,7 +1,7 @@
 # Offline lesson plan deck: literacy workshop with charts, a table, and a generated image.
 output = ARGV.len() > 0 ? ARGV[0] : "education-lesson-deck.pptx";
 image = output + ".png";
-# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice pptx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_p = load_schema(schema="../schema/pptx.dsl.json");
 p = _lmcode_ schema_p;
 pptx.sample_image(${image});

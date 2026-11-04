@@ -2,7 +2,7 @@
 output = ARGV.len() > 0 ? ARGV[0] : "cross-workbook-memo.docx";
 workbook = output + ".xlsx";
 
-# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_px = load_schema(schema="../schema/xlsx.dsl.json");
 px = _lmcode_ schema_px;
 let book = xlsx.create(${workbook});
@@ -22,7 +22,7 @@ let cells = split(json_parse(rx.result.inspect).text, "\n");
 let quarterly_total = json_parse(cells[3]) + json_parse(cells[5]) + json_parse(cells[7]);
 let workbook_readback = rx.result.markdown;
 
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_pd = load_schema(schema="../schema/docx.dsl.json");
 pd = _lmcode_ schema_pd;
 let memo = docx.create(${output});

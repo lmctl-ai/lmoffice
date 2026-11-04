@@ -1,7 +1,7 @@
 # Illustrative deduction worksheet with evidence and fictional allowance assumptions All names and figures are fictional.
 output = ARGV.len() > 0 ? ARGV[0] : "finance-tax-worksheet.xlsx";
 image = output + ".png";
-# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice xlsx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_p = load_schema(schema="../schema/xlsx.dsl.json");
 p = _lmcode_ schema_p;
 let book = xlsx.create(${output});

@@ -1,6 +1,6 @@
 # Plain-language online service terms for a fictional SaaS product.
 output = ARGV.len() > 0 ? ARGV[0] : "legal-terms-of-service.docx";
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_p = load_schema(schema="../schema/docx.dsl.json");
 p = _lmcode_ schema_p;
 let d=docx.create(${output});

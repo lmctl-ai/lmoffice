@@ -34,7 +34,7 @@ The finance and support teams reconciled the figures on July 5. The report uses 
 
 The team will prioritize self-service billing, onboarding instrumentation, and a regional support pilot.
 """;
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_p = load_schema(schema="../schema/docx.dsl.json");
 p = _lmcode_ schema_p;
 let d=docx.create(${output}); d.markdown(${body}).save();

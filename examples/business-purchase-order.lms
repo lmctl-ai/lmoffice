@@ -1,6 +1,6 @@
 # Purchase order for equipment with delivery terms.
 output = ARGV.len() > 0 ? ARGV[0] : "business-purchase-order.docx";
-# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.31"
+# host dependency: cli="lmoffice docx" install="github:lmctl-ai/lmoffice@v0.1.32"
 schema_p = load_schema(schema="../schema/docx.dsl.json");
 p = _lmcode_ schema_p;
 let d=docx.create(${output});

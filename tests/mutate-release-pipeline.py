@@ -22,12 +22,18 @@ mutations=[
  ('artifact-layout','.github/actions/qualify-platform/action.yml','merge-multiple: true','merge-multiple: false'),
  ('action-pin','.github/workflows/qualify-private-draft.yml','actions/checkout@11d5960a326750d5838078e36cf38b85af677262','actions/checkout@v4'),
  ('doc-permissions','docs/release-pipeline.md','| promote | contents:write; actions:read |','| promote | contents:read; actions:read |'),
+ ('action-cancel','.github/actions/qualify-platform/action.yml','if: always() && !cancelled()','if: always()'),
+ ('deliberate-failure-needs-macos-arm64','.github/workflows/qualify-platforms.yml','needs: [candidate, qualify-macos-arm64, integration]','needs: [candidate, integration]'),
+ ('peer-host-sha256','scripts/install-hosts.sh','--pattern SHA256SUMS',''),
+ ('public-ci-token','.github/workflows/public-ci.yml','      - name: Check every public example with lmscript\n        shell: bash','      - name: Check every public example with lmscript\n        env:\n          GITHUB_TOKEN: ${{ github.token }}\n        shell: bash'),
 ]
 with tempfile.TemporaryDirectory(prefix='release-mutations-') as temporary:
  root=Path(temporary)
  for name in ['scripts','tests','.github','docs']:
   shutil.copytree(ROOT/name,root/name,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
  shutil.copy2(ROOT/'release-policy.json',root/'release-policy.json')
+ shutil.copy2(ROOT/'REVOKED',root/'REVOKED')
+ shutil.copy2(ROOT/'release-state.json',root/'release-state.json')
  command=[sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_release*.py']
  baseline=subprocess.run(command,cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
  if baseline.returncode:sys.stdout.buffer.write(baseline.stdout);raise SystemExit('mutation baseline is not green')

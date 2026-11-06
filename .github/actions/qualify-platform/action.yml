@@ -95,7 +95,7 @@ runs:
       run: |
         "$LMOFFICE_TEST_PYTHON" tests/run-release-sample.py --compiler "$LMSCRIPT_BIN" --host "$LMOFFICE_BIN" --workdir "$SAMPLE_DIR"
     - name: Summarize platform qualification
-      if: always()
+      if: always() && !cancelled()
       shell: bash
       env:
         DRAFT_TAG: ${{ github.event.client_payload.tag }}

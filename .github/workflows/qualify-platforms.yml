@@ -87,8 +87,8 @@ jobs:
           sums_sha256: ${{ needs.candidate.outputs.sums_sha256 }}
 
   deliberate-failure-test:
-    needs: [candidate, integration]
-    if: ${{ needs.candidate.outputs.failure_control == 'true' && needs.integration.result == 'success' }}
+    needs: [candidate, qualify-macos-arm64, integration]
+    if: ${{ needs.candidate.outputs.failure_control == 'true' && needs.qualify-macos-arm64.result == 'success' && needs.integration.result == 'success' }}
     runs-on: ubuntu-24.04
     permissions:
       contents: read

@@ -74,8 +74,6 @@ jobs:
           PY
 
       - name: Check every public example with lmscript
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail

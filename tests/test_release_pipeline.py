@@ -64,6 +64,18 @@ class CredentialBoundary(unittest.TestCase):
   group=next(l for l in workflow.splitlines() if l.strip().startswith('group:'))
   self.assertIn('client_payload.tag',group)
   self.assertIn('queue: max',job_blocks()['promote'])
+ def test_all_always_predicates_and_install_hosts_hygiene(self):
+  for f in ['.github/workflows/qualify-private-draft.yml','.github/workflows/qualify-platforms.yml','.github/workflows/public-ci.yml','.github/actions/qualify-platform/action.yml']:
+   for line in text(f).splitlines():
+    if line.strip().startswith('if:') and 'always()' in line:
+     self.assertIn('!cancelled()',line,(f,line))
+  self.assertIn('needs: [candidate, qualify-macos-arm64, integration]',job_blocks()['deliberate-failure-test'])
+  self.assertIn("needs.qualify-macos-arm64.result == 'success'",job_blocks()['deliberate-failure-test'])
+  hosts=text('scripts/install-hosts.sh')
+  self.assertIn('--pattern SHA256SUMS',hosts)
+  self.assertIn('PINNED_HOST_SHA256',hosts)
+  self.assertIn('LMOFFICE_QUALIFY_TAG',hosts)
+  self.assertNotIn('GITHUB_TOKEN: ${{ github.token }}',text('.github/workflows/public-ci.yml'))
 
 class SealedPolicy(unittest.TestCase):
  @classmethod
